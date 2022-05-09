@@ -1,0 +1,586 @@
+{
+    "category": "Ciencia",
+    "subcategory": [
+        {
+            "name": "MATEMATICAS",
+            "image": {
+                "@type": "ImageObject",
+                "name": "../assets/Matematicas.png"
+            },
+            "authors": [
+                {
+                    "name": "José Echegaray",
+                    "work": "Introducción a la geometría superior",
+                    "birthDate": "19/04/1832",
+                    "deathDate": "14/09/1916",
+                    "studySites": [
+                        {
+                            "UniversityName": "Instituto de Segunda Enseñanza de Murcia",
+                            "Lat": 37.99511442869365,
+                            "Long": -1.125776734381241
+                        },
+                        {
+                            "UniversityName": "Instituto San Isidro",
+                            "Lat": 40.412696015799035,
+                            "Long": -3.707296386996574
+                        },
+                        {
+                            "UniversityName": "Escuela de Caminos",
+                            "Lat": 40.446481,
+                            "Long": -3.732389
+                        }
+                    ],
+                    "image": {
+                        "@type": "ImageObject",
+                        "name": "../assets/José Echegaray.jpg"
+                    },
+                    "documentales": [
+                        {
+                            "@type": "VideoObject",
+                            "title": "José Echegaray, el intelectual polifacético detrás del Nobel",
+                            "url": "https://www.youtube.com/watch?v=-lSOO4xoUU0"
+                        },
+                        {
+                            "@type": "VideoObject",
+                            "title": "Echegaray, el matemático Nobel de literatura",
+                            "url": "https://www.youtube.com/watch?v=2tsQ75zSWLs"
+                        },
+                        {
+                            "@type": "VideoObject",
+                            "title": "José Echegaray",
+                            "url": "https://www.youtube.com/watch?v=TKZ1JKAm8TM"
+                        }
+                    ],
+                    "coments": [
+                        {
+                            "nickname": "MaciaKing",
+                            "comment": "Muchas grácias por esta información, me ha servido mucho para hacer mi trabajo",
+                            "date": "09/03/2021"
+                        },
+                        {
+                            "nickname": "Pere",
+                            "comment": "Creo que sería más preciso decir que su obra es 'Introducción a la geometria Chasles' ",
+                            "date": "08/04/2022"
+                        },
+                        {
+                            "nickname": "Juanjo",
+                            "comment": "Es uno de los mejores matematicos españoles y hay que reconocer su trabajo.",
+                            "date": "09/05/2022"
+                        }
+                    ]
+                },
+                {
+                    "autorName": "Zoel García de Galdeano",
+                    "work": "Elementos de Euclides",
+                    "birthDate": "05/07/1846",
+                    "deathDate": "28/03/1924",
+                    "studySites": [
+                        {
+                            "UniversityName": "Universidad de Zaragoza: Facultad de Ciencias",
+                            "Lat": 41.642302202038415,
+                            "Long": -0.9002337425978737
+                        }
+                    ],
+                    "image": {
+                        "@type": "ImageObject",
+                        "name": "../assets/Zoel García de Galdeano.jpg"
+                    },
+                    "documentales": [
+                        {
+                            "@type": "VideoObject",
+                            "title": "La herencia de un matemático español y europeo, Zoel García de Galdeano",
+                            "url": "https://www.youtube.com/watch?v=XP4aWWkCDeE&ab_channel=PedroMiana"
+                        }
+                    ],
+                    "coments": [
+                        {
+                            "nickname": "Maria69",
+                            "comment": "Nunca se le hcae justicia a este increible matematicos cuando es posible que este al nivel de Poincaré",
+                            "date": "12/12/2021"
+                        },
+                        {
+                            "nickname": "Juana-9",
+                            "comment": "Siempre que tengo que hacer un trabajo vengo a esta página es muy útil",
+                            "date": "15/04/2022"
+                        },
+                        {
+                            "nickname": "Pere",
+                            "comment": "No creo que sea adecuado decir que su obra más importante es los conjuntos de Cantor, creo que es mucho más importante la integral de Lebesgue",
+                            "date": "10/05/2022"
+                        }
+                    ]
+                },
+                {
+                    "name": "Miguel de Guzmán",
+                    "work": "ESTALMAT (Estímulo del Talento Matemático)",
+                    "birthDate": "12/01/1936",
+                    "deathDate": "14/04/2004",
+                    "studySites": [
+                        {
+                            "UniversityName": "Universidad Complutense de Madrid",
+                            "Lat": 40.449039,
+                            "Long": -3.727031
+                        },
+                        {
+                            "UniversityName": "Universidad de Chicago",
+                            "Lat": 41.789722,
+                            "Long": -87.599722
+                        }
+                    ],
+                    "image": {
+                        "@type": "ImageObject",
+                        "name": "../assets/Miguel de Guzmán.png"
+                    },
+                    "documentales": [
+                        {
+                            "@type": "VideoObject",
+                            "title": "Miguel de Guzman",
+                            "url": "https://www.youtube.com/watch?v=21L1FKvVNkg&ab_channel=AngelDelaLLave"
+                        }
+                    ],
+                    "coments": [
+                        {
+                            "nickname": "Paco Sanz",
+                            "comment": "Tuve el placer de coincidir con esta persona en el 1953 en la carrera y a parte de ser un magnifíco matematico es mucho mejor persona",
+                            "date": "09/03/2021"
+                        },
+                        {
+                            "nickname": "Pere",
+                            "comment": "La biografía me parece demasiado corta para lo influyente que fue en la educación matematica de España",
+                            "date": "17/02/2022"
+                        },
+                        {
+                            "nickname": "MaciaKing",
+                            "comment": "Otro trabajo que puedo hacer gracias a esta página, muchas gracias.",
+                            "date": "01/05/2022"
+                        }
+                    ]
+                },
+                {
+                    "name": "Julio Rey Pastor",
+                    "work": "El álgebra históricamente y críticamente considerada",
+                    "birthDate": "16/08/1888",
+                    "deathDate": "21/02/1962",
+                    "studySites": [
+                        {
+                            "UniversityName": "Universidad de Zaragoza: Facultad de Ciencias",
+                            "Lat": 41.642302202038415,
+                            "Long": -0.9002337425978737
+                        },
+                        {
+                            "UniversityName": "Universidad Complutense de Madrid",
+                            "Lat": 40.449039,
+                            "Long": -3.727031
+                        },
+                        {
+                            "UniversityName": "Universidad de Gotinga",
+                            "Lat": 51.533980,
+                            "Long": 9.937920
+                        }
+                    ],
+                    "image": {
+                        "@type": "ImageObject",
+                        "name": "../assets/Julio Rey Pastor.png"
+                    },
+                    "documentales": [
+                        {
+                            "@type": "VideoObject",
+                            "title": "UN REVOLUCIONARIO DE LAS MATEMÁTICAS",
+                            "url": "https://www.youtube.com/watch?v=3zquf0zrHxQ&ab_channel=SergioMirandaSitioOficial"
+                        },
+                        {
+                            "@type": "VideoObject",
+                            "title": "Recuerdo a Rey Pastor desde nuestra matemática actual....",
+                            "url": "https://www.youtube.com/watch?v=2F4wELPgCLU&ab_channel=RealAcademiadeCienciasExactasF%C3%ADsicasNaturales"
+                        }
+                    ],
+                    "coments": [
+                        {
+                            "nickname": "Pere",
+                            "comment": "La obra magna de este autor es sin duda",
+                            "date": "17/02/2022"
+                        },
+                        {
+                            "nickname": "MaciaKing",
+                            "comment": "Otro trabajo que puedo hacer gracias a esta página, muchas gracias.",
+                            "date": "01/05/2022"
+                        }
+                    ]
+                },
+                {
+                    "name": "Carmen Martínez Sancho",
+                    "work": "Concepto de función, funciones continuas y semicontinuas, sus propiedades",
+                    "birthDate": "08/07/1901",
+                    "deathDate": "15/10/1995",
+                    "studySites": [
+                        {
+                            "UniversityName": "Universidad Complutense de Madrid",
+                            "Lat": 40.449039,
+                            "Long": -3.727031
+                        },
+                        {
+                            "UniversityName": "Instituto Cardenal Cisneros",
+                            "Lat": 40.424477616728794,
+                            "Long": -3.7085826347932582
+                        }
+                    ],
+                    "image": {
+                        "@type": "ImageObject",
+                        "name": "../assets/Carmen Martínez Sancho.jpg"
+                    },
+                    "documentales": [
+                        {}
+                    ],
+                    "coments": [
+                        {
+                            "nickname": "Maria69",
+                            "comment": "Ser la primera doctora en Matemáticas es un logro increíble",
+                            "date": "01/05/2022"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "FISICA",
+            "image": {
+                "@type": "ImageObject",
+                "name": "../assets/Fisica.jpg"
+            },
+            "authors": [
+                {
+                    "name": "Pablo Jarillo-Herrero",
+                    "work": "Grafeno de ángulo mágico",
+                    "birthDate": "11/06/1976",
+                    "deathDate": "",
+                    "studySites": [
+                        {
+                            "UniversityName": "Universidad de Valencia",
+                            "Lat": 39.479051,
+                            "Long": -0.359087
+                        },
+                        {
+                            "UniversityName": "Universidad de California en San Diego",
+                            "Lat": 332.881000,
+                            "Long": -117.238000
+                        },
+                        {
+                            "UniversityName": "Universidad Técnica de Delft",
+                            "Lat": 52.001667,
+                            "Long": 4.3725
+                        }
+                    ],
+                    "image": {
+                        "@type": "ImageObject",
+                        "name": "../assets/Pablo Jarillo-Herrero.png"
+                    },
+                    "documentales": [
+                        {
+                            "@type": "VideoObject",
+                            "title": "Conferencia de Pablo Jarillo-Herrero-'Grafeno de Ángulo Mágico'",
+                            "url": "https://www.youtube.com/watch?v=tnFxblR4bSY&ab_channel=FundacionAreces"
+                        }
+                    ],
+                    "coments": [
+                        {
+                            "nickname": "Juana-9",
+                            "comment": "Pablo Jarillo-Herreo es definitivamente mi idolo.",
+                            "date": "09/03/2021"
+                        },
+                        {
+                            "nickname": "Pere",
+                            "comment": "Indicar como obra más importante 'Grafeno de ángulo mágico' no hace justicia a la obra de este señor, deberia de ser 'Investigación sobre el grafeno'",
+                            "date": "08/04/2022"
+                        }
+                    ]
+                },
+                {
+                    "autorName": "Susana Marcos Celestino",
+                    "work": "Investigación sobre óptica",
+                    "birthDate": "25/09/1970",
+                    "deathDate": "",
+                    "studySites": [
+                        {
+                            "UniversityName": "Universidad de Salamanca",
+                            "Lat": 40.961338,
+                            "Long": -5.666925
+                        }
+                    ],
+                    "image": {
+                        "@type": "ImageObject",
+                        "name": "../assets/Susana Marcos Celestino.jpg"
+                    },
+                    "documentales": [
+                        {
+                            "@type": "VideoObject",
+                            "title": "Susana Marcos",
+                            "url": "https://www.youtube.com/watch?v=yOVzzw-NeXA&ab_channel=Porquetanpocas"
+                        }
+                    ],
+                    "coments": [
+                        {
+                            "nickname": "Maria69",
+                            "comment": "Una gran fisica",
+                            "date": "07/07/2021"
+                        },
+                        {
+                            "nickname": "Pere",
+                            "comment": "Una gran referente para la fisica",
+                            "date": "12/02/2022"
+                        }
+                    ]
+                },
+                {
+                    "name": "José Miguel Jiménez",
+                    "work": "Instalación y supervisión del LHC",
+                    "birthDate": "13/12/1968",
+                    "deathDate": "",
+                    "studySites": [
+                        {
+                            "UniversityName": "CEA Saclay",
+                            "Lat": 48.72879890242153,
+                            "Long": 2.148805098274591
+                        }
+                    ],
+                    "image": {
+                        "@type": "ImageObject",
+                        "name": "../assets/José Miguel Jiménez.jpg"
+                    },
+                    "documentales": [
+                        {
+                            "@type": "VideoObject",
+                            "title": "Conferencia de José Miguel Jiménez, líder del Departamento de Tecnología, CERN",
+                            "url": "https://www.youtube.com/watch?v=oCrQAK7qhV0&ab_channel=Fundaci%C3%B3nBBVA"
+                        }
+                    ],
+                    "coments": [
+                        {
+                            "nickname": "Pere",
+                            "comment": "Creo que debería de haber más biografía",
+                            "date": "17/02/2022"
+                        },
+                        {
+                            "nickname": "MaciaKing",
+                            "comment": "De nuevo otro trabajo que puedo terminar gracias a esta página",
+                            "date": "03/05/2022"
+                        }
+                    ]
+                },
+                {
+                    "name": "Antonio Ludeña",
+                    "work": "De vera, et necessaria motus accelerati theoria",
+                    "birthDate": "23/12/1740",
+                    "deathDate": "01/03/1820",
+                    "studySites": [
+                        {
+                            "UniversityName": "Universidad de Valencia",
+                            "Lat": 39.479051,
+                            "Long": -0.359087
+                        },
+                        {
+                            "UniversityName": "Universidad de Bolonia",
+                            "Lat": 44.49622888306207,
+                            "Long": 11.354156461054519
+                        }
+                    ],
+                    "image": {
+                        "@type": "ImageObject",
+                        "name": ""
+                    },
+                    "documentales": [
+                        {}
+                    ],
+                    "coments": [
+                        {
+                            "nickname": "Pere",
+                            "comment": "No conocia a este fisico, gracias",
+                            "date": "28/07/2021"
+                        }
+                    ]
+                },
+                {
+                    "name": "Máximo Fuertes Acevedo",
+                    "work": "Curso de Física elemental y nociones de Química ",
+                    "birthDate": "09/12/1832",
+                    "deathDate": "01/07/1890",
+                    "studySites": [
+                        {
+                            "UniversityName": "Universidad de Oviedo",
+                            "Lat": 43.36191086704531,
+                            "Long": -5.846684001139746
+                        },
+                        {
+                            "UniversityName": "Escuela Normal de Filosofía de Madrid",
+                            "Lat": 40.54577630039654,
+                            "Long": -3.6981819561450884
+                        }
+                    ],
+                    "image": {
+                        "@type": "ImageObject",
+                        "name": "../assets/Máximo Fuertes Acevedo.jpeg"
+                    },
+                    "documentales": [
+                        {}
+                    ],
+                    "coments": [
+                        {
+                            "nickname": "Maria69",
+                            "comment": "Creo que es más importante su obra 'Bosquejos cientificos' ",
+                            "date": "01/05/2022"
+                        },
+                        {
+                            "nickname": "Pere",
+                            "comment": "Creo que es más importante su obra 'El darwinismo: sus adversarios y defensores' ",
+                            "date": "01/06/2021"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "BIOLOGIA",
+            "image": {
+                "@type": "ImageObject",
+                "name": "../assets/Biologia.png"
+            },
+            "authors": [
+                {
+                    "name": "Fernando Maestre Gil",
+                    "work": "Estudios sobre el cambio climático",
+                    "birthDate": "11/01/1976",
+                    "deathDate": "",
+                    "studySites": [
+                        {
+                            "UniversityName": "Universidad de Alicante",
+                            "Lat": 38.384639,
+                            "Long": -0.513147
+                        }
+                    ],
+                    "image": {
+                        "@type": "ImageObject",
+                        "name": "../assets/Fernando Maestre Gil.jpg"
+                    },
+                    "documentales": [
+                        {
+                            "@type": "VideoObject",
+                            "title": "Por qué se desertifican las zonas áridas (Fernando T. Maestre Gil)",
+                            "url": "https://www.youtube.com/watch?v=Ls5tncjjqo0&ab_channel=CasadelaCi%C3%A8nciaCSICValencia"
+                        },
+                        {
+                            "@type": "VideoObject",
+                            "title": "Fernando Tomás Maestre Gil",
+                            "url": "https://www.youtube.com/watch?v=tx3Lba5D3Is&ab_channel=SaxDigitalNoticiasyActualidad"
+                        }
+                    ],
+                    "coments": [
+                        {
+                            "nickname": "Fernando",
+                            "comment": "He leido muchos articulos de este señor y he entrado aqui buscando más información de él y me ha servido mucho.",
+                            "date": "09/05/2022"
+                        },
+                        {
+                            "nickname": "Pere",
+                            "comment": "Uno de los mayores biologos españoles sin duda",
+                            "date": "08/04/2022"
+                        }
+                    ]
+                },
+                {
+                    "autorName": "Jaime Pujiula",
+                    "work": "Elementos de embriología del hombre y demás vertebrados",
+                    "birthDate": "22/08/1869",
+                    "deathDate": "15/12/1958",
+                    "studySites": [
+                        {
+                            "UniversityName": "Universidad de Leipzig",
+                            "Lat": 51.51987501963995,
+                            "Long": 12.369843297975075
+                        }
+                    ],
+                    "image": {
+                        "@type": "ImageObject",
+                        "name": "../assets/Jaime Pujiula.jpg"
+                    },
+                    "documentales": [
+                        {}
+                    ],
+                    "coments": [
+                        {
+                            "nickname": "Pere",
+                            "comment": "Alucinante la cantidad de ramas de la biologia que ha investigado",
+                            "date": "19/12/2021"
+                        }
+                    ]
+                },
+                {
+                    "name": "Manuel Losada Villasante",
+                    "work": "Estudios de la fotosintésis",
+                    "birthDate": "13/12/1968",
+                    "deathDate": "",
+                    "studySites": [
+                        {
+                            "UniversityName": "Universidad Complutense de Madrid",
+                            "Lat": 40.449039,
+                            "Long": -3.727031
+                        }
+                    ],
+                    "image": {
+                        "@type": "ImageObject",
+                        "name": "../assets/Manuel Losada Villasante.jpg"
+                    },
+                    "documentales": [
+                        {
+                            "@type": "VideoObject",
+                            "title": "Manuel Losada Villasante, discípulo de Severo Ochoa",
+                            "url": "https://www.youtube.com/watch?v=GbFrRcVLskY&ab_channel=MemorANDA"
+                        },
+                        {
+                            "@type": "VideoObject",
+                            "title": "Homenaje al antiguo alumno D. Manuel Losada Villasante",
+                            "url": "https://www.youtube.com/watch?v=EWN05FEgfqQ&ab_channel=ColegioInternacionaldeSevilla-SFP"
+                        }
+                    ],
+                    "coments": [
+                        {
+                            "nickname": "Pere",
+                            "comment": "Decir que su obra más importante es la fotosintésis es poco, debería de ser 'Estudios sobre sistemas bioquimicos de conversión de energía'",
+                            "date": "09/05/2022"
+                        },
+                        {
+                            "nickname": "MaciaKing",
+                            "comment": "Llevaba tiempo buscando información sobre esta persona, por fín la he encontrado",
+                            "date": "09/05/2022"
+                        }
+                    ]
+                },
+                {
+                    "name": "Gonzalo Giribet",
+                    "work": "Aportes a la filogenia animal",
+                    "birthDate": "02/09/1970",
+                    "deathDate": "",
+                    "studySites": [
+                        {
+                            "UniversityName": "Universidad de Barcelona",
+                            "Lat": 41.386667,
+                            "Long": 2.163889
+                        }
+                    ],
+                    "image": {
+                        "@type": "ImageObject",
+                        "name": "../assets/Gonzalo Giribet.jpeg"
+                    },
+                    "documentales": [
+                        {
+                            "@type": "VideoObject",
+                            "title": "“Exploring the Invertebrate Biodiversity of the World” by Dr. Gonzalo Giribet",
+                            "url": "https://www.youtube.com/watch?v=vdJb04vPu2M&ab_channel=LeighStimolo"
+                        }
+                    ],
+                    "coments": [
+                        {}
+                    ]
+                }
+            ]
+        }
+    ]
+}
