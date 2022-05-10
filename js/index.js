@@ -145,6 +145,7 @@ function ModificarContenido(){
                     }
         }
         }
+        $(elementoCont[0]).hide();
     })
 }
 ModificarContenido();
