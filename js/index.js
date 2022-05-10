@@ -28,6 +28,7 @@ function SetHeader(objeto) {
 function SetBody(objeto) {
     var elemento = document.querySelector(".Co");
     console.log(elemento);
+    console.log(elemento.childNodes[0]);
 }
 
 
