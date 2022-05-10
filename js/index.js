@@ -41,9 +41,10 @@ function SetBody(objeto) {
                 objeto.subcategory[i].authors[j].birthDate + "·" + objeto.subcategory[i].authors[j].deathDate;
             console.log(aux);
             e.childNodes[3].textContent = aux;
+
             element.appendChild(e);
         }
-
+    elemento.appendChild(element);
     }
 }
 
