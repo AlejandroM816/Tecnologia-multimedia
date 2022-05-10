@@ -5,9 +5,9 @@ request.open('GET', requestURL);
 request.responseType = 'json'
 request.send();
 request.onload = function () {
-
     const objeto = request.response;
-    console.log(objeto);
+    const hola= objeto.category;
+    console.log(hola);
 }
 
 
