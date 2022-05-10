@@ -106,7 +106,7 @@ function desplegarOlvidadoCon() {
     contenido += '<\center>';
     div.innerHTML = contenido;
 }
-
+/*
 function ModificarContenido() {
     let elementoCont = document.querySelectorAll(".Co");
     console.log(elementoCont);
@@ -154,3 +154,4 @@ function ModificarContenido() {
 
 }
 ModificarContenido();
+*/
