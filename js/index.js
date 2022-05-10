@@ -150,7 +150,7 @@ function ModificarContenido(){
                         var mostrar = document.querySelector('.informacion');
                         var imagen= mostrar.childNodes[3];
 
-                        console.log(imagen);
+                        console.log(imagen.style);
                         imagen.style="background-image:"+ subcategoriajson.authors[i].image.name ;
                         $(mostrar).show();
                         i=subcategoriajson.authors.length;
