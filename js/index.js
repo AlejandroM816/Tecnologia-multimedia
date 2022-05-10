@@ -6,8 +6,13 @@ request.responseType = 'json'
 request.send();
 request.onload = function () {
     const objeto = request.response;
-    const hola= objeto.category;
-    console.log(hola);
+    SetHeader(objeto);
+    console.log(objeto);
+}
+
+function SetHeader(objeto) {
+    var elemento = document.querySelector(".navbar-nav");
+    console.log(elemento);
 }
 
 
