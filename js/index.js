@@ -149,8 +149,9 @@ function ModificarContenido(){
 
                         var mostrar = document.querySelector('.informacion');
                         var imagen= mostrar.childNodes[3];
-                        console.log("background-image: url(" +subcategoriajson.authors[i].image.name + ")");
-                        imagen.style="background-image: url(" +subcategoriajson.authors[i].image.name + ")";
+
+                        console.log(imagen);
+                        imagen.style="background-image:"+ subcategoriajson.authors[i].image.name ;
                         $(mostrar).show();
                         i=subcategoriajson.authors.length;
                     }
