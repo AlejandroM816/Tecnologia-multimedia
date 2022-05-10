@@ -126,7 +126,13 @@ function ModificarContenido(){
         var elementoClickado = e.target.parentNode;
         if(elementoClickado.className.includes('info-item')){
             var nombreAutor= elementoClickado.childNodes[1].alt;
+            console.log(elementoClickado);
+            console.log(elementoClickado.parentNode);
+            console.log(elementoClickado.parentNode.parentNode);
+            console.log(elementoClickado.parentNode.parentNode.parentNode);
+            console.log(elementoClickado.parentNode.parentNode.parentNode.parentNode);
             var subcategoria=elementoClickado.parentNode.parentNode.parentNode.parentNode.childNodes[1].textContent;
+
             var subcategoriajson;
             for(let i=0;i<objeto.subcategory.length;i++){
                     if(objeto.subcategory[i].name.equals(subcategoria)){
