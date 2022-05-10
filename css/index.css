@@ -1,11 +1,10 @@
 .moveRight {
     float: right;
 }
-.img-fluid{
-
-    width:900px;
-    height: 650px;
-}
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
 
 img {
     /* para que si redimensionamos este toda la imagen cuadrada*/
