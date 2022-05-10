@@ -46,7 +46,11 @@ function SetBody(objeto) {
 
             element.childNodes[5].childNodes[1].appendChild(e2);
         }
-        elemento.appendChild(element);
+        var e3=document.createElement("section");
+        e3.className="page-section info";
+        e3.id="info";
+        e3.appendChild(element);
+        elemento.appendChild(e3);
     }
 }
 
