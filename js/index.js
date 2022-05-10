@@ -1,4 +1,4 @@
-const requestURL = "./json/CategoriasYautores.json";
+const requestURL = "https://github.com/AlejandroM816/Tecnologia-multimedia/tree/main/json/CategoriasYautores.json";
 const request = new XMLHttpRequest();
 request.open('GET', requestURL);
 request.responseType = 'json'
@@ -6,7 +6,7 @@ request.send();
 request.onload = function () {
 
     const alumnos = request.response;
-    console.log(alumnos);
+    console.log(alumnos[1])
 }
 
 
