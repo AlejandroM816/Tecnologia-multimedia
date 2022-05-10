@@ -18,7 +18,7 @@ function SetHeader(objeto) {
         elem.className = "nav-item";
         var elem2 = document.createElement("a");
         elem2.className = "nav-link";
-        elem2.href = "#";
+        elem2.href = "#"+objeto.subcategory[i].name;
         elem2.textContent = objeto.subcategory[i].name;
         elem.appendChild(elem2);
         elemento.appendChild(elem);
@@ -33,6 +33,7 @@ function SetBody(objeto) {
     for (let i = 0; i < objeto.subcategory.length; i++) {
         console.log(elem);
         var element = elem.cloneNode(true);
+        element.id=objeto.subcategory[i].name;
         element.childNodes[1].textContent = objeto.subcategory[i].name;
         var e = element.childNodes[5].childNodes[1];
         console.log(e);
@@ -56,7 +57,7 @@ function SetBody(objeto) {
     elemento.childNodes[1].removeChild(elemento.childNodes[1].childNodes[1]);
 }
 
-
+/*
 function Inicio(irTop) {
     var elementos = document.querySelectorAll(".page-section");
     $(elementos).show();
@@ -68,8 +69,8 @@ function Inicio(irTop) {
 
     }
 }
-
-
+*/
+/*
 function MoverA(elemento) {
     Inicio(0);
     console.log(elemento);
@@ -86,6 +87,7 @@ function MoverA(elemento) {
         }
     }
 }
+*/
 function desplegarPerfil() {
     var div = document.getElementById("Contenido");
     var contenido = '<div class="container"><h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">EDITAR PERFIL</h2><div class="divider-custom"><div class="divider-custom-line"></div><div class="divider-custom-icon"><i class="fas fa-star"></i></div><div class="divider-custom-line"></div></div>';
