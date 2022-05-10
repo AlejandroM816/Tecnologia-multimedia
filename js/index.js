@@ -41,9 +41,9 @@ function SetBody(objeto) {
             e2.childNodes[1].childNodes[1].src = objeto.subcategory[i].authors[j].image.name;
             e2.childNodes[1].childNodes[1].alt = objeto.subcategory[i].authors[j].name;
             e2.childNodes[1].childNodes[3].textContent = objeto.subcategory[i].authors[j].name;
-            e2.childNodes[1].childNodes[4].textContent = objeto.subcategory[i].authors[j].work;
-            e2.childNodes[1].childNodes[5].textContent = objeto.subcategory[i].authors[j].birthDate;
-            e2.childNodes[1].childNodes[6].textContent = objeto.subcategory[i].authors[j].deathDate;
+            e2.childNodes[1].childNodes[5].textContent = objeto.subcategory[i].authors[j].work;
+            e2.childNodes[1].childNodes[7].textContent = objeto.subcategory[i].authors[j].birthDate;
+            e2.childNodes[1].childNodes[9].textContent = objeto.subcategory[i].authors[j].deathDate;
             element.childNodes[5].appendChild(e2);
         }
         element.childNodes[5].removeChild(e);
