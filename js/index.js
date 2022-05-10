@@ -34,17 +34,17 @@ function SetBody(objeto) {
         console.log(elem);
         var element = elem.cloneNode(true);
         element.childNodes[1].textContent = objeto.subcategory[i].name;
-        var e = element.childNodes[5].childNodes[1].childNodes[1];
+        var e = element.childNodes[5].childNodes[1];
         console.log(e);
         for (let j = 0; j < objeto.subcategory[i].authors.length; j++) {
             var e2 = e.cloneNode(true);
-            e2.childNodes[1].src = objeto.subcategory[i].authors[j].image.name;
-            e2.childNodes[1].alt = objeto.subcategory[i].authors[j].name;
+            e2.childNodes[1].childNodes[1].src = objeto.subcategory[i].authors[j].image.name;
+            e2.childNodes[1].childNodes[1].alt = objeto.subcategory[i].authors[j].name;
             var aux = objeto.subcategory[i].authors[j].name + "·" + objeto.subcategory[i].authors[j].work + "·" +
                 objeto.subcategory[i].authors[j].birthDate + "·" + objeto.subcategory[i].authors[j].deathDate;
             console.log(aux);
-            e2.childNodes[3].textContent = aux;
-            element.childNodes[5].childNodes[1].appendChild(e2);
+            e2.childNodes[1].childNodes[3].textContent = aux;
+            element.childNodes[5].appendChild(e2);
         }
         element.childNodes[5].childNodes[1].removeChild(e);
         var e3 = document.createElement("section");
