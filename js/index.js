@@ -6,7 +6,7 @@ request.send();
 request.onload = function () {
 
     const alumnos = request.response;
-    console.log(alumnos[1])
+    console.log(alumnos.category)
 }
 
 
