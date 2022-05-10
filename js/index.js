@@ -7,6 +7,7 @@ request.send();
 request.onload = function () {
     const objeto = request.response;
     SetHeader(objeto);
+    SetBody(objeto);
     console.log(objeto.subcategory);
 }
 
