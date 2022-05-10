@@ -19,7 +19,7 @@ function SetHeader(objeto) {
         elem2.className="nav-link";
         elem2.onclick="MoverA(this)";
         elem2.href="#";
-        elem.textContent=objeto.subcategory[i].name;
+        elem2.textContent=objeto.subcategory[i].name;
         elem.appendChild(elem2);
         elemento.appendChild(elem);
     }
