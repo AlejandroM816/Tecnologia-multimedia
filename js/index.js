@@ -137,9 +137,9 @@ function ModificarContenido(){
             }
             for(let i=0;i<subcategoriajson.authors.length;i++){
                 if(subcategoriajson.authors[i].name == nombreAutor){
-                        var titulo= document.querySelector(".portfolio-modal-title");
+                        var titulo= document.querySelector(".titulo");
                         titulo.textContent=nombreAutor;
-                        var mostrar = document.querySelector('.portfolio-modal');
+                        var mostrar = document.querySelector('.informacion');
                         $(mostrar).show();
                         i=subcategoriajson.authors.length;
                     }
