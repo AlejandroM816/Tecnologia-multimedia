@@ -1,4 +1,5 @@
-const requestURL = "https://github.com/AlejandroM816/Tecnologia-multimedia/blob/main/json/CategoriasYautores.json";
+const requestURL = "https://raw.githubusercontent.com/AlejandroM816/Tecnologia-multimedia/main/json/CategoriasYautores.json";
+
 const request = new XMLHttpRequest();
 request.open('GET', requestURL);
 request.responseType = 'json'
