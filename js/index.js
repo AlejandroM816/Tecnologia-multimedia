@@ -44,7 +44,7 @@ function SetBody(objeto) {
             console.log(aux);
             e2.childNodes[3].textContent = aux;
 
-            element.childNodes[5].childNodes[1].appendChild(e);
+            element.childNodes[5].childNodes[1].appendChild(e2);
         }
         elemento.childNodes[1].appendChild(element);
     }
