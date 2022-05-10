@@ -35,6 +35,7 @@ function SetBody(objeto) {
         var element = elem.cloneNode(true);
         element.childNodes[1].textContent = objeto.subcategory[i].name;
         var e = element.childNodes[5].childNodes[1].childNodes[1];
+        console.log(e);
         for (let j = 0; j < objeto.subcategory[i].authors.length; j++) {
             e.childNodes[1].src = objeto.subcategory[i].authors[j].image.name;
             var aux = objeto.subcategory[i].authors[j].name + "·" + objeto.subcategory[i].authors[j].work + "·" +
