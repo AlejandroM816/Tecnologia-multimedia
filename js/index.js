@@ -7,12 +7,12 @@ request.send();
 request.onload = function () {
     const objeto = request.response;
     SetHeader(objeto);
-    console.log(objeto);
+    console.log(objeto.subcategory);
 }
 
 function SetHeader(objeto) {
     var elemento = document.querySelector(".navbar-nav");
-    console.log(elemento);
+
 }
 
 
