@@ -1,13 +1,13 @@
-const requestURL = "https://raw.githubusercontent.com/AlejandroM816/Tecnologia-multimedia/main/json/CategoriasYautores.json";
-
+const requestURL = "https://github.com/AlejandroM816/Tecnologia-multimedia/blob/main/json/CategoriasYautores.json";
 const request = new XMLHttpRequest();
 request.open('GET', requestURL);
 request.responseType = 'json'
 request.send();
 request.onload = function () {
 
-    const alumnos = request.response;
-    console.log(alumnos)
+    const objeto = request.response;
+    const hola= JSON.parse(objeto);
+    console.log(hola);
 }
 
 
