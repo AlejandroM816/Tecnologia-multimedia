@@ -146,7 +146,10 @@ function ModificarContenido(){
                 if(subcategoriajson.authors[i].name == nombreAutor){
                         var titulo= document.querySelector(".titulo");
                         titulo.textContent=nombreAutor;
+
                         var mostrar = document.querySelector('.informacion');
+                        var imagen= mostrar.childNodes[3];
+                        imagen.style="background-image: url(" +subcategoriajson.authors[i].name.image.name + ")";
                         $(mostrar).show();
                         i=subcategoriajson.authors.length;
                     }

@@ -6,6 +6,10 @@
     max-width: 100%;
     height: auto;
 }
+.py-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
 .btn-close {
     box-sizing: content-box;
     width: 1em;
