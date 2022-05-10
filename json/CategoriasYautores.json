@@ -70,7 +70,7 @@
                     ]
                 },
                 {
-                    "autorName": "Zoel García de Galdeano",
+                    "name": "Zoel García de Galdeano",
                     "work": "Elementos de Euclides",
                     "birthDate": "05/07/1846",
                     "deathDate": "28/03/1924",
@@ -295,7 +295,7 @@
                     ]
                 },
                 {
-                    "autorName": "Susana Marcos Celestino",
+                    "name": "Susana Marcos Celestino",
                     "work": "Investigación sobre óptica",
                     "birthDate": "25/09/1970",
                     "deathDate": "",
@@ -486,7 +486,7 @@
                     ]
                 },
                 {
-                    "autorName": "Jaime Pujiula",
+                    "name": "Jaime Pujiula",
                     "work": "Elementos de embriología del hombre y demás vertebrados",
                     "birthDate": "22/08/1869",
                     "deathDate": "15/12/1958",
