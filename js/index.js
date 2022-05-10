@@ -13,17 +13,20 @@ request.onload = function () {
 function SetHeader(objeto) {
     var elemento = document.querySelector(".navbar-nav");
     for (let i = 0; i < objeto.subcategory.length; i++) {
-        var elem=document.createElement("li");
-        elem.className="nav-item";
-        var elem2=document.createElement("a");
-        elem2.className="nav-link";
-        elem2.onclick="MoverA(this)";
-        elem2.href="#";
-        elem2.textContent=objeto.subcategory[i].name;
+        var elem = document.createElement("li");
+        elem.className = "nav-item";
+        var elem2 = document.createElement("a");
+        elem2.className = "nav-link";
+        elem2.href = "#";
+        elem2.textContent = objeto.subcategory[i].name;
         elem.appendChild(elem2);
         elemento.appendChild(elem);
     }
-    
+}
+
+function SetBody(objeto) {
+    var elemento = document.querySelector(".Co");
+    console.log(elemento);
 }
 
 
