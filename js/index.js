@@ -130,13 +130,13 @@ function ModificarContenido(){
 
             var subcategoriajson;
             for(let i=0;i<objeto.subcategory.length;i++){
-                    if(objeto.subcategory[i].name.equals(subcategoria)){
+                    if(objeto.subcategory[i].name == subcategoria){
                             subcategoriajson=objeto.subcategory[i];
                             i=objeto.subcategory.length;
                     }
             }
             for(let i=0;i<subcategoriajson.authors.length;i++){
-                if(subcategoriajson.authors[i].name.equals(nombreAutor)){
+                if(subcategoriajson.authors[i].name == nombreAutor){
                         var titulo= document.querySelector(".titulo");
                         titulo.textContent=nombreAutor;
                         var mostrar = document.querySelector('.informacion');
