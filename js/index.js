@@ -46,7 +46,7 @@ function SetBody(objeto) {
             e2.childNodes[1].childNodes[3].textContent = aux;
             element.childNodes[5].appendChild(e2);
         }
-        //element.childNodes[5].childNodes[1].removeChild(e);
+        element.childNodes[5].removeChild(e);
         var e3 = document.createElement("section");
         e3.className = "page-section info";
         e3.id = "info";
