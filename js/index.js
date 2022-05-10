@@ -151,7 +151,7 @@ function ModificarContenido(){
                         var imagen= mostrar.childNodes[3];
 
                         console.log(imagen.style);
-                        imagen.style="background-image:"+ subcategoriajson.authors[i].image.name ;
+                        imagen.style.backgroundImage=subcategoriajson.authors[i].image.name ;
                         $(mostrar).show();
                         i=subcategoriajson.authors.length;
                     }
