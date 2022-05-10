@@ -28,20 +28,20 @@ function SetHeader(objeto) {
 function SetBody(objeto) {
     var elemento = document.querySelector(".Co");
     console.log(elemento.childNodes);
-    var elem = elemento.childNodes[0].childNodes[0];
+    var elem = elemento.childNodes[1].childNodes[1];
     console.log(elem);
     for (let i = 0; i < objeto.subcategory.length; i++) {
         console.log(elem);
         var element = elem.cloneNode(true);
-        element.childNodes[0].childNodes[0].textContent = objeto.subcategory[i].name;
-        var e = element.childNodes[0].childNodes[2].childNodes[0].childNodes[0];
+        element.childNodes[1].textContent = objeto.subcategory[i].name;
+        var e = element.childNodes[5].childNodes[1].childNodes[1];
         for (let j = 0; j < objeto.subcategory[i].authors.length; j++) {
-            e.childNodes[0].src = objeto.subcategory[i].authors[j].image.name;
+            e.childNodes[1].src = objeto.subcategory[i].authors[j].image.name;
             var aux = objeto.subcategory[i].authors[j].name + "·" + objeto.subcategory[i].authors[j].work + "·" +
                 objeto.subcategory[i].authors[j].birthDate + "·" + objeto.subcategory[i].authors[j].deathDate;
             console.log(aux);
-            e.childNodes[1].textContent = aux;
-            element.childNodes[0].appendChild(e);
+            e.childNodes[3].textContent = aux;
+            element.appendChild(e);
         }
 
     }
