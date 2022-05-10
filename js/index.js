@@ -29,6 +29,7 @@ function SetBody(objeto) {
     var elemento = document.querySelector(".Co");
     var elem = elemento.childNodes[0].childNodes[0];
     for (let i = 0; i < objeto.subcategory.length; i++) {
+        console.log(elem);
         var element = elem.cloneNode(true);
         element.childNodes[0].childNodes[0].textContent = objeto.subcategory[i].name;
         var e = element.childNodes[0].childNodes[2].childNodes[0].childNodes[0];
@@ -40,7 +41,7 @@ function SetBody(objeto) {
             e.childNodes[1].textContent = aux;
             element.childNodes[0].appendChild(e);
         }
-        
+
     }
 }
 
