@@ -1,11 +1,11 @@
 const requestURL = "https://raw.githubusercontent.com/AlejandroM816/Tecnologia-multimedia/main/json/CategoriasYautores.json";
-
+var objeto;
 const request = new XMLHttpRequest();
 request.open('GET', requestURL);
 request.responseType = 'json'
 request.send();
 request.onload = function () {
-    const objeto = request.response;
+    objeto = request.response;
     SetHeader(objeto);
     SetBody(objeto);
     console.log(objeto.subcategory);
@@ -119,6 +119,39 @@ function desplegarOlvidadoCon() {
     contenido += '<\center>';
     div.innerHTML = contenido;
 }
+
+function ModificarContenido(){
+    let elementoCont = document.querySelectorAll(".Co");
+    elementoCont[0].addEventListener("click", e => {
+        var elementoClickado = e.target.parentNode;
+        if(elementoClickado.className.includes('info-item')){
+            var nombreAutor= elementoClickado.childNodes[1].alt;
+            var subcategoria=elementoClickado.parentNode.parentNode.parentNode.parentNode.childNodes[1].textContent;
+            var subcategoriajson;
+            for(let i=0;i<objeto.subcategory.length;i++){
+                    if(objeto.subcategory[i].name.equals(subcategoria)){
+                            subcategoriajson=objeto.subcategory[i];
+                            i=objeto.subcategory.length;
+                    }
+            }
+            for(let i=0;i<subcategoriajson.authors.length;i++){
+                if(subcategoriajson.authors[i].name.equals(nombreAutor)){
+                        var titulo= document.querySelector(".titulo");
+                        titulo.textContent=nombreAutor;
+                        var mostrar = document.querySelector('.informacion');
+                        $(mostrar).show();
+                        i=subcategoriajson.authors.length;
+                    }
+        }
+        }
+    })
+}
+ModificarContenido();
+
+
+
+
+
 /*
 function ModificarContenido() {
     let elementoCont = document.querySelectorAll(".Co");
