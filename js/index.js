@@ -149,9 +149,7 @@ function ModificarContenido(){
 
                         var mostrar = document.querySelector('.informacion');
                         var imagen= mostrar.childNodes[3];
-
-                        console.log(imagen.style);
-                        imagen.style.backgroundImage=subcategoriajson.authors[i].image.name ;
+                        imagen.url=subcategoriajson.authors[i].image.name ;
                         $(mostrar).show();
                         i=subcategoriajson.authors.length;
                     }
