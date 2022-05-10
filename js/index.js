@@ -7,8 +7,7 @@ request.send();
 request.onload = function () {
 
     const objeto = request.response;
-    const hola= JSON.parse(objeto);
-    console.log(hola);
+    console.log(objeto);
 }
 
 
