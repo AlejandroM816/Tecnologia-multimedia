@@ -12,7 +12,12 @@ request.onload = function () {
 
 function SetHeader(objeto) {
     var elemento = document.querySelector(".navbar-nav");
-
+    for (let i = 0; i < objeto.subcategory.length; i++) {
+        var elem='<li class="nav-item"><a class="nav-link" onclick="MoverA(this)" href="#"></a></li>'
+        elem.textContent=objeto.subcategory[i].name;
+        elemento.appendChild(elem);
+    }
+    
 }
 
 
