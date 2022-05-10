@@ -46,7 +46,7 @@ function SetBody(objeto) {
 
             element.childNodes[5].childNodes[1].appendChild(e2);
         }
-        elemento.childNodes[1].appendChild(element);
+        elemento.appendChild(element);
     }
 }
 
