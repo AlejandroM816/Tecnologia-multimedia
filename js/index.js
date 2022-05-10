@@ -124,7 +124,7 @@ function Volver(){
     let elementoCont = document.querySelectorAll(".Co");
     $(elementoCont).show();
     var ocultar = document.querySelector('.informacion');
-    $(ocultar).show();
+    $(ocultar).hide();
 }
 
 function ModificarContenido(){
