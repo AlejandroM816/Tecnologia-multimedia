@@ -1,13 +1,25 @@
-function Inicio(irTop){
-var elementos=document.querySelectorAll(".page-section");
-$(elementos).show();
-$(elementos[elementos.length-1]).hide();
-var elemento=document.querySelector(".informacion");
-$(elemento).hide();
-if(irTop==1){
-    scrollTo(0,0);
+const requestURL = "./json/CategoriasYautores.json";
+const request = new XMLHttpRequest();
+request.open('GET', requestURL);
+request.responseType = 'json'
+request.send();
+request.onload = function () {
 
+    const alumnos = request.response;
+    console.log(alumnos);
 }
+
+
+function Inicio(irTop) {
+    var elementos = document.querySelectorAll(".page-section");
+    $(elementos).show();
+    $(elementos[elementos.length - 1]).hide();
+    var elemento = document.querySelector(".informacion");
+    $(elemento).hide();
+    if (irTop == 1) {
+        scrollTo(0, 0);
+
+    }
 }
 
 function MoverA(elemento) {
@@ -63,34 +75,34 @@ function ModificarContenido() {
     console.log(elementoCont);
     elementoCont[0].addEventListener("click", e => {
         var elementoClickado = e.target.parentNode;
-            console.log(elementoClickado.childNodes);  
+        console.log(elementoClickado.childNodes);
         if (elementoClickado.className.includes('info-item') && !elementoClickado.id.includes('noClick') && !elementoClickado.id.includes('nada')) {
             var padreelementoClickado = document.querySelectorAll(".page-section");
             console.log(padreelementoClickado);
-            
+
             let count = 0;
             for (item of padreelementoClickado) {
-                if (count < padreelementoClickado.length-1) {
+                if (count < padreelementoClickado.length - 1) {
                     console.log(count);
                     $(item).hide();
                 }
                 count += 1;
             }
             console.log(padreelementoClickado);
-            $(padreelementoClickado[padreelementoClickado.length-1]).show();
+            $(padreelementoClickado[padreelementoClickado.length - 1]).show();
             var textoalternativo = elementoClickado.childNodes[1].alt;
             console.log(textoalternativo);
             var headerSeccion = document.querySelectorAll(".page-section-heading");
-            var palabra = headerSeccion[headerSeccion.length-1].textContent;
-            headerSeccion[headerSeccion.length-1].textContent = textoalternativo;
+            var palabra = headerSeccion[headerSeccion.length - 1].textContent;
+            headerSeccion[headerSeccion.length - 1].textContent = textoalternativo;
 
             scrollTo(0, 0);
-        }else{
-            if(elementoClickado.id.includes('noClick')){
-                var mostrar=document.querySelector('.informacion');
+        } else {
+            if (elementoClickado.id.includes('noClick')) {
+                var mostrar = document.querySelector('.informacion');
                 var textoalternativo = elementoClickado.childNodes[1].alt;
-                var titulo=document.querySelector('.titulo');
-                titulo.textContent=textoalternativo;
+                var titulo = document.querySelector('.titulo');
+                titulo.textContent = textoalternativo;
                 $(mostrar).show();
                 var x = mostrar.getBoundingClientRect().left + scrollX;
                 console.log(x);
