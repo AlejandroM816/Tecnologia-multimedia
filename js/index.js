@@ -52,7 +52,7 @@ function SetBody(objeto) {
         e3.appendChild(element);
         elemento.appendChild(e3);
     }
-    elemento.removeChild(elemento.childNodes[1].childNodes[1]);
+    elemento.childNodes[1].removeChild(elemento.childNodes[1].childNodes[1]);
 }
 
 
