@@ -13,8 +13,15 @@ request.onload = function () {
 function SetHeader(objeto) {
     var elemento = document.querySelector(".navbar-nav");
     for (let i = 0; i < objeto.subcategory.length; i++) {
-        var elem=document.createElement('<li class="nav-item"><a class="nav-link" onclick="MoverA(this)" href="#"></a></li>')
+        '<li class="nav-item"><a class="nav-link" onclick="MoverA(this)" href="#"></a></li>'
+        var elem=document.createElement("li");
+        elem.className="nav-item";
+        var elem2=document.createElement("a");
+        elem2.className="nav-link";
+        elem2.onclick="MoverA(this)";
+        elem2.href="#";
         elem.textContent=objeto.subcategory[i].name;
+        elem.appendChild(elem2);
         elemento.appendChild(elem);
     }
     
