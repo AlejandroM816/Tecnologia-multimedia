@@ -149,7 +149,7 @@ function ModificarContenido(){
 
                         var mostrar = document.querySelector('.informacion');
                         var imagen= mostrar.childNodes[3];
-                        imagen.style="background-image: url(" +subcategoriajson.authors[i].name.image.name + ")";
+                        imagen.style="background-image: url(" +subcategoriajson.authors[i].image.name + ")";
                         $(mostrar).show();
                         i=subcategoriajson.authors.length;
                     }
