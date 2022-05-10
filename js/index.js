@@ -37,21 +37,22 @@ function SetBody(objeto) {
         var e = element.childNodes[5].childNodes[1].childNodes[1];
         console.log(e);
         for (let j = 0; j < objeto.subcategory[i].authors.length; j++) {
-            var e2=e.cloneNode(true);
+            var e2 = e.cloneNode(true);
             e2.childNodes[1].src = objeto.subcategory[i].authors[j].image.name;
+            e2.childNodes[1].alt = objeto.subcategory[i].authors[j].name;
             var aux = objeto.subcategory[i].authors[j].name + "·" + objeto.subcategory[i].authors[j].work + "·" +
                 objeto.subcategory[i].authors[j].birthDate + "·" + objeto.subcategory[i].authors[j].deathDate;
             console.log(aux);
             e2.childNodes[3].textContent = aux;
-
             element.childNodes[5].childNodes[1].appendChild(e2);
         }
-        var e3=document.createElement("section");
-        e3.className="page-section info";
-        e3.id="info";
+        var e3 = document.createElement("section");
+        e3.className = "page-section info";
+        e3.id = "info";
         e3.appendChild(element);
         elemento.appendChild(e3);
     }
+    elemento.removeChild(elemento.childNodes[1].childNodes[1]);
 }
 
 
