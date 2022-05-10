@@ -120,6 +120,13 @@ function desplegarOlvidadoCon() {
     div.innerHTML = contenido;
 }
 
+function Volver(){
+    let elementoCont = document.querySelectorAll(".Co");
+    $(elementoCont).show();
+    let elementCont2 = document.querySelector("informacion");
+    $(elementCont2).hide();
+}
+
 function ModificarContenido(){
     let elementoCont = document.querySelectorAll(".Co");
     elementoCont[0].addEventListener("click", e => {
