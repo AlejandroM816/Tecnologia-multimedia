@@ -37,11 +37,12 @@ function SetBody(objeto) {
         var e = element.childNodes[5].childNodes[1].childNodes[1];
         console.log(e);
         for (let j = 0; j < objeto.subcategory[i].authors.length; j++) {
-            e.childNodes[1].src = objeto.subcategory[i].authors[j].image.name;
+            var e2=e.cloneNode(true);
+            e2.childNodes[1].src = objeto.subcategory[i].authors[j].image.name;
             var aux = objeto.subcategory[i].authors[j].name + "·" + objeto.subcategory[i].authors[j].work + "·" +
                 objeto.subcategory[i].authors[j].birthDate + "·" + objeto.subcategory[i].authors[j].deathDate;
             console.log(aux);
-            e.childNodes[3].textContent = aux;
+            e2.childNodes[3].textContent = aux;
 
             element.childNodes[5].childNodes[1].appendChild(e);
         }
