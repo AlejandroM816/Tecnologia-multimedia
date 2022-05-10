@@ -40,8 +40,8 @@ function SetBody(objeto) {
             var e2 = e.cloneNode(true);
             e2.childNodes[1].childNodes[1].src = objeto.subcategory[i].authors[j].image.name;
             e2.childNodes[1].childNodes[1].alt = objeto.subcategory[i].authors[j].name;
-            var aux = objeto.subcategory[i].authors[j].name + "·" + objeto.subcategory[i].authors[j].work + "·" +
-                objeto.subcategory[i].authors[j].birthDate + "·" + objeto.subcategory[i].authors[j].deathDate;
+            var aux = objeto.subcategory[i].authors[j].name + "·\n" + objeto.subcategory[i].authors[j].work + "·\n" +
+                objeto.subcategory[i].authors[j].birthDate + "·\n" + objeto.subcategory[i].authors[j].deathDate;
             console.log(aux);
             e2.childNodes[1].childNodes[3].textContent = aux;
             element.childNodes[5].appendChild(e2);
