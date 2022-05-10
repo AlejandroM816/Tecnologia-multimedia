@@ -27,6 +27,7 @@ function SetHeader(objeto) {
 
 function SetBody(objeto) {
     var elemento = document.querySelector(".Co");
+    console.log(elemento);
     var elem = elemento.childNodes[0].childNodes[0];
     console.log(elem);
     for (let i = 0; i < objeto.subcategory.length; i++) {
