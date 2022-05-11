@@ -148,8 +148,10 @@ function ModificarContenido(){
                         titulo.textContent=nombreAutor;
 
                         var mostrar = document.querySelector('.informacion');
+                        /*
                         var imagen= mostrar.childNodes[3];
                         imagen.url=subcategoriajson.authors[i].image.name ;
+                        */
                         $(mostrar).show();
                         i=subcategoriajson.authors.length;
                     }
