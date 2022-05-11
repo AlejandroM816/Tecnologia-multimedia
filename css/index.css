@@ -1,3 +1,9 @@
+#map{
+width: 400;
+height: 300px;
+}
+
+
 .moveRight {
     float: right;
 }
