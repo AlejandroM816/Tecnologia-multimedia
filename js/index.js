@@ -54,7 +54,7 @@ function FetchWikiExtract(nombre){
  request3.onload=function () {
     objeto3 = request3.response;
     var Texto=objeto3.query.pages[284037].extract;
-console.log(removeTags(Texto));
+    document.querySelector(".lead").textContent=removeTags(Texto);
 }
 
 function removeTags(str) {
@@ -249,7 +249,7 @@ function ModificarContenido() {
                     var imagen= mostrar.childNodes[3];
                     imagen.url=subcategoriajson.authors[i].image.name ;
                     */
-                    const wikiData=FetchWikiExtract("Amazon");
+                    const wikiData=FetchWikiExtract(nombreAutor);
                     //comsole.log(wikiData);
                     $(mostrar).show();
                     i = subcategoriajson.authors.length;
