@@ -41,7 +41,11 @@ function Leer() {
 }
 
 function SetComments(comentarios) {
-    var comentario = document.querySelector(".bg-white");
+    var comentario = document.querySelectorAll(".bg-white");
+    for(let k=1;k<comentario.length;k++){
+        comentario[j].remove();
+    }
+    comentario=comentario[0];
     var padre=comentario.parentNode;
     for (let i = 0; i < comentarios.length; i++) {
         var c2=comentario.cloneNode(true);
@@ -50,7 +54,6 @@ function SetComments(comentarios) {
                 c2.childNodes[1].childNodes[1].url=objeto2.users[j].image;
                 j=objeto2.users.length;
             }
-
         }
         c2.childNodes[3].childNodes[1].textContent=comentarios[i].comment;
         padre.insertBefore(c2,padre.lastChild);
@@ -195,7 +198,7 @@ function ModificarContenido() {
                     var titulo = document.querySelector(".titulo");
                     titulo.textContent = nombreAutor;
                     var mostrar = document.querySelector('.informacion');
-                  SetComments(subcategoriajson.authors[i].coments);
+                    SetComments(subcategoriajson.authors[i].coments);
                     var comentario = document.querySelector(".comment-text");
 
                     /*
