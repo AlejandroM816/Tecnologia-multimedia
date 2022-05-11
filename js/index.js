@@ -53,7 +53,11 @@ function FetchWikiExtract(nombre){
  request3.send();
  request3.onload=function () {
     objeto3 = request3.response;
-console.log(objeto3.query.pages[284037].extract);
+    var Texto=objeto3.query.pages[284037].extract;
+    var stripedHtml = Texto.replace(/<[^>]+>/g, '');
+    var decodedStripedHtml = he.decode(stripedHtml);
+
+console.log(decodedStripedHtml);
 }
 
 
