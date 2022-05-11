@@ -54,13 +54,20 @@ function FetchWikiExtract(nombre){
  request3.onload=function () {
     objeto3 = request3.response;
     var Texto=objeto3.query.pages[284037].extract;
-    var stripedHtml = Texto.replace(/<[^>]+>/g, '');
-    var decodedStripedHtml = he.decode(stripedHtml);
-
-console.log(decodedStripedHtml);
+console.log(removeTags(Texto));
 }
 
-
+function removeTags(str) {
+    if ((str===null) || (str===''))
+        return false;
+    else
+        str = str.toString();
+          
+    // Regular expression to identify HTML tags in 
+    // the input string. Replacing the identified 
+    // HTML tag with a null string.
+    return str.replace( /(<([^>]+)>)/ig, '');
+}
 }
 
 
