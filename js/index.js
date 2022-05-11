@@ -54,7 +54,7 @@ function FetchWikiExtract(nombre){
  request3.onload=function () {
     objeto3 = request3.response;
     var pageid = [];
-	for( var id in data.query.pages ) {
+	for( var id in objeto3.query.pages ) {
 		pageid.push( id );
 	}
     var Texto=objeto3.query.pages[pageid[0]].extract;
