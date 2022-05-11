@@ -44,7 +44,7 @@ function SetComments(comentarios) {
     var comentario = document.querySelectorAll(".bg-white");
     console.log(comentario);
     for(let k=1;k<comentario.length;k++){
-        comentario[j].remove();
+        comentario[k].remove();
     }
     comentario=comentario[0];
     var padre=comentario.parentNode;
