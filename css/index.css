@@ -393,3 +393,24 @@ body {
     background-position: center;
     background-size: cover;
 }
+
+.ratio-16x9 {
+    --bs-aspect-ratio: 56.25%;
+  }
+
+  .ratio {
+    position: relative;
+    width: 100%;
+  }
+  .ratio::before {
+    display: block;
+    padding-top: var(--bs-aspect-ratio);
+    content: "";
+  }
+  .ratio > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
