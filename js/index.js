@@ -57,7 +57,7 @@ function SetComments(comentarios) {
             if(objeto2.users[j].nickname==comentarios[i].nickname){
                 console.log("hola");
                 console.log(c2.childNodes[1].childNodes[0]);
-                c2.childNodes[1].childNodes[0].url=objeto2.users[j].image;
+                c2.childNodes[1].childNodes[0].src=objeto2.users[j].image;
                 j=objeto2.users.length;
             }
         }
