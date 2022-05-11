@@ -1,6 +1,15 @@
 const requestURL = "https://raw.githubusercontent.com/AlejandroM816/Tecnologia-multimedia/main/json/CategoriasYautores.json";
+const requestURL2 = "https://raw.githubusercontent.com/AlejandroM816/Tecnologia-multimedia/main/json/usuariosRegistrados.json";
 var objeto;
+var objeto2;
 const request = new XMLHttpRequest();
+const request2 = new XMLHttpRequest();
+request2.open('GET', requestURL2);
+request2.responseType = 'json';
+request2.send();
+request2.onload = function () {
+    objeto2 = request2.response;
+}
 request.open('GET', requestURL);
 request.responseType = 'json'
 request.send();
@@ -8,8 +17,9 @@ request.onload = function () {
     objeto = request.response;
     SetHeader(objeto);
     SetBody(objeto);
-    console.log(objeto.subcategory);
 }
+
+
 
 function SetHeader(objeto) {
     var elemento = document.querySelector(".navbar-nav");
@@ -18,16 +28,26 @@ function SetHeader(objeto) {
         elem.className = "nav-item";
         var elem2 = document.createElement("a");
         elem2.className = "nav-link";
-        elem2.href = "#"+objeto.subcategory[i].name;
+        elem2.href = "#" + objeto.subcategory[i].name;
         elem2.textContent = objeto.subcategory[i].name;
         elem.appendChild(elem2);
         elemento.appendChild(elem);
     }
 }
 
-function Leer(){
-    var elemento=document.querySelector(".lead");
+function Leer() {
+    var elemento = document.querySelector(".lead");
     speechSynthesis.speak(new SpeechSynthesisUtterance(elemento.textContent));
+}
+
+function SetComments(comentarios) {
+    var comentario = document.querySelector(".mt-2");
+    for (let i = 0; i < comentarios.length; i++) {
+        var c=document.createElement("p");
+        c.className="comment-text";
+        c.textContent=comentarios[i].comment;
+        comentario.appendChild(c);
+    }
 }
 
 function SetBody(objeto) {
@@ -38,7 +58,7 @@ function SetBody(objeto) {
     for (let i = 0; i < objeto.subcategory.length; i++) {
         console.log(elem);
         var element = elem.cloneNode(true);
-        element.id=objeto.subcategory[i].name;
+        element.id = objeto.subcategory[i].name;
         element.childNodes[1].textContent = objeto.subcategory[i].name;
         var e = element.childNodes[5].childNodes[1];
         console.log(e);
@@ -125,56 +145,59 @@ function desplegarOlvidadoCon() {
     div.innerHTML = contenido;
 }
 
-function Volver(){
+function Volver() {
     let elementoCont = document.querySelectorAll(".Co");
     $(elementoCont).show();
     var ocultar = document.querySelector('.informacion');
     $(ocultar).hide();
 }
 
-function startMap(autor){
+function startMap(autor) {
     mapboxgl.accessToken = 'pk.eyJ1IjoiYW1uODE2IiwiYSI6ImNsMzE3Z2s4ZjB1OHozcHBzMmlkNndmN28ifQ.hoy47cMpypxnzPnMsqgcng';
     const map = new mapboxgl.Map({
-    container: 'map', // container ID
-    style: 'mapbox://styles/mapbox/streets-v11', // style URL
-    center: [-3.74922,40.463667], // starting position [lng, lat]
-    zoom: 5 // starting zoom
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/streets-v11', // style URL
+        center: [-3.74922, 40.463667], // starting position [lng, lat]
+        zoom: 5 // starting zoom
     });
-    for(let i=0;i<autor.studySites.length;i++){
+    for (let i = 0; i < autor.studySites.length; i++) {
         new mapboxgl.Marker().setLngLat([autor.studySites[i].Long, autor.studySites[i].Lat]).addTo(map);
     }
 
 }
 
-function ModificarContenido(){
+function ModificarContenido() {
 
     let elementoCont = document.querySelectorAll(".Co");
     elementoCont[0].addEventListener("click", e => {
         var elementoClickado = e.target.parentNode;
-        if(elementoClickado.className.includes('info-item')){
-            var nombreAutor= elementoClickado.childNodes[1].alt;
-            var subcategoria=elementoClickado.parentNode.parentNode.parentNode.childNodes[1].textContent;
+        if (elementoClickado.className.includes('info-item')) {
+            var nombreAutor = elementoClickado.childNodes[1].alt;
+            var subcategoria = elementoClickado.parentNode.parentNode.parentNode.childNodes[1].textContent;
             var subcategoriajson;
-            for(let i=0;i<objeto.subcategory.length;i++){
-                    if(objeto.subcategory[i].name == subcategoria){
-                            subcategoriajson=objeto.subcategory[i];
-                            i=objeto.subcategory.length;
-                    }
+            for (let i = 0; i < objeto.subcategory.length; i++) {
+                if (objeto.subcategory[i].name == subcategoria) {
+                    subcategoriajson = objeto.subcategory[i];
+                    i = objeto.subcategory.length;
+                }
             }
-            for(let i=0;i<subcategoriajson.authors.length;i++){
-                if(subcategoriajson.authors[i].name == nombreAutor){
-                        startMap(subcategoriajson.authors[i]);
-                        var titulo= document.querySelector(".titulo");
-                        titulo.textContent=nombreAutor;
-                        var mostrar = document.querySelector('.informacion');
-                        /*
-                        var imagen= mostrar.childNodes[3];
-                        imagen.url=subcategoriajson.authors[i].image.name ;
-                        */
-                        $(mostrar).show();
-                        i=subcategoriajson.authors.length;
-                    }
-        }
+            for (let i = 0; i < subcategoriajson.authors.length; i++) {
+                if (subcategoriajson.authors[i].name == nombreAutor) {
+                    startMap(subcategoriajson.authors[i]);
+                    var titulo = document.querySelector(".titulo");
+                    titulo.textContent = nombreAutor;
+                    var mostrar = document.querySelector('.informacion');
+                    SetComments(subcategoriajson.authors[i].coments);
+                    var comentario = document.querySelector(".comment-text");
+
+                    /*
+                    var imagen= mostrar.childNodes[3];
+                    imagen.url=subcategoriajson.authors[i].image.name ;
+                    */
+                    $(mostrar).show();
+                    i = subcategoriajson.authors.length;
+                }
+            }
         }
         $(elementoCont[0]).hide();
     })
