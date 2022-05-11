@@ -42,7 +42,7 @@ function FetchWikiExtract(nombre) {
     const wikiEndPoint = "https://es.wikipedia.org/w/api.php"
 
     const wikiParams = '?action=query'
-        + "&srsearch=" + nombre
+        + "&titles=" + nombre
         + "&format=json"
         + "&list=search"
         + "&origin=*"
