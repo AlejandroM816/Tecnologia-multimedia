@@ -50,7 +50,10 @@ function SetComments(comentarios) {
     var padre=comentario.parentNode;
     for (let i = 0; i < comentarios.length; i++) {
         var c2=comentario.cloneNode(true);
+        console.log(c2);
         for(let j=0;j<objeto2.users.length;j++){
+            console.log(objeto2.users[j].nickname);
+            console.log(comentarios[i].nickname);
             if(objeto2.users[j].nickname==comentarios[i].nickname){
                 c2.childNodes[1].childNodes[1].url=objeto2.users[j].image;
                 j=objeto2.users.length;
