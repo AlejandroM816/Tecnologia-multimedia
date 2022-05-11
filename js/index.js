@@ -27,6 +27,11 @@ function SetHeader(objeto) {
 
 function Leer(){
     var elemento=document.querySelector(".lead");
+    if(SpeechSynthesis.speaking){
+        SpeechSynthesis.pause();
+        SpeechSynthesis.cancel();
+
+    }
     speechSynthesis.speak(new SpeechSynthesisUtterance(elemento.textContent));
 }
 
