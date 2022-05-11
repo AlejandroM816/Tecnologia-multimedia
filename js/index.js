@@ -133,7 +133,7 @@ function startMap(autor){
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v11', // style URL
     center: [-3.74922,40.463667], // starting position [lng, lat]
-    zoom: 9 // starting zoom
+    zoom: 5 // starting zoom
     });
     for(let i=0;i<autor.studySites.length;i++){
         new mapboxgl.Marker().setLngLat([autor.studySites[i].Long, autor.studySites[i].Lat]).addTo(map);
