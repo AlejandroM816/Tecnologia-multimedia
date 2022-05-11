@@ -48,6 +48,7 @@ function FetchWikiExtract(nombre){
     + "&prop=revisions"
     + "&rvprop=content"
     + "&rvparse"
+    + "&origin=*"
  ;
     request3.open('GET', wikiEndPoint+wikiParams);
  request3.responseType = 'json';
