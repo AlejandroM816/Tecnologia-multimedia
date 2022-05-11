@@ -41,13 +41,21 @@ function Leer() {
 }
 
 function SetComments(comentarios) {
-    var comentario = document.querySelector(".mt-2");
+    var comentario = document.querySelector(".bg-white");
+    var padre=comentario.parentNode;
     for (let i = 0; i < comentarios.length; i++) {
-        var c=document.createElement("p");
-        c.className="comment-text";
-        c.textContent=comentarios[i].comment;
-        comentario.appendChild(c);
+        var c2=comentario.cloneNode(true);
+        for(let j=0;j<objeto2.users.length;j++){
+            if(objeto2.users[j].nickname==comentarios[i].nickname){
+                c2.childNodes[1].childNodes[1].url=objeto2.users[j].image;
+                j=objeto2.users.length;
+            }
+
+        }
+        c2.childNodes[3].childNodes[1].textContent=comentarios[i].comment;
+        padre.insertBefore(c2,padre.lastChild);
     }
+    padre.removeChild(comentario);
 }
 
 function SetBody(objeto) {
@@ -187,7 +195,7 @@ function ModificarContenido() {
                     var titulo = document.querySelector(".titulo");
                     titulo.textContent = nombreAutor;
                     var mostrar = document.querySelector('.informacion');
-                  //  SetComments(subcategoriajson.authors[i].coments);
+                  SetComments(subcategoriajson.authors[i].coments);
                     var comentario = document.querySelector(".comment-text");
 
                     /*
