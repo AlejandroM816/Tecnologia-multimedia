@@ -45,18 +45,17 @@ function FetchWikiExtract(nombre){
     + "&titles=" + nombre
     + "&format=json"
     + "&explaintext"
-    + "&prop=revisions"
-    + "&rvprop=content"
-    + "&rvparse"
+    + "&prop=extracts"
+    + "&exintro="
     + "&origin=*"
  ;
     request3.open('GET', wikiEndPoint+wikiParams);
  request3.responseType = 'json';
  request3.send();
- request2.onload = function () {
+ request3.onload = function () {
      objeto3 = request3.response;
  }
-
+console.log(objeto3);
 
 }
 
