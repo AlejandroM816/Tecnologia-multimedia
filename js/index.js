@@ -25,6 +25,11 @@ function SetHeader(objeto) {
     }
 }
 
+function Leer(){
+    var elemento=document.querySelector(".lead");
+    speechSynthesis.speak(new SpeechSynthesisUtterance(elemento.textContent));
+}
+
 function SetBody(objeto) {
     var elemento = document.querySelector(".Co");
     console.log(elemento.childNodes);
