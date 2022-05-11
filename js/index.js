@@ -187,7 +187,7 @@ function ModificarContenido() {
                     var titulo = document.querySelector(".titulo");
                     titulo.textContent = nombreAutor;
                     var mostrar = document.querySelector('.informacion');
-                    SetComments(subcategoriajson.authors[i].coments);
+                  //  SetComments(subcategoriajson.authors[i].coments);
                     var comentario = document.querySelector(".comment-text");
 
                     /*
