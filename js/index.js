@@ -127,26 +127,28 @@ function Volver(){
     $(ocultar).hide();
 }
 
-function startMap(){
+function startMap(autor){
     mapboxgl.accessToken = 'pk.eyJ1IjoiYW1uODE2IiwiYSI6ImNsMzE3Z2s4ZjB1OHozcHBzMmlkNndmN28ifQ.hoy47cMpypxnzPnMsqgcng';
     const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v11', // style URL
-    center: [-74.5, 40], // starting position [lng, lat]
+    center: [-3.74922,40.463667], // starting position [lng, lat]
     zoom: 9 // starting zoom
     });
+    for(let i=0;i<autor.studySites.length;i++){
+        new mapboxgl.Marker().setLngLat([autor.studySites[i].Long, autor.studySites[i].Lat]).addTo(map);
+    }
+
 }
 
-
 function ModificarContenido(){
-    startMap();
+
     let elementoCont = document.querySelectorAll(".Co");
     elementoCont[0].addEventListener("click", e => {
         var elementoClickado = e.target.parentNode;
         if(elementoClickado.className.includes('info-item')){
             var nombreAutor= elementoClickado.childNodes[1].alt;
             var subcategoria=elementoClickado.parentNode.parentNode.parentNode.childNodes[1].textContent;
-
             var subcategoriajson;
             for(let i=0;i<objeto.subcategory.length;i++){
                     if(objeto.subcategory[i].name == subcategoria){
@@ -156,9 +158,9 @@ function ModificarContenido(){
             }
             for(let i=0;i<subcategoriajson.authors.length;i++){
                 if(subcategoriajson.authors[i].name == nombreAutor){
+                        startMap(subcategoriajson.authors[i]);
                         var titulo= document.querySelector(".titulo");
                         titulo.textContent=nombreAutor;
-
                         var mostrar = document.querySelector('.informacion');
                         /*
                         var imagen= mostrar.childNodes[3];
