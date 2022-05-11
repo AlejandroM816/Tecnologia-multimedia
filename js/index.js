@@ -55,6 +55,8 @@ function SetComments(comentarios) {
             console.log(objeto2.users[j].nickname);
             console.log(comentarios[i].nickname);
             if(objeto2.users[j].nickname==comentarios[i].nickname){
+                console.log("hola");
+                console.log(c2.childNodes[1].childNodes[1]);
                 c2.childNodes[1].childNodes[1].url=objeto2.users[j].image;
                 j=objeto2.users.length;
             }
