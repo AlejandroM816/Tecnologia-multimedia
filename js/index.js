@@ -35,7 +35,7 @@ function SetHeader(objeto) {
         elemento.appendChild(elem);
     }
 }
-
+/*
 function FetchWikiExtract(nombre){
     const wikiEndPoint= "https://simple.wikipedia.org/w/api.php"
     const wikiParams ='?action-query'
@@ -54,7 +54,6 @@ function FetchWikiExtract(nombre){
     };
 
     async function getJsonResponse(url,config){
-
         const res= await axios.get(url,config)
         return res.data;
     }
@@ -66,7 +65,7 @@ function FetchWikiExtract(nombre){
         return null;
     })
 }
-
+*/
 
 function Leer() {
     var elemento = document.querySelector(".lead");
@@ -246,8 +245,8 @@ function ModificarContenido() {
                     var imagen= mostrar.childNodes[3];
                     imagen.url=subcategoriajson.authors[i].image.name ;
                     */
-                    const wikiData=await FetchWikiExtract("Amazon");
-                    comsole.log(wikiData);
+                  //  const wikiData=await FetchWikiExtract("Amazon");
+                    //comsole.log(wikiData);
                     $(mostrar).show();
                     i = subcategoriajson.authors.length;
                 }
