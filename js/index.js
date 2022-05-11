@@ -51,8 +51,12 @@ function FetchWikiExtract(nombre) {
         ;
     request3.open('GET', wikiEndPoint + wikiParams);
     request3.responseType = 'json';
+
     request3.send();
-    objeto3 = request3.response;
+    request3.onload = function () {
+        objeto3 = request3.response;
+    }
+
     console.log(objeto3);
 
 }
