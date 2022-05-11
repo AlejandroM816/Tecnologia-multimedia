@@ -44,7 +44,9 @@ function FetchWikiExtract(nombre) {
     const wikiParams = '?action=query'
         + "&titles=" + nombre
         + "&format=json"
-        + "&list=search"
+        + "&prop=revisions"
+        +"&rvprop=content"
+        +"&rvparse"
         + "&origin=*"
         ;
     request3.open('GET', wikiEndPoint + wikiParams);
