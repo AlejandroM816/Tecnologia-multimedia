@@ -37,13 +37,14 @@ function SetHeader(objeto) {
 }
 
 function FetchWikiExtract(nombre){
-    const wikiEndPoint= "http://es.wikipedia.org/w/api.php"
+    const wikiEndPoint= "https://es.wikipedia.org/w/api.php"
 
-    const wikiParams ='?action-query'
+    const wikiParams ='?action=query'
     + "&titles=" + nombre
     + "&format=json"
     + "&prop=revisions"
     + "&rvprop=content"
+    + "&rvparse"
  ;
  console.log(wikiEndPoint+wikiParams);
 }
