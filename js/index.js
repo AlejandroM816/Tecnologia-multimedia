@@ -42,11 +42,9 @@ function FetchWikiExtract(nombre) {
     const wikiEndPoint = "https://es.wikipedia.org/w/api.php"
 
     const wikiParams = '?action=query'
-        + "&titles=" + nombre
+        + "&srsearch=" + nombre
         + "&format=json"
-        + "&prop=revisions"
-        + "&rvprop=content"
-        + "&rvparse"
+        + "&list=search"
         + "&origin=*"
         ;
     request3.open('GET', wikiEndPoint + wikiParams);
