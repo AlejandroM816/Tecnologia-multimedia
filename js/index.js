@@ -46,7 +46,15 @@ function FetchWikiExtract(nombre){
     + "&rvprop=content"
     + "&rvparse"
  ;
- console.log(wikiEndPoint+wikiParams);
+
+ $.ajax( {
+    url: wikiEndPoint+wikiParams,
+    dataType: 'jsonp',
+    success: function(data) {
+       console.log(data);
+    }
+} );
+
 }
 
 
