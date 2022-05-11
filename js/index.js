@@ -1,3 +1,4 @@
+const axios= requiere('axios');
 const requestURL = "https://raw.githubusercontent.com/AlejandroM816/Tecnologia-multimedia/main/json/CategoriasYautores.json";
 const requestURL2 = "https://raw.githubusercontent.com/AlejandroM816/Tecnologia-multimedia/main/json/usuariosRegistrados.json";
 var objeto;
@@ -34,6 +35,38 @@ function SetHeader(objeto) {
         elemento.appendChild(elem);
     }
 }
+
+function FetchWikiExtract(nombre){
+    const wikiEndPoint= "https://simple.wikipedia.org/w/api.php"
+    const wikiParams ='?action-query'
+    + "&porp-extracts"
+    + "&exsentences=2"
+    + "&exlimit=1"
+    + "&titles=" + nombre
+    + "&explaintext=1"
+    + "&format=json"
+    + "&formatversio=2"
+    + "&origin=*";
+
+    const wikiConfig = {
+        timeout:6500
+
+    };
+
+    async function getJsonResponse(url,config){
+
+        const res= await axios.get(url,config)
+        return res.data;
+    }
+    return getJsonResponse(wikiLink,wikiConfig).then(result => {
+
+        return result;
+    }).catch(error =>{
+        console.log("Ha ocurrido un error: "+error);
+        return null;
+    })
+}
+
 
 function Leer() {
     var elemento = document.querySelector(".lead");
@@ -213,6 +246,8 @@ function ModificarContenido() {
                     var imagen= mostrar.childNodes[3];
                     imagen.url=subcategoriajson.authors[i].image.name ;
                     */
+                    const wikiData=await FetchWikiExtract("Amazon");
+                    comsole.log(wikiData);
                     $(mostrar).show();
                     i = subcategoriajson.authors.length;
                 }
