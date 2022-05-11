@@ -61,6 +61,8 @@ function SetComments(comentarios) {
                 j=objeto2.users.length;
             }
         }
+        c2.childNodes[1].childNodes[2].childNodes[0].textContent=comentarios[i].nickname;
+        c2.childNodes[1].childNodes[2].childNodes[1].textContent=comentarios[i].date;
         c2.childNodes[3].childNodes[1].textContent=comentarios[i].comment;
         padre.insertBefore(c2,padre.lastChild);
     }
