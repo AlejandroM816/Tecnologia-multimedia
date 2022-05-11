@@ -127,7 +127,19 @@ function Volver(){
     $(ocultar).hide();
 }
 
+function startMap(){
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYW1uODE2IiwiYSI6ImNsMzE3Z2s4ZjB1OHozcHBzMmlkNndmN28ifQ.hoy47cMpypxnzPnMsqgcng';
+    const map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v11', // style URL
+    center: [-74.5, 40], // starting position [lng, lat]
+    zoom: 9 // starting zoom
+    });
+}
+
+
 function ModificarContenido(){
+    startMap();
     let elementoCont = document.querySelectorAll(".Co");
     elementoCont[0].addEventListener("click", e => {
         var elementoClickado = e.target.parentNode;
