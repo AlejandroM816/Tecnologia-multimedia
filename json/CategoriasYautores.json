@@ -38,17 +38,17 @@
                         {
                             "@type": "VideoObject",
                             "title": "José Echegaray, el intelectual polifacético detrás del Nobel",
-                            "url": "https://www.youtube.com/watch?v=-lSOO4xoUU0"
+                            "url": "https://www.youtube.com/embed/-lSOO4xoUU0"
                         },
                         {
                             "@type": "VideoObject",
                             "title": "Echegaray, el matemático Nobel de literatura",
-                            "url": "https://www.youtube.com/watch?v=2tsQ75zSWLs"
+                            "url": "https://www.youtube.com/embed/2tsQ75zSWLs"
                         },
                         {
                             "@type": "VideoObject",
                             "title": "José Echegaray",
-                            "url": "https://www.youtube.com/watch?v=TKZ1JKAm8TM"
+                            "url": "https://www.youtube.com/embed/TKZ1JKAm8TM"
                         }
                     ],
                     "coments": [
@@ -89,7 +89,7 @@
                         {
                             "@type": "VideoObject",
                             "title": "La herencia de un matemático español y europeo, Zoel García de Galdeano",
-                            "url": "https://www.youtube.com/watch?v=XP4aWWkCDeE&ab_channel=PedroMiana"
+                            "url": "https://www.youtube.com/embed/XP4aWWkCDeE"
                         }
                     ],
                     "coments": [
@@ -135,7 +135,7 @@
                         {
                             "@type": "VideoObject",
                             "title": "Miguel de Guzman",
-                            "url": "https://www.youtube.com/watch?v=21L1FKvVNkg&ab_channel=AngelDelaLLave"
+                            "url": "https://www.youtube.com/embed/21L1FKvVNkg"
                         }
                     ],
                     "coments": [
@@ -186,12 +186,12 @@
                         {
                             "@type": "VideoObject",
                             "title": "UN REVOLUCIONARIO DE LAS MATEMÁTICAS",
-                            "url": "https://www.youtube.com/watch?v=3zquf0zrHxQ&ab_channel=SergioMirandaSitioOficial"
+                            "url": "https://www.youtube.com/embed/3zquf0zrHxQ"
                         },
                         {
                             "@type": "VideoObject",
                             "title": "Recuerdo a Rey Pastor desde nuestra matemática actual....",
-                            "url": "https://www.youtube.com/watch?v=2F4wELPgCLU&ab_channel=RealAcademiadeCienciasExactasF%C3%ADsicasNaturales"
+                            "url": "https://www.youtube.com/embed/2F4wELPgCLU"
                         }
                     ],
                     "coments": [
@@ -278,7 +278,7 @@
                         {
                             "@type": "VideoObject",
                             "title": "Conferencia de Pablo Jarillo-Herrero-'Grafeno de Ángulo Mágico'",
-                            "url": "https://www.youtube.com/watch?v=tnFxblR4bSY&ab_channel=FundacionAreces"
+                            "url": "https://www.youtube.com/embed/tnFxblR4bSY"
                         }
                     ],
                     "coments": [
@@ -314,7 +314,7 @@
                         {
                             "@type": "VideoObject",
                             "title": "Susana Marcos",
-                            "url": "https://www.youtube.com/watch?v=yOVzzw-NeXA&ab_channel=Porquetanpocas"
+                            "url": "https://www.youtube.com/embed/yOVzzw-NeXA"
                         }
                     ],
                     "coments": [
@@ -350,7 +350,7 @@
                         {
                             "@type": "VideoObject",
                             "title": "Conferencia de José Miguel Jiménez, líder del Departamento de Tecnología, CERN",
-                            "url": "https://www.youtube.com/watch?v=oCrQAK7qhV0&ab_channel=Fundaci%C3%B3nBBVA"
+                            "url": "https://www.youtube.com/embed/oCrQAK7qhV0"
                         }
                     ],
                     "coments": [
@@ -464,12 +464,12 @@
                         {
                             "@type": "VideoObject",
                             "title": "Por qué se desertifican las zonas áridas (Fernando T. Maestre Gil)",
-                            "url": "https://www.youtube.com/watch?v=Ls5tncjjqo0&ab_channel=CasadelaCi%C3%A8nciaCSICValencia"
+                            "url": "https://www.youtube.com/embed/Ls5tncjjqo0"
                         },
                         {
                             "@type": "VideoObject",
                             "title": "Fernando Tomás Maestre Gil",
-                            "url": "https://www.youtube.com/watch?v=tx3Lba5D3Is&ab_channel=SaxDigitalNoticiasyActualidad"
+                            "url": "https://www.youtube.com/embed/tx3Lba5D3Is"
                         }
                     ],
                     "coments": [
@@ -532,12 +532,12 @@
                         {
                             "@type": "VideoObject",
                             "title": "Manuel Losada Villasante, discípulo de Severo Ochoa",
-                            "url": "https://www.youtube.com/watch?v=GbFrRcVLskY&ab_channel=MemorANDA"
+                            "url": "https://www.youtube.com/embed/GbFrRcVLskY"
                         },
                         {
                             "@type": "VideoObject",
                             "title": "Homenaje al antiguo alumno D. Manuel Losada Villasante",
-                            "url": "https://www.youtube.com/watch?v=EWN05FEgfqQ&ab_channel=ColegioInternacionaldeSevilla-SFP"
+                            "url": "https://www.youtube.com/embed/EWN05FEgfqQ"
                         }
                     ],
                     "coments": [
@@ -573,7 +573,7 @@
                         {
                             "@type": "VideoObject",
                             "title": "“Exploring the Invertebrate Biodiversity of the World” by Dr. Gonzalo Giribet",
-                            "url": "https://www.youtube.com/watch?v=vdJb04vPu2M&ab_channel=LeighStimolo"
+                            "url": "https://www.youtube.com/embed/vdJb04vPu2M"
                         }
                     ],
                     "coments": [

@@ -3,10 +3,10 @@ const requestURL = "https://raw.githubusercontent.com/AlejandroM816/Tecnologia-m
 const requestURL2 = "https://raw.githubusercontent.com/AlejandroM816/Tecnologia-multimedia/main/json/usuariosRegistrados.json";
 var objeto;
 var objeto2;
-var objeto3 ;
+var objeto3;
 const request = new XMLHttpRequest();
 const request2 = new XMLHttpRequest();
-const request3= new XMLHttpRequest();
+const request3 = new XMLHttpRequest();
 request2.open('GET', requestURL2);
 request2.responseType = 'json';
 request2.send();
@@ -38,40 +38,36 @@ function SetHeader(objeto) {
     }
 }
 
-function FetchWikiExtract(nombre){
-    const wikiEndPoint= "https://es.wikipedia.org/w/api.php"
+function FetchWikiExtract(nombre) {
+    const wikiEndPoint = "https://es.wikipedia.org/w/api.php"
+    
+    const wikiParams = '?action=query'
+        + "&titles=" + nombre
+        + "&format=json"
+        + "&prop=extracts"
+        + "&exintro"
+        + "&origin=*"
+        ;
+    request3.open('GET', wikiEndPoint + wikiParams);
+    request3.responseType = 'json';
+    request3.send();
+    request3.onload = function () {
+        objeto3 = request3.response;
+        var pageid = [];
+        for (var id in objeto3.query.pages) {
+            pageid.push(id);
+        }
+        var Texto = objeto3.query.pages[pageid[0]].extract;
+        document.querySelector(".lead").textContent = removeTags(Texto);
+    }
 
-    const wikiParams ='?action=query'
-    + "&titles=" + nombre
-    + "&format=json"
-    + "&prop=extracts"
-    + "&exintro"
-    + "&origin=*"
- ;
- request3.open('GET', wikiEndPoint+wikiParams);
- request3.responseType = 'json';
- request3.send();
- request3.onload=function () {
-    objeto3 = request3.response;
-    var pageid = [];
-	for( var id in objeto3.query.pages ) {
-		pageid.push( id );
-	}
-    var Texto=objeto3.query.pages[pageid[0]].extract;
-    document.querySelector(".lead").textContent=removeTags(Texto);
-}
-
-function removeTags(str) {
-    if ((str===null) || (str===''))
-        return false;
-    else
-        str = str.toString();
-          
-    // Regular expression to identify HTML tags in 
-    // the input string. Replacing the identified 
-    // HTML tag with a null string.
-    return str.replace( /(<([^>]+)>)/ig, '');
-}
+    function removeTags(str) {
+        if ((str === null) || (str === ''))
+            return false;
+        else
+            str = str.toString();
+        return str.replace(/(<([^>]+)>)/ig, '');
+    }
 }
 
 
@@ -83,28 +79,28 @@ function Leer() {
 function SetComments(comentarios) {
     var comentario = document.querySelectorAll(".bg-white");
     console.log(comentario);
-    for(let k=1;k<comentario.length;k++){
+    for (let k = 1; k < comentario.length; k++) {
         comentario[k].remove();
     }
-    comentario=comentario[0];
-    var padre=comentario.parentNode;
+    comentario = comentario[0];
+    var padre = comentario.parentNode;
     for (let i = 0; i < comentarios.length; i++) {
-        var c2=comentario.cloneNode(true);
+        var c2 = comentario.cloneNode(true);
         console.log(c2);
-        for(let j=0;j<objeto2.users.length;j++){
+        for (let j = 0; j < objeto2.users.length; j++) {
             console.log(objeto2.users[j].nickname);
             console.log(comentarios[i].nickname);
-            if(objeto2.users[j].nickname==comentarios[i].nickname){
+            if (objeto2.users[j].nickname == comentarios[i].nickname) {
                 console.log("hola");
                 console.log(c2.childNodes[1].childNodes[0]);
-                c2.childNodes[1].childNodes[0].src=objeto2.users[j].image;
-                j=objeto2.users.length;
+                c2.childNodes[1].childNodes[0].src = objeto2.users[j].image;
+                j = objeto2.users.length;
             }
         }
-        c2.childNodes[1].childNodes[2].childNodes[0].textContent=comentarios[i].nickname;
-        c2.childNodes[1].childNodes[2].childNodes[1].textContent=comentarios[i].date;
-        c2.childNodes[3].childNodes[1].textContent=comentarios[i].comment;
-        padre.insertBefore(c2,padre.lastChild);
+        c2.childNodes[1].childNodes[2].childNodes[0].textContent = comentarios[i].nickname;
+        c2.childNodes[1].childNodes[2].childNodes[1].textContent = comentarios[i].date;
+        c2.childNodes[3].childNodes[1].textContent = comentarios[i].comment;
+        padre.insertBefore(c2, padre.lastChild);
     }
     padre.removeChild(comentario);
 }
@@ -138,7 +134,7 @@ function SetBody(objeto) {
         e3.appendChild(element);
         elemento.appendChild(e3);
     }
-    elemento.childNodes[1].removeChild(elemento.childNodes[1].childNodes[1]);
+    elemento.removeChild(elemento.childNodes[1]);
 }
 
 /*
@@ -253,7 +249,14 @@ function ModificarContenido() {
                     var imagen= mostrar.childNodes[3];
                     imagen.url=subcategoriajson.authors[i].image.name ;
                     */
-                    const wikiData=FetchWikiExtract(nombreAutor);
+                    const wikiData = FetchWikiExtract(nombreAutor);
+                    var v = document.querySelector(".videos");
+                    v.childNodes[1].childNodes[3].childNodes[1].childNodes[1].childNodes[1].src = subcategoriajson.authors[i].documentales[0].url;
+                    for (let b = 1; b < subcategoriajson.authors[i].documentales.length; b++) {
+                        var vid=v.childNodes[1].childNodes[3].cloneNode(true);
+                        vid.childNodes[1].childNodes[1].childNodes[1].src = subcategoriajson.authors[i].documentales[b].url;
+                        v.childNodes[1].appendChild(vid);
+                    }
                     //comsole.log(wikiData);
                     $(mostrar).show();
                     i = subcategoriajson.authors.length;
@@ -261,7 +264,7 @@ function ModificarContenido() {
             }
             $(elementoCont[0]).hide();
         }
-        
+
     })
 }
 ModificarContenido();
