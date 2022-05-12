@@ -228,9 +228,7 @@
                         "@type": "ImageObject",
                         "name": "../assets/Carmen Martínez Sancho.jpg"
                     },
-                    "documentales": [
-                        {}
-                    ],
+                    "documentales": [],
                     "coments": [
                         {
                             "nickname": "Maria69",
@@ -417,9 +415,7 @@
                         "@type": "ImageObject",
                         "name": "../assets/Máximo Fuertes Acevedo.jpeg"
                     },
-                    "documentales": [
-                        {}
-                    ],
+                    "documentales": [],
                     "coments": [
                         {
                             "nickname": "Maria69",
@@ -499,9 +495,7 @@
                         "@type": "ImageObject",
                         "name": "../assets/Jaime Pujiula.jpg"
                     },
-                    "documentales": [
-                        {}
-                    ],
+                    "documentales": [],
                     "coments": [
                         {
                             "nickname": "Pere",

@@ -252,7 +252,8 @@ function ModificarContenido() {
                     const wikiData = FetchWikiExtract(nombreAutor);
                     var v = document.querySelector(".videos");
                     console.log(jQuery.isEmptyObject(subcategoriajson.authors[i].documentales));
-                    if(jQuery.isEmptyObject(subcategoriajson.authors[i].documentales)){
+                    if(!jQuery.isEmptyObject(subcategoriajson.authors[i].documentales)){
+                        $(v).show();
                         while(subcategoriajson.authors[i].documentales.length<v.childNodes[1].children.length-1){
                             v.childNodes[1].children[v.childNodes[1].children.length-1].remove();
                         }
@@ -263,9 +264,9 @@ function ModificarContenido() {
                         vid.childNodes[1].childNodes[1].childNodes[1].src = subcategoriajson.authors[i].documentales[b].url;
                         v.childNodes[1].appendChild(vid);
                     }
-                    $(v).show();
+                    
                     }else{
-                        $(v).hide();
+                    $(v).hide();
                     }
                     //comsole.log(wikiData);
                     $(mostrar).show();
