@@ -78,6 +78,7 @@ function Leer() {
 
 function SetComments(comentarios) {
     var comentario = document.querySelectorAll(".bg-white");
+    console.log(comentario);
     for (let k = 1; k < comentario.length; k++) {
         comentario[k].remove();
     }
@@ -85,8 +86,13 @@ function SetComments(comentarios) {
     var padre = comentario.parentNode;
     for (let i = 0; i < comentarios.length; i++) {
         var c2 = comentario.cloneNode(true);
+        console.log(c2);
         for (let j = 0; j < objeto2.users.length; j++) {
+            console.log(objeto2.users[j].nickname);
+            console.log(comentarios[i].nickname);
             if (objeto2.users[j].nickname == comentarios[i].nickname) {
+                console.log("hola");
+                console.log(c2.childNodes[1].childNodes[0]);
                 c2.childNodes[1].childNodes[0].src = objeto2.users[j].image;
                 j = objeto2.users.length;
             }
@@ -95,21 +101,7 @@ function SetComments(comentarios) {
         c2.childNodes[1].childNodes[2].childNodes[1].textContent = comentarios[i].date;
         c2.childNodes[3].childNodes[1].textContent = comentarios[i].comment;
         padre.insertBefore(c2, padre.lastChild);
-
     }
-    
-    for(let g=0; g<localStorage.length; g++) {
-        var c2 = comentario.cloneNode(true);
-        let key = localStorage.key(g);
-        var item=localStorage.getItem(key);
-        var itemAutor=item.substring(0,item.indexOf("@"));
-        if(itemAutor==comentarios.parentNode.name){
-            c2.childNodes[1].childNodes[2].childNodes[0].textContent = "Usuario";
-            c2.childNodes[1].childNodes[2].childNodes[1].textContent = item.substring(item.indexOf("@")+1,item.lastIndexOf("@"));
-            c2.childNodes[3].childNodes[1].textContent = item.substring(item.lastIndexOf("@")+1,item.length);
-            padre.insertBefore(c2, padre.lastChild);
-        }
-      }
     padre.removeChild(comentario);
 }
 
@@ -220,7 +212,7 @@ function startMap(autor) {
     const map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/mapbox/streets-v11', // style URL
-        center: [[autor.studySites[0].Long, autor.studySites[0].Lat]], // starting position [lng, lat]
+        center: [autor.studySites[0].Long, autor.studySites[0].Lat], // starting position [lng, lat]
         zoom: 5 // starting zoom
     });
     for (let i = 0; i < autor.studySites.length; i++) {
@@ -229,16 +221,6 @@ function startMap(autor) {
 
 }
 
-function Comentar(){
-    var newComment=document.getElementById("ComentarioUusario");
-    console.log(newComment.value);
-    let date = new Date();
-    let output = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear();
-    var titulo = document.querySelector(".titulo");
-    var newComment2=titulo.textContent+"@"+output+"@"+newComment.value;
-    localStorage.setItem('Comentario'+(localStorage.length+1),newComment2);
-
-}
 
 function ModificarContenido() {
 
