@@ -251,8 +251,8 @@ function ModificarContenido() {
                     */
                     const wikiData = FetchWikiExtract(nombreAutor);
                     var v = document.querySelector(".videos");
-                    console.log(subcategoriajson.authors[i].documentales.length);
-                    if(subcategoriajson.authors[i].documentales.length!=0){
+                    console.log(jQuery.isEmptyObject(subcategoriajson.authors[i].documentales));
+                    if(jQuery.isEmptyObject(subcategoriajson.authors[i].documentales)){
                         while(subcategoriajson.authors[i].documentales.length<v.childNodes[1].children.length-1){
                             v.childNodes[1].children[v.childNodes[1].children.length-1].remove();
                         }
