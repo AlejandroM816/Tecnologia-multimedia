@@ -40,7 +40,7 @@ function SetHeader(objeto) {
 
 function FetchWikiExtract(nombre) {
     const wikiEndPoint = "https://es.wikipedia.org/w/api.php"
-    
+
     const wikiParams = '?action=query'
         + "&titles=" + nombre
         + "&format=json"
@@ -76,7 +76,7 @@ function Leer() {
     speechSynthesis.speak(new SpeechSynthesisUtterance(elemento.textContent));
 }
 
-function SetComments(comentarios,nombreAutor) {
+function SetComments(comentarios, nombreAutor) {
     var comentario = document.querySelectorAll(".bg-white");
     console.log(comentario);
     for (let k = 1; k < comentario.length; k++) {
@@ -102,40 +102,40 @@ function SetComments(comentarios,nombreAutor) {
         c2.childNodes[3].childNodes[1].textContent = comentarios[i].comment;
         padre.insertBefore(c2, padre.lastChild);
     }
-    setComentLocalStorage(comentario,nombreAutor,padre);
+    setComentLocalStorage(comentario, nombreAutor, padre);
 
     padre.removeChild(comentario);
 }
 
-function setComentLocalStorage(comentario,nombreAutor,padre){
-    for(let g=0; g<localStorage.length; g++) {
+function setComentLocalStorage(comentario, nombreAutor, padre) {
+    for (let g = 0; g < localStorage.length; g++) {
         var c2 = comentario.cloneNode(true);
         let key = localStorage.key(g);
-        var item=localStorage.getItem(key);
-        var itemAutor=item.substring(0,item.indexOf("@"));
-        if(itemAutor==nombreAutor){
+        var item = localStorage.getItem(key);
+        var itemAutor = item.substring(0, item.indexOf("@"));
+        if (itemAutor == nombreAutor) {
             c2.childNodes[1].childNodes[2].childNodes[0].textContent = "Usuario";
-            c2.childNodes[1].childNodes[2].childNodes[1].textContent = item.substring(item.indexOf("@")+1,item.lastIndexOf("@"));
-            c2.childNodes[3].childNodes[1].textContent = item.substring(item.lastIndexOf("@")+1,item.length);
+            c2.childNodes[1].childNodes[2].childNodes[1].textContent = item.substring(item.indexOf("@") + 1, item.lastIndexOf("@"));
+            c2.childNodes[3].childNodes[1].textContent = item.substring(item.lastIndexOf("@") + 1, item.length);
             padre.insertBefore(c2, padre.lastChild);
         }
-      }
+    }
 
 }
 
-function Comentar(){
-    var newComment=document.getElementById("ComentarioUusario");
+function Comentar() {
+    var newComment = document.getElementById("ComentarioUusario");
     console.log(newComment.value);
     let date = new Date();
     let output = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear();
     var titulo = document.querySelector(".titulo");
-    var newComment2=titulo.textContent+"@"+output+"@"+newComment.value;
-    localStorage.setItem('Comentario'+(localStorage.length+1),newComment2);
+    var newComment2 = titulo.textContent + "@" + output + "@" + newComment.value;
+    localStorage.setItem('Comentario' + (localStorage.length + 1), newComment2);
     var comentario = document.querySelectorAll(".bg-white");
     comentario = comentario[0];
     var padre = comentario.parentNode;
-    setComentLocalStorage(comentario,titulo,padre);
 }
+
 function SetBody(objeto) {
     var elemento = document.querySelector(".Co");
     console.log(elemento.childNodes);
@@ -274,7 +274,7 @@ function ModificarContenido() {
                     var titulo = document.querySelector(".titulo");
                     titulo.textContent = nombreAutor;
                     var mostrar = document.querySelector('.informacion');
-                    SetComments(subcategoriajson.authors[i].coments,nombreAutor);
+                    SetComments(subcategoriajson.authors[i].coments, nombreAutor);
                     var comentario = document.querySelector(".comment-text");
 
                     /*
@@ -284,21 +284,21 @@ function ModificarContenido() {
                     const wikiData = FetchWikiExtract(nombreAutor);
                     var v = document.querySelector(".videos");
                     console.log(jQuery.isEmptyObject(subcategoriajson.authors[i].documentales));
-                    if(!jQuery.isEmptyObject(subcategoriajson.authors[i].documentales)){
+                    if (!jQuery.isEmptyObject(subcategoriajson.authors[i].documentales)) {
                         $(v).show();
-                        while(subcategoriajson.authors[i].documentales.length<v.childNodes[1].children.length-1){
-                            v.childNodes[1].children[v.childNodes[1].children.length-1].remove();
+                        while (subcategoriajson.authors[i].documentales.length < v.childNodes[1].children.length - 1) {
+                            v.childNodes[1].children[v.childNodes[1].children.length - 1].remove();
                         }
 
-                    v.childNodes[1].childNodes[3].childNodes[1].childNodes[1].childNodes[1].src = subcategoriajson.authors[i].documentales[0].url;
-                    for (let b = 1; b < subcategoriajson.authors[i].documentales.length; b++) {
-                        var vid=v.childNodes[1].childNodes[3].cloneNode(true);
-                        vid.childNodes[1].childNodes[1].childNodes[1].src = subcategoriajson.authors[i].documentales[b].url;
-                        v.childNodes[1].appendChild(vid);
-                    }
-                    
-                    }else{
-                    $(v).hide();
+                        v.childNodes[1].childNodes[3].childNodes[1].childNodes[1].childNodes[1].src = subcategoriajson.authors[i].documentales[0].url;
+                        for (let b = 1; b < subcategoriajson.authors[i].documentales.length; b++) {
+                            var vid = v.childNodes[1].childNodes[3].cloneNode(true);
+                            vid.childNodes[1].childNodes[1].childNodes[1].src = subcategoriajson.authors[i].documentales[b].url;
+                            v.childNodes[1].appendChild(vid);
+                        }
+
+                    } else {
+                        $(v).hide();
                     }
                     //comsole.log(wikiData);
                     $(mostrar).show();
