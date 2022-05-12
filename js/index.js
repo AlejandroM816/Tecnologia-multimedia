@@ -251,11 +251,20 @@ function ModificarContenido() {
                     */
                     const wikiData = FetchWikiExtract(nombreAutor);
                     var v = document.querySelector(".videos");
+                    console.log(subcategoriajson.authors[i].documentales.length);
+                    if(subcategoriajson.authors[i].documentales.length!=0){
+                        while(subcategoriajson.authors[i].documentales.length<v.childNodes[1].children.length-1){
+                            v.childNodes[1].children[v.childNodes[1].children.length-1].remove();
+                        }
+
                     v.childNodes[1].childNodes[3].childNodes[1].childNodes[1].childNodes[1].src = subcategoriajson.authors[i].documentales[0].url;
                     for (let b = 1; b < subcategoriajson.authors[i].documentales.length; b++) {
                         var vid=v.childNodes[1].childNodes[3].cloneNode(true);
                         vid.childNodes[1].childNodes[1].childNodes[1].src = subcategoriajson.authors[i].documentales[b].url;
                         v.childNodes[1].appendChild(vid);
+                    }
+                    }else{
+                        $(v).hide();
                     }
                     //comsole.log(wikiData);
                     $(mostrar).show();
