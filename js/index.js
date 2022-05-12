@@ -287,6 +287,7 @@ function ModificarContenido() {
                     if (!jQuery.isEmptyObject(subcategoriajson.authors[i].documentales)) {
                         $(v).show();
                         while (subcategoriajson.authors[i].documentales.length < v.childNodes[1].children.length - 1) {
+                            console.log("elimino video");
                             v.childNodes[1].children[v.childNodes[1].children.length - 1].remove();
                         }
 
