@@ -259,8 +259,9 @@ function ModificarContenido() {
                     i = subcategoriajson.authors.length;
                 }
             }
+            $(elementoCont[0]).hide();
         }
-        $(elementoCont[0]).hide();
+        
     })
 }
 ModificarContenido();
