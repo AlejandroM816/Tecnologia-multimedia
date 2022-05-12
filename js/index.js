@@ -263,6 +263,7 @@ function ModificarContenido() {
                         vid.childNodes[1].childNodes[1].childNodes[1].src = subcategoriajson.authors[i].documentales[b].url;
                         v.childNodes[1].appendChild(vid);
                     }
+                    $(v).show();
                     }else{
                         $(v).hide();
                     }
