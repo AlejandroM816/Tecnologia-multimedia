@@ -477,3 +477,21 @@ body {
     width: 100%;
     height: 100%;
 }
+
+
+.shakeBusqueda {
+    animation-name: Abusqueda;
+    animation-duration: .2s;
+}
+
+@keyframes Abusqueda { 
+
+    20% {
+        transform:rotate(-3.5deg);
+    }
+
+    80% {
+        transform: rotate(3.5deg);
+    }
+
+}

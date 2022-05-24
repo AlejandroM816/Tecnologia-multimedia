@@ -16,7 +16,6 @@
     <!--<script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>-->
     <link href="css/index.css" rel="stylesheet">
     <script src="js/index.js" defer></script>
-    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -83,15 +82,15 @@
                     </ul>
                 </li>
                 <li class="nav-item" style=" padding-right:1.5rem;">
-                    <form class="form-inline my-2 my-lg-0">
+                    <div class="form-inline my-2 my-lg-0">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <button class="input-group-text" id="basic-addon1">Busca</button>
+                                <button class="input-group-text" id="basic-addon1" onclick="busca()">Busca</button>
                             </div>
-                            <input type="text" class="form-control" placeholder="Autor" aria-label="Username"
+                            <input type="text" class="form-control" id="buscadorTexto" placeholder="Categoria" aria-label="Username"
                                 aria-describedby="basic-addon1">
                         </div>
-                    </form>
+                    </div>
 
                 </li>
 

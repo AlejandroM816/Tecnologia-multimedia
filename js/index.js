@@ -45,7 +45,6 @@ function FetchWikiExtract(nombre) {
         + "&titles=" + nombre
         + "&format=json"
         + "&prop=extracts"
-        + "&exintro"
         + "&origin=*"
         ;
     request3.open('GET', wikiEndPoint + wikiParams);
@@ -58,7 +57,7 @@ function FetchWikiExtract(nombre) {
             pageid.push(id);
         }
         var Texto = objeto3.query.pages[pageid[0]].extract;
-        document.querySelector(".lead").textContent = removeTags(Texto);
+        document.querySelector(".lead").innerText = removeTags(Texto);
     }
 
     function removeTags(str) {
@@ -66,7 +65,8 @@ function FetchWikiExtract(nombre) {
             return false;
         else
             str = str.toString();
-        return str.replace(/(<([^>]+)>)/ig, '');
+        str = str.replace(/(\[(?:[^[\]]*?)\]\s*?(?=\[))|(\[(?:[^[\]]*?)\](?!\s*[\|&]\s*.))|(?:\[[^[\]]*?])/g, '');
+        return str.replace(/<\/?[a-z][a-z0-9]*[^<>]*>|<!--.*?-->/img, '');
     }
 }
 
@@ -121,6 +121,49 @@ function setComentLocalStorage(comentario, nombreAutor, padre) {
         }
     }
 
+}
+
+function shake(div) {
+
+    var interval = 100;
+    var distance = 10;
+    var times = 4;
+
+    $(div).css('position', 'relative');
+
+    for (var iter = 0; iter < (times + 1); iter++) {
+        $(div).animate({
+            left: ((iter % 2 == 0 ? distance : distance * -1))
+        }, interval);
+    }
+    $(div).animate({ left: 0 }, interval);
+}
+
+function busca() {
+
+    var inp = document.getElementById("buscadorTexto");
+    if (inp.classList.contains("shakeBusqueda")) {
+        inp.classList.remove("shakeBusqueda");
+    }
+    
+    var texto = inp.value;
+    var titulos = document.querySelectorAll(".page-section-heading");
+    let noEncontrados = 0;
+    for (let i = 0; i < titulos.length; i++) {
+        if (titulos[i].textContent.includes(texto.toUpperCase())) {
+            $(titulos[i].parentNode).show();
+        } else {
+            noEncontrados++;
+            $(titulos[i].parentNode).hide();
+        }
+    }
+
+    if (noEncontrados == titulos.length) {
+        setTimeout(() => inp.classList.add("shakeBusqueda"), 100);
+        for (let i = 0; i < titulos.length; i++) {
+            $(titulos[i].parentNode).show();
+        }
+    }
 }
 
 function Comentar() {
