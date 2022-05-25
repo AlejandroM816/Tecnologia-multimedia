@@ -143,6 +143,8 @@ function cierraSesion() {
     $(elementosMenu[0]).show();
     $(elementosMenu[1]).show();
     $(elementosMenu[3]).show();
+    var avatarNavBar = document.getElementById("avatarNavBar");
+    avatarNavBar.src = "assets/avatar.svg";
 }
 
 function ScrollA(div){
