@@ -35,6 +35,7 @@ function SetHeader(objeto) {
         elem.appendChild(elem2);
         elemento.appendChild(elem);
     }
+    
     elemento.addEventListener("click", e => {
         
         let titulos = document.querySelectorAll(".page-section-heading");
