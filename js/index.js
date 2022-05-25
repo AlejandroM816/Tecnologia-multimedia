@@ -91,7 +91,6 @@ function Leer() {
 
 function SetComments(comentarios, nombreAutor) {
     var comentario = document.querySelectorAll(".bg-white");
-    console.log(comentario);
     for (let k = 1; k < comentario.length; k++) {
         comentario[k].remove();
     }
@@ -99,13 +98,8 @@ function SetComments(comentarios, nombreAutor) {
     var padre = comentario.parentNode;
     for (let i = 0; i < comentarios.length; i++) {
         var c2 = comentario.cloneNode(true);
-        console.log(c2);
         for (let j = 0; j < objeto2.users.length; j++) {
-            console.log(objeto2.users[j].nickname);
-            console.log(comentarios[i].nickname);
             if (objeto2.users[j].nickname == comentarios[i].nickname) {
-                console.log("hola");
-                console.log(c2.childNodes[1].childNodes[0]);
                 c2.childNodes[1].childNodes[0].src = objeto2.users[j].image;
                 j = objeto2.users.length;
             }
@@ -359,7 +353,7 @@ function ModificarContenido() {
                     if (!jQuery.isEmptyObject(subcategoriajson.authors[i].documentales)) {
                         $(v).show();
                         while (subcategoriajson.authors[i].documentales.length < v.childNodes[1].children.length - 1) {
-                            console.log("elimino video");
+                          
                             v.childNodes[1].children[v.childNodes[1].children.length - 1].remove();
                         }
 
