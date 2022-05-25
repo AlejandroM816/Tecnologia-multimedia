@@ -126,6 +126,11 @@ img {
     margin-right: 0.5em;
 }
 
+.nav-link{
+    color:#000;
+
+}
+
 .nav-link:hover {
     font-size: larger;
     font-weight: bold;
