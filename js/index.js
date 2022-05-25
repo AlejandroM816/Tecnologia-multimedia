@@ -361,7 +361,10 @@ function ModificarContenido() {
                         v.childNodes[1].childNodes[3].childNodes[1].childNodes[1].childNodes[1].src = subcategoriajson.authors[i].documentales[0].url;
                         for (let b = 1; b < subcategoriajson.authors[i].documentales.length; b++) {
                             var vid = v.childNodes[1].childNodes[3].cloneNode(true);
-                            vid.childNodes[1].childNodes[1].childNodes[1].src = subcategoriajson.authors[i].documentales[b].url;
+                            console.log(vid.childNodes[1].childNodes[1].childNodes);
+                            vid.childNodes[1].childNodes[1].childNodes[1].videoid = subcategoriajson.authors[i].documentales[b].url.substring(
+                                subcategoriajson.authors[i].documentales[b].url.lastIndexOf("/") + 1 ,subcategoriajson.authors[i].documentales[b].url.length
+                            );
                             v.childNodes[1].appendChild(vid);
                         }
 
