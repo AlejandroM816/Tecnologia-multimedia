@@ -5,7 +5,7 @@
             "name": "MATEMATICAS",
             "image": {
                 "@type": "ImageObject",
-                "name": "../assets/Matematicas.png"
+                "name": "assets/Matematicas.png"
             },
             "authors": [
                 {
@@ -32,7 +32,7 @@
                     ],
                     "image": {
                         "@type": "ImageObject",
-                        "name": "../assets/José Echegaray.jpg"
+                        "name": "assets/José Echegaray.jpg"
                     },
                     "documentales": [
                         {
@@ -83,7 +83,7 @@
                     ],
                     "image": {
                         "@type": "ImageObject",
-                        "name": "../assets/Zoel García de Galdeano.jpg"
+                        "name": "assets/Zoel García de Galdeano.jpg"
                     },
                     "documentales": [
                         {
@@ -129,7 +129,7 @@
                     ],
                     "image": {
                         "@type": "ImageObject",
-                        "name": "../assets/Miguel de Guzmán.png"
+                        "name": "assets/Miguel de Guzmán.png"
                     },
                     "documentales": [
                         {
@@ -180,7 +180,7 @@
                     ],
                     "image": {
                         "@type": "ImageObject",
-                        "name": "../assets/Julio Rey Pastor.png"
+                        "name": "assets/Julio Rey Pastor.png"
                     },
                     "documentales": [
                         {
@@ -226,7 +226,7 @@
                     ],
                     "image": {
                         "@type": "ImageObject",
-                        "name": "../assets/Carmen Martínez Sancho.jpg"
+                        "name": "assets/Carmen Martínez Sancho.jpg"
                     },
                     "documentales": [],
                     "coments": [
@@ -243,7 +243,7 @@
             "name": "FISICA",
             "image": {
                 "@type": "ImageObject",
-                "name": "../assets/Fisica.jpg"
+                "name": "assets/Fisica.jpg"
             },
             "authors": [
                 {
@@ -270,7 +270,7 @@
                     ],
                     "image": {
                         "@type": "ImageObject",
-                        "name": "../assets/Pablo Jarillo-Herrero.png"
+                        "name": "assets/Pablo Jarillo-Herrero.png"
                     },
                     "documentales": [
                         {
@@ -306,7 +306,7 @@
                     ],
                     "image": {
                         "@type": "ImageObject",
-                        "name": "../assets/Susana Marcos Celestino.jpg"
+                        "name": "assets/Susana Marcos Celestino.jpg"
                     },
                     "documentales": [
                         {
@@ -342,7 +342,7 @@
                     ],
                     "image": {
                         "@type": "ImageObject",
-                        "name": "../assets/José Miguel Jiménez.jpg"
+                        "name": "assets/José Miguel Jiménez.jpg"
                     },
                     "documentales": [
                         {
@@ -413,7 +413,7 @@
                     ],
                     "image": {
                         "@type": "ImageObject",
-                        "name": "../assets/Máximo Fuertes Acevedo.jpeg"
+                        "name": "assets/Máximo Fuertes Acevedo.jpeg"
                     },
                     "documentales": [],
                     "coments": [
@@ -435,7 +435,7 @@
             "name": "BIOLOGIA",
             "image": {
                 "@type": "ImageObject",
-                "name": "../assets/Biologia.png"
+                "name": "assets/Biologia.png"
             },
             "authors": [
                 {
@@ -452,7 +452,7 @@
                     ],
                     "image": {
                         "@type": "ImageObject",
-                        "name": "../assets/Fernando Maestre Gil.jpg"
+                        "name": "assets/Fernando Maestre Gil.jpg"
                     },
                     "documentales": [
                         {
@@ -493,7 +493,7 @@
                     ],
                     "image": {
                         "@type": "ImageObject",
-                        "name": "../assets/Jaime Pujiula.jpg"
+                        "name": "assets/Jaime Pujiula.jpg"
                     },
                     "documentales": [],
                     "coments": [
@@ -518,7 +518,7 @@
                     ],
                     "image": {
                         "@type": "ImageObject",
-                        "name": "../assets/Manuel Losada Villasante.jpg"
+                        "name": "assets/Manuel Losada Villasante.jpg"
                     },
                     "documentales": [
                         {
@@ -559,7 +559,7 @@
                     ],
                     "image": {
                         "@type": "ImageObject",
-                        "name": "../assets/Gonzalo Giribet.jpeg"
+                        "name": "assets/Gonzalo Giribet.jpeg"
                     },
                     "documentales": [
                         {

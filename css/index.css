@@ -30,9 +30,11 @@
 
 
 }
+
 .text-center {
     text-align: center !important;
-  }
+}
+
 .btn-listen:hover {
     color: #000;
     text-decoration: none;
@@ -130,6 +132,7 @@ img {
     color: black;
 }
 
+
 .menuPrincipal {
     /*  position: fixed;*/
     /*background-color: #5DC1B9;*/
@@ -161,10 +164,6 @@ body {
 
 .name {
     color: #007bff
-}
-
-.cursor:hover {
-    color: blue
 }
 
 .cursor {
@@ -203,7 +202,7 @@ body {
     height: 30px;
 }
 
-.buttonAvatar {
+.button {
     padding: 0px;
     margin: 0px;
     background-color: transparent;
@@ -482,16 +481,17 @@ body {
 .shakeBusqueda {
     animation-name: Abusqueda;
     animation-duration: .2s;
+
 }
 
-@keyframes Abusqueda { 
+@keyframes Abusqueda {
 
     20% {
-        transform:rotate(-3.5deg);
+        transform: rotate(-4.75deg);
     }
 
     80% {
-        transform: rotate(3.5deg);
+        transform: rotate(4.75deg);
     }
 
 }

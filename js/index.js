@@ -1,4 +1,3 @@
-
 const requestURL = "https://raw.githubusercontent.com/AlejandroM816/Tecnologia-multimedia/main/json/CategoriasYautores.json";
 const requestURL2 = "https://raw.githubusercontent.com/AlejandroM816/Tecnologia-multimedia/main/json/usuariosRegistrados.json";
 var objeto;
@@ -31,11 +30,25 @@ function SetHeader(objeto) {
         elem.className = "nav-item";
         var elem2 = document.createElement("a");
         elem2.className = "nav-link";
-        elem2.href = "#" + objeto.subcategory[i].name;
+        elem2.href = "#" ;
         elem2.textContent = objeto.subcategory[i].name;
         elem.appendChild(elem2);
         elemento.appendChild(elem);
     }
+    elemento.addEventListener("click", e => {
+        
+        let titulos = document.querySelectorAll(".page-section-heading");
+        for(let i=0;i<titulos.length;i++){
+            console.log(titulos[i].textContent);
+            if(titulos[i].textContent==e.target.textContent){
+                ScrollA(titulos[i]);
+                i=titulos.length+1;
+            }
+        }
+        
+    });
+
+
 }
 
 function FetchWikiExtract(nombre) {
@@ -123,20 +136,60 @@ function setComentLocalStorage(comentario, nombreAutor, padre) {
 
 }
 
-function shake(div) {
+function cierraSesion() {
+    sessionStorage.removeItem(sessionStorage.key(0));
+    var menuUsuario = document.getElementById("menuUsuario");
+    var elementosMenu = menuUsuario.children;
+    $(elementosMenu[0]).show();
+    $(elementosMenu[1]).show();
+    $(elementosMenu[3]).show();
+}
 
-    var interval = 100;
-    var distance = 10;
-    var times = 4;
+function ScrollA(div){
+    window.scrollTo(0,$(div).offset().top);
+}
 
-    $(div).css('position', 'relative');
-
-    for (var iter = 0; iter < (times + 1); iter++) {
-        $(div).animate({
-            left: ((iter % 2 == 0 ? distance : distance * -1))
-        }, interval);
+function iniciaSesion() {
+    var inpEmail = document.getElementById("exampleDropdownFormEmail1");
+    var inpPass = document.getElementById("exampleDropdownFormPassword1");
+    var email = inpEmail.value;
+    var pass = inpPass.value;
+    let noEncontrados = 0;
+    var Foto;
+    var changeImage;
+    for (let j = 0; j < objeto2.users.length; j++) {
+        if (objeto2.users[j].email == email && objeto2.users[j].password == pass) {
+            Foto = objeto2.users[j].image;
+            sessionStorage.setItem(objeto2.users[j].email, objeto2.users[j].nickname);
+            j = objeto2.users.length + 1;
+            changeImage = true;
+        } else {
+            noEncontrados++;
+        }
     }
-    $(div).animate({ left: 0 }, interval);
+    if (noEncontrados == objeto2.users.length) {
+        for (let g = 0; g < localStorage.length; g++) {
+            let key = localStorage.key(g);
+            if (!key.includes("Comentario")) {
+                var item = localStorage.getItem(key);
+                var items = item.split("/$/");
+                if (items[0] == email && items[1] == pass) {
+                    Foto = items[3];
+                    sessionStorage.setItem(email, items[2]);
+                    changeImage = true;
+                }
+            }
+        }
+    }
+    if (changeImage) {
+        var menuUsuario = document.getElementById("menuUsuario");
+        var elementosMenu = menuUsuario.children;
+        $(elementosMenu[0]).hide();
+        $(elementosMenu[1]).hide();
+        $(elementosMenu[3]).hide();
+        var avatarNavBar = document.getElementById("avatarNavBar");
+        avatarNavBar.src = Foto;
+    }
 }
 
 function busca() {
@@ -145,7 +198,6 @@ function busca() {
     if (inp.classList.contains("shakeBusqueda")) {
         inp.classList.remove("shakeBusqueda");
     }
-    
     var texto = inp.value;
     var titulos = document.querySelectorAll(".page-section-heading");
     let noEncontrados = 0;
@@ -160,6 +212,7 @@ function busca() {
 
     if (noEncontrados == titulos.length) {
         setTimeout(() => inp.classList.add("shakeBusqueda"), 100);
+
         for (let i = 0; i < titulos.length; i++) {
             $(titulos[i].parentNode).show();
         }
@@ -172,7 +225,7 @@ function Comentar() {
     let date = new Date();
     let output = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear();
     var titulo = document.querySelector(".titulo");
-    var newComment2 = titulo.textContent + "@" + output + "@" + newComment.value;
+    var newComment2 = titulo.textContent + "@" + localStorage.getItem + "@" + output + "@" + newComment.value;
     localStorage.setItem('Comentario' + (localStorage.length + 1), newComment2);
     var comentario = document.querySelectorAll(".bg-white");
     comentario = comentario[0];
@@ -195,10 +248,9 @@ function SetBody(objeto) {
             var e2 = e.cloneNode(true);
             e2.childNodes[1].childNodes[1].src = objeto.subcategory[i].authors[j].image.name;
             e2.childNodes[1].childNodes[1].alt = objeto.subcategory[i].authors[j].name;
-            e2.childNodes[1].childNodes[3].textContent = objeto.subcategory[i].authors[j].name;
-            e2.childNodes[1].childNodes[5].textContent = objeto.subcategory[i].authors[j].work;
-            e2.childNodes[1].childNodes[7].textContent = objeto.subcategory[i].authors[j].birthDate;
-            e2.childNodes[1].childNodes[9].textContent = objeto.subcategory[i].authors[j].deathDate;
+            var subTituloImagen = objeto.subcategory[i].authors[j].name + "\n" + objeto.subcategory[i].authors[j].work + "\n" +
+                objeto.subcategory[i].authors[j].birthDate + "\n" + objeto.subcategory[i].authors[j].deathDate;
+            e2.childNodes[1].childNodes[3].innerText = subTituloImagen.toString();
             element.childNodes[5].appendChild(e2);
         }
         element.childNodes[5].removeChild(e);
@@ -211,19 +263,13 @@ function SetBody(objeto) {
     elemento.removeChild(elemento.childNodes[1]);
 }
 
-/*
-function Inicio(irTop) {
-    var elementos = document.querySelectorAll(".page-section");
-    $(elementos).show();
-    $(elementos[elementos.length - 1]).hide();
-    var elemento = document.querySelector(".informacion");
-    $(elemento).hide();
-    if (irTop == 1) {
-        scrollTo(0, 0);
 
-    }
+function Inicio() {
+    Volver();
+    scrollTo(0, 0);
+
 }
-*/
+
 /*
 function MoverA(elemento) {
     Inicio(0);
@@ -242,16 +288,6 @@ function MoverA(elemento) {
     }
 }
 */
-function desplegarPerfil() {
-    var div = document.getElementById("Contenido");
-    var contenido = '<div class="container"><h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">EDITAR PERFIL</h2><div class="divider-custom"><div class="divider-custom-line"></div><div class="divider-custom-icon"><i class="fas fa-star"></i></div><div class="divider-custom-line"></div></div>';
-    contenido += '<center><div class="together">Nuevo nickname: <input type="text" class="form-control" placeholder="Nombre de usuario*"><\div>'; //nombre usuario
-    contenido += '<div class="together">Nueva Contraseña: <input type="text" class="form-control" placeholder="Contraseña*"><\div>'; //Contraseña
-    contenido += '<div class="together">Seleciona foto de Perfil: <form enctype="multipart/form-data" method="POST"><input name="uploadedfile" type="file" /></form><div>';
-    contenido += '<div class="together"><button type="button" class="btn btn-primary">Aplicar cambios</button><div>';
-    contenido += '<\center>';
-    div.innerHTML = contenido;
-}
 
 function desplegarRegistrate() {
     var div = document.getElementById("Contenido");
@@ -261,15 +297,6 @@ function desplegarRegistrate() {
     contenido += '<div class="together">Contraseña: <input type="text" class="form-control" placeholder="Contraseña*"><\div>'; //Contraseña
     contenido += '<div class="together">Seleciona foto de Perfil: <form enctype="multipart/form-data" method="POST"><input name="uploadedfile" type="file" /></form><div>';
     contenido += '<div class="together"><button type="button" class="btn btn-primary">Registrarse</button><div>';
-    contenido += '<\center>';
-    div.innerHTML = contenido;
-}
-
-function desplegarOlvidadoCon() {
-    var div = document.getElementById("Contenido");
-    var contenido = '<div class="container"><h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">RESTABLECER CONTRASEÑA</h2><div class="divider-custom"><div class="divider-custom-line"></div><div class="divider-custom-icon"><i class="fas fa-star"></i></div><div class="divider-custom-line"></div></div>';
-    contenido += '<center><div class="together">Correo Electronico: <input type="text" class="form-control" placeholder="@gmail.com"><\div>'; //Correo electronico
-    contenido += '<div class="together"><button type="button" class="btn btn-primary">Enviar nueva contraseña</button><div>';
     contenido += '<\center>';
     div.innerHTML = contenido;
 }
@@ -350,8 +377,9 @@ function ModificarContenido() {
                 }
             }
             $(elementoCont[0]).hide();
+            scrollTo(0, 0);
         }
-
+        
     })
 }
 ModificarContenido();

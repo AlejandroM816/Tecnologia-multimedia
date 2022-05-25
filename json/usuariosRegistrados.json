@@ -4,43 +4,43 @@
             "nickname": "MaciaKing",
             "email": "maciaking@gmail.com",
             "password": "1234",
-            "image": "../assets/MaleAvatar.png"
+            "image": "assets/MaleAvatar.svg"
         },
         {
             "nickname": "Pere",
             "email": "Pere_48@gmail.com",
             "password": "12345",
-            "image": "../assets/MaleAvatar.png"
+            "image": "assets/MaleAvatar.svg"
         },
         {
             "nickname": "Juanjo",
             "email": "Juanjo12@gmail.com",
             "password": "1234",
-            "image": "../assets/MaleAvatar.png"
+            "image": "assets/MaleAvatar.svg"
         },
         {
             "nickname": "Maria69",
             "email": "Maria6998@gmail.com",
             "password": "123456",
-            "image": "../assets/FemaleAvatar.png"
+            "image": "assets/FemaleAvatar.svg"
         },
         {
             "nickname": "Juana-9",
             "email": "Juana-9@gmail.com",
             "password": "1234",
-            "image": "../assets/FemaleAvatar.png"
+            "image": "assets/FemaleAvatar.svg"
         },
         {
             "nickname": "Paco Sanz",
             "email": "Ps__48@gmail.com",
             "password": "12345",
-            "image": "../assets/FemaleAvatar.png"
+            "image": "assets/FemaleAvatar.svg"
         },
         {
             "nickname": "Fernando",
             "email": "fernandito@gmail.com",
             "password": "12345",
-            "image": "../assets/MaleAvatar.png"
+            "image": "assets/MaleAvatar.svg"
         }
     ]
 }
