@@ -242,6 +242,11 @@ body {
     font-size: 1.5rem;
 }
 
+.styleIt {
+    width: 400px;
+    margin: auto;
+  }
+
 .informacion {
     z-index: 9999;
     position: relative;

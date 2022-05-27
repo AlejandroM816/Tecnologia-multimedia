@@ -350,21 +350,25 @@ function ModificarContenido() {
                     */
                     const wikiData = FetchWikiExtract(nombreAutor);
                     var v = document.querySelector(".videos");
-                    console.log(jQuery.isEmptyObject(subcategoriajson.authors[i].documentales));
+                    
                     if (!jQuery.isEmptyObject(subcategoriajson.authors[i].documentales)) {
                         $(v).show();
+
+                        /*
+                               <div class="styleIt">
+                            <lite-youtube videoid="guJLfqTFfIw"></lite-youtube>
+                          </div>
+                        */
+
                         while (subcategoriajson.authors[i].documentales.length < v.childNodes[1].children.length - 1) {
-                          
+                            console.log("elimino video");
                             v.childNodes[1].children[v.childNodes[1].children.length - 1].remove();
                         }
 
                         v.childNodes[1].childNodes[3].childNodes[1].childNodes[1].childNodes[1].src = subcategoriajson.authors[i].documentales[0].url;
                         for (let b = 1; b < subcategoriajson.authors[i].documentales.length; b++) {
                             var vid = v.childNodes[1].childNodes[3].cloneNode(true);
-                            console.log(vid.childNodes[1].childNodes[1].childNodes);
-                            vid.childNodes[1].childNodes[1].childNodes[1].videoid = subcategoriajson.authors[i].documentales[b].url.substring(
-                                subcategoriajson.authors[i].documentales[b].url.lastIndexOf("/") + 1 ,subcategoriajson.authors[i].documentales[b].url.length
-                            );
+                            vid.childNodes[1].childNodes[1].childNodes[1].src = subcategoriajson.authors[i].documentales[b].url;
                             v.childNodes[1].appendChild(vid);
                         }
 
