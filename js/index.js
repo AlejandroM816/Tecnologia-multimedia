@@ -30,23 +30,23 @@ function SetHeader(objeto) {
         elem.className = "nav-item";
         var elem2 = document.createElement("a");
         elem2.className = "nav-link";
-        elem2.href = "#" ;
+        elem2.href = "#";
         elem2.textContent = objeto.subcategory[i].name;
         elem.appendChild(elem2);
         elemento.appendChild(elem);
     }
-    
+
     elemento.addEventListener("click", e => {
-        
+
         let titulos = document.querySelectorAll(".page-section-heading");
-        for(let i=0;i<titulos.length;i++){
+        for (let i = 0; i < titulos.length; i++) {
             console.log(titulos[i].textContent);
-            if(titulos[i].textContent==e.target.textContent){
+            if (titulos[i].textContent == e.target.textContent) {
                 ScrollA(titulos[i]);
-                i=titulos.length+1;
+                i = titulos.length + 1;
             }
         }
-        
+
     });
 
 
@@ -142,8 +142,8 @@ function cierraSesion() {
     avatarNavBar.src = "assets/avatar.svg";
 }
 
-function ScrollA(div){
-    window.scrollTo(0,$(div).offset().top);
+function ScrollA(div) {
+    window.scrollTo(0, $(div).offset().top);
 }
 
 function iniciaSesion() {
@@ -343,34 +343,34 @@ function ModificarContenido() {
                     var mostrar = document.querySelector('.informacion');
                     SetComments(subcategoriajson.authors[i].coments, nombreAutor);
                     var comentario = document.querySelector(".comment-text");
-
-                    /*
-                    var imagen= mostrar.childNodes[3];
-                    imagen.url=subcategoriajson.authors[i].image.name ;
-                    */
                     const wikiData = FetchWikiExtract(nombreAutor);
                     var v = document.querySelector(".videos");
-                    
+
+                    /*
+                        <lite-youtube videoid="2tsQ75zSWLs"></lite-youtube>
+                    */
+
                     if (!jQuery.isEmptyObject(subcategoriajson.authors[i].documentales)) {
                         $(v).show();
-
-                        /*
-                               <div class="styleIt">
-                            <lite-youtube videoid="guJLfqTFfIw"></lite-youtube>
-                          </div>
-                        */
+                        //const videoGenerico= '<div class="col-md-6 col-lg-4 mb-5"><div class="info-item mx-auto"><div class="ratio ratio-16x9"><lite-youtube videoid="2tsQ75zSWLs"></lite-youtube></div> </div></div>'
 
                         while (subcategoriajson.authors[i].documentales.length < v.childNodes[1].children.length - 1) {
-                            console.log("elimino video");
                             v.childNodes[1].children[v.childNodes[1].children.length - 1].remove();
                         }
 
-                        v.childNodes[1].childNodes[3].childNodes[1].childNodes[1].childNodes[1].src = subcategoriajson.authors[i].documentales[0].url;
-                        for (let b = 1; b < subcategoriajson.authors[i].documentales.length; b++) {
-                            var vid = v.childNodes[1].childNodes[3].cloneNode(true);
-                            vid.childNodes[1].childNodes[1].childNodes[1].src = subcategoriajson.authors[i].documentales[b].url;
+                        for (let b = 0; b < subcategoriajson.authors[i].documentales.length; b++) {
+                            var videoGenerico = '<lite-youtube videoid="idgenericoremplazar"></lite-youtube>';
+                            videoGenerico=videoGenerico.replace("idgenericoremplazar",
+                                subcategoriajson.authors[i].documentales[b].url.substring(
+                                    subcategoriajson.authors[i].documentales[b].url.lastIndexOf("/") + 1, subcategoriajson.authors[i].documentales[b].url.length
+                                )
+                            );      
+                            console.log(videoGenerico);
+                            var vid=v.childNodes[1].children[1].cloneNode(true);
+                            vid.childNodes[1].childNodes[1].innerHTML=videoGenerico;
                             v.childNodes[1].appendChild(vid);
                         }
+                        v.childNodes[1].removeChild(v.childNodes[1].children[1]);
 
                     } else {
                         $(v).hide();
@@ -383,7 +383,7 @@ function ModificarContenido() {
             $(elementoCont[0]).hide();
             scrollTo(0, 0);
         }
-        
+
     })
 }
 ModificarContenido();
