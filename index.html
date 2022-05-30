@@ -48,9 +48,9 @@
             </ul>
 
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown" style=" padding-right:0.5rem;">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item dropdown"  style=" padding-right:0.5rem;">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                         <img class="avatar" id="avatarNavBar" src="assets/avatar.svg" alt="Avatar del usuario" />
                     </a>
                     <ul class="dropdown-menu" id="menuUsuario">
@@ -64,17 +64,26 @@
                                 <div class="form-group">
                                     <label for="exampleDropdownFormPassword1">Contraseña</label>
                                     <input type="password" class="form-control" id="exampleDropdownFormPassword1"
-                                        placeholder="Password">
+                                        placeholder="Contraseña">
                                 </div>
-                                <button type="submit" class="btn btn-primary" onclick="iniciaSesion()"
+                                <div class="form-group" id="inputRegistro" style="display:none">
+                                    <label for="exampleDropdownFormNickname1">Nickname</label>
+                                    <input type="nickname" class="form-control" id="exampleDropdownFormNickname1"
+                                        placeholder="Nickname">
+                                </div>
+                                <button type="submit" id="btnIS" class="btn btn-primary" onclick="iniciaSesion()"
                                     style="margin-top:5px">Iniciar Sesion</button>
+                                <button type="submit" id="btnConfirmar" class="btn btn-primary"  onclick="Aceptar()"
+                                    style="margin-top:5px;display: none;">Confirmar</button>
+                                    <button type="submit" id="btnCancelar" class="btn btn-primary"  onclick="Cancelar()"
+                                    style="margin-top:5px;display: none;">Cancelar</button>
                             </div>
                         </li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li><a class="dropdown-item" href="#" onclick="cierraSesion()">Cerrar Sesion</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="desplegarRegistrate()">Registrate</a></li>
+                        <li><a class="dropdown-item" id="btnCS" style="display: none;" href="#" onclick="cierraSesion()">Cerrar Sesion</a></li>
+                        <li><a class="dropdown-item" id="btnReg" href="#"  onclick="desplegarRegistrate(event)">Registrate</a></li>
                     </ul>
                 </li>
                 <li class="nav-item" style=" padding-right:1.5rem;">
@@ -154,7 +163,7 @@
                     <div class="d-flex flex-column comment-section">
                         <div class="bg-white p-2">
                             <div class="d-flex flex-row user-info"><img class="rounded-circle"
-                                    src="assets/FemaleAvatar.svg" alt="Avatar del comentario" width="40">
+                                    src="assets/FemaleAvatar.svg" id="AVATARC" alt="Avatar del comentario" width="40">
                                 <div class="d-flex flex-column justify-content-start ml-2"><span
                                         class="d-block font-weight-bold name"></span><span
                                         class="date text-black-50"></span></div>
@@ -165,7 +174,7 @@
                         </div>
                         <div class="bg-light p-2">
                             <div class="d-flex flex-row align-items-start">
-                                <img class="rounded-circle" src="" width="40" />
+                                <img class="rounded-circle" id="ImagenUsuComment" src="" width="40" />
                                 <textarea class="form-control ml-1 shadow-none textarea"
                                     id="ComentarioUusario"></textarea>
                             </div>
@@ -182,17 +191,16 @@
             </div>
         </div>
     </div>
+    </body>
     <footer class=" text-center text-lg-start " style="padding-top: 1.5rem;">
         <div class="text-center p-3" style="background-color: #5DC1B9;">
             <div class="lista">
                 <ul>
                     <li>
-                        <a href="https://mdbootstrap.com/"> <img class="uib" src="assets/boot.png"
-                                alt="Logo BootStrap" /></a>
+                        <a href="https://mdbootstrap.com/"> <img class="uib" src="assets/boot.svg" alt="Logo BootStrap" /></a>
                     </li>
                     <li>
-                        <a href="https://github.com/MaciaKing/Tecnologia-Multimedia"> <img class="uib" alt="Logo GITHUB"
-                                src="assets/github.png" /></a>
+                        <a href="https://github.com/AlejandroM816/Tecnologia-multimedia">  <img class="uib" alt="Logo GITHUB" src="assets/github.svg"/></a>  
                     </li>
                     <li>
                         <a href="https://www.uib.es/es/"> <img class="uib" src="assets/uib.png" alt="Logo UIB" /> </a>

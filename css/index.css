@@ -199,10 +199,6 @@ body {
     height: 50px;
 }
 
-.uib {
-    height: 40px;
-}
-
 .avatar {
     height: 30px;
 }
@@ -248,7 +244,7 @@ body {
   }
 
 .informacion {
-    z-index: 9999;
+    z-index: 99;
     position: relative;
     display: none;
     flex-direction: column;

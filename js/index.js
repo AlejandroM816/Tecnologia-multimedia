@@ -96,6 +96,7 @@ function SetComments(comentarios, nombreAutor) {
         comentario[k].remove();
     }
     comentario = comentario[0];
+    $(comentario).show();
     var padre = comentario.parentNode;
     for (let i = 0; i < comentarios.length; i++) {
         var c2 = comentario.cloneNode(true);
@@ -108,11 +109,17 @@ function SetComments(comentarios, nombreAutor) {
         c2.childNodes[1].childNodes[2].childNodes[0].textContent = comentarios[i].nickname;
         c2.childNodes[1].childNodes[2].childNodes[1].textContent = comentarios[i].date;
         c2.childNodes[3].childNodes[1].textContent = comentarios[i].comment;
+        if (c2.childNodes[3].childNodes[1].textContent == "") {
+            $(c2).hide();
+        }
         padre.insertBefore(c2, padre.lastChild);
-    }
-    setComentLocalStorage(comentario, nombreAutor, padre);
 
+    }
+
+    setComentLocalStorage(comentario, nombreAutor, padre);
     padre.removeChild(comentario);
+
+
 }
 
 function setComentLocalStorage(comentario, nombreAutor, padre) {
@@ -120,11 +127,12 @@ function setComentLocalStorage(comentario, nombreAutor, padre) {
         var c2 = comentario.cloneNode(true);
         let key = localStorage.key(g);
         var item = localStorage.getItem(key);
-        var itemAutor = item.substring(0, item.indexOf("@"));
-        if (itemAutor == nombreAutor) {
-            c2.childNodes[1].childNodes[2].childNodes[0].textContent = "Usuario";
-            c2.childNodes[1].childNodes[2].childNodes[1].textContent = item.substring(item.indexOf("@") + 1, item.lastIndexOf("@"));
-            c2.childNodes[3].childNodes[1].textContent = item.substring(item.lastIndexOf("@") + 1, item.length);
+        var splitComment = item.split("@");
+        if (splitComment[0] == nombreAutor) {
+            c2.childNodes[1].childNodes[2].childNodes[0].textContent = splitComment[1];
+            c2.childNodes[1].childNodes[2].childNodes[1].textContent = splitComment[2];
+            document.getElementById("AVATARC").src = splitComment[3];
+            c2.childNodes[3].childNodes[1].textContent = splitComment[4];
             padre.insertBefore(c2, padre.lastChild);
         }
     }
@@ -140,6 +148,9 @@ function cierraSesion() {
     $(elementosMenu[3]).show();
     var avatarNavBar = document.getElementById("avatarNavBar");
     avatarNavBar.src = "assets/avatar.svg";
+    var cs = document.getElementById("btnCS");
+    $(cs).hide();
+    document.getElementById("ImagenUsuComment").src = "";
 }
 
 function ScrollA(div) {
@@ -167,7 +178,7 @@ function iniciaSesion() {
     if (noEncontrados == objeto2.users.length) {
         for (let g = 0; g < localStorage.length; g++) {
             let key = localStorage.key(g);
-            if (!key.includes("Comentario")) {
+            if (key.includes("Usuario")) {
                 var item = localStorage.getItem(key);
                 var items = item.split("/$/");
                 if (items[0] == email && items[1] == pass) {
@@ -186,7 +197,11 @@ function iniciaSesion() {
         $(elementosMenu[3]).hide();
         var avatarNavBar = document.getElementById("avatarNavBar");
         avatarNavBar.src = Foto;
+        var cs = document.getElementById("btnCS");
+        $(cs).show();
+        document.getElementById("ImagenUsuComment").src = Foto;
     }
+
 }
 
 function busca() {
@@ -222,11 +237,44 @@ function Comentar() {
     let date = new Date();
     let output = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear();
     var titulo = document.querySelector(".titulo");
-    var newComment2 = titulo.textContent + "@" + localStorage.getItem + "@" + output + "@" + newComment.value;
+    var usu = sessionStorage.getItem(sessionStorage.key(0));
+    var Foto;
+    var salida = false;
+    for (let i = 0; i < objeto2.users.length; i++) {
+        if (objeto2.users[i].email == sessionStorage.key(0)) {
+            Foto = objeto2.users[i].image;
+            i = objeto2.users.length + 1;
+            salida = true;
+        }
+    }
+    if (!salida) {
+        for (let j = 0; j < localStorage.length; j++) {
+            if (localStorage.key(j).includes("Usuario")) {
+                var splitUsu = localStorage.getItem(localStorage.key(j)).split("/$/");
+                if (splitUsu[0] == sessionStorage.key(0)) {
+                    Foto = splitUsu[3];
+                    j = localStorage.length + 1;
+                    salida = true;
+                }
+            }
+        }
+    }
+
+    var newComment2 = titulo.textContent + "@" + usu + "@" + output + "@" + Foto + "@" + newComment.value;
+    console.log(newComment2);
     localStorage.setItem('Comentario' + (localStorage.length + 1), newComment2);
-    var comentario = document.querySelectorAll(".bg-white");
-    comentario = comentario[0];
-    var padre = comentario.parentNode;
+    var comentario = document.querySelector(".bg-white");
+    var bloqueComentarios = comentario.parentNode;
+    var newComentario = comentario.cloneNode(true);
+    newComentario.children[0].children[0].src = Foto;
+    newComentario.children[0].children[1].children[0].textContent = usu;
+    newComentario.children[0].children[1].children[1].textContent = output;
+    newComentario.children[1].children[0].textContent = newComment.value;
+    if ($(newComentario).is(':hidden')) {
+        $(newComentario).show();
+    }
+    bloqueComentarios.appendChild(newComentario);
+    newComment.value = "";
 }
 
 function SetBody(objeto) {
@@ -286,16 +334,51 @@ function MoverA(elemento) {
 }
 */
 
-function desplegarRegistrate() {
-    var div = document.getElementById("Contenido");
-    var contenido = '<div class="container"><h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">REGISTRATE</h2><div class="divider-custom"><div class="divider-custom-line"></div><div class="divider-custom-icon"><i class="fas fa-star"></i></div><div class="divider-custom-line"></div></div>';
-    contenido += '<center><div class="together">Nickname: <input type="text" class="form-control" placeholder="Nombre de usuario*"><\div>'; //nombre usuario
-    contenido += '<center><div class="together">Correo Electronico: <input type="text" class="form-control" placeholder="@gmail.com"><\div>'; //Correo electronico
-    contenido += '<div class="together">Contraseña: <input type="text" class="form-control" placeholder="Contraseña*"><\div>'; //Contraseña
-    contenido += '<div class="together">Seleciona foto de Perfil: <form enctype="multipart/form-data" method="POST"><input name="uploadedfile" type="file" /></form><div>';
-    contenido += '<div class="together"><button type="button" class="btn btn-primary">Registrarse</button><div>';
-    contenido += '<\center>';
-    div.innerHTML = contenido;
+function Cancelar() {
+    var div = document.getElementById("inputRegistro");
+    $(div).hide();
+    var is = document.getElementById("btnIS");
+    $(is).show();
+    var cs = document.getElementById("btnCS");
+    $(cs).hide();
+    var reg = document.getElementById("btnReg");
+    $(reg).show();
+    var cf = document.getElementById("btnConfirmar");
+    $(cf).hide();
+    var can = document.getElementById("btnCancelar");
+    $(can).hide();
+}
+
+function Aceptar() {
+    var inpEmail = document.getElementById("exampleDropdownFormEmail1");
+    var inpPass = document.getElementById("exampleDropdownFormPassword1");
+    var inpNick = document.getElementById("exampleDropdownFormNickname1");
+    var Foto;
+    var aleat = Math.random();
+    if (aleat < 0.5) {
+        Foto = "assets/MaleAvatar.svg";
+    } else {
+        Foto = "assets/FemaleAvatar.svg";
+    }
+    var value = inpEmail.value + "/$/" + inpPass.value + "/$/" + inpNick.value + "/$/" + Foto;
+    localStorage.setItem("Usuario" + localStorage.length + 1, value);
+    Cancelar();
+}
+
+function desplegarRegistrate(e) {
+    var div = document.getElementById("inputRegistro");
+    $(div).show();
+    var is = document.getElementById("btnIS");
+    $(is).hide();
+    var cs = document.getElementById("btnCS");
+    $(cs).hide();
+    var reg = document.getElementById("btnReg");
+    $(reg).hide();
+    var cf = document.getElementById("btnConfirmar");
+    $(cf).show();
+    var can = document.getElementById("btnCancelar");
+    $(can).show();
+    e.stopPropagation();
 }
 
 function Volver() {
@@ -354,20 +437,20 @@ function ModificarContenido() {
                         $(v).show();
                         //const videoGenerico= '<div class="col-md-6 col-lg-4 mb-5"><div class="info-item mx-auto"><div class="ratio ratio-16x9"><lite-youtube videoid="2tsQ75zSWLs"></lite-youtube></div> </div></div>'
 
-                        while (subcategoriajson.authors[i].documentales.length < v.childNodes[1].children.length - 1) {
+                        while (v.childNodes[1].children.length > 2) {
                             v.childNodes[1].children[v.childNodes[1].children.length - 1].remove();
                         }
 
                         for (let b = 0; b < subcategoriajson.authors[i].documentales.length; b++) {
                             var videoGenerico = '<lite-youtube videoid="idgenericoremplazar"></lite-youtube>';
-                            videoGenerico=videoGenerico.replace("idgenericoremplazar",
+                            videoGenerico = videoGenerico.replace("idgenericoremplazar",
                                 subcategoriajson.authors[i].documentales[b].url.substring(
                                     subcategoriajson.authors[i].documentales[b].url.lastIndexOf("/") + 1, subcategoriajson.authors[i].documentales[b].url.length
                                 )
-                            );      
+                            );
                             console.log(videoGenerico);
-                            var vid=v.childNodes[1].children[1].cloneNode(true);
-                            vid.childNodes[1].childNodes[1].innerHTML=videoGenerico;
+                            var vid = v.childNodes[1].children[1].cloneNode(true);
+                            vid.childNodes[1].childNodes[1].innerHTML = videoGenerico;
                             v.childNodes[1].appendChild(vid);
                         }
                         v.childNodes[1].removeChild(v.childNodes[1].children[1]);
