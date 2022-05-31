@@ -317,12 +317,14 @@ function SetBody(objeto) {
         console.log(e);
         for (let j = 0; j < objeto.subcategory[i].authors.length; j++) {
             var e2 = e.cloneNode(true);
+            var imagen=objeto.subcategory[i].authors[j].image.name;
             if (isMobile()) {
-                e2.childNodes[1].childNodes[1].src = objeto.subcategory[i].authors[j].image.name + "_telefono";
+                var formato=imagen.slice(imagen.lastIndexOf("."),imagen.length);
+                e2.childNodes[1].childNodes[1].src = imagen.replace(formato,"_telefono")+formato;
                 e2.childNodes[1].childNodes[1].width = "96";
                 e2.childNodes[1].childNodes[1].height = "69";
             } else {
-                e2.childNodes[1].childNodes[1].src = objeto.subcategory[i].authors[j].image.name;
+                e2.childNodes[1].childNodes[1].src = imagen;
                 e2.childNodes[1].childNodes[1].width = "356";
                 e2.childNodes[1].childNodes[1].height = "257";
             }
