@@ -365,36 +365,6 @@
                     ]
                 },
                 {
-                    "name": "Antonio Ludeña",
-                    "work": "De vera, et necessaria motus accelerati theoria",
-                    "birthDate": "23/12/1740",
-                    "deathDate": "01/03/1820",
-                    "studySites": [
-                        {
-                            "UniversityName": "Universidad de Valencia",
-                            "Lat": 39.479051,
-                            "Long": -0.359087
-                        },
-                        {
-                            "UniversityName": "Universidad de Bolonia",
-                            "Lat": 44.49622888306207,
-                            "Long": 11.354156461054519
-                        }
-                    ],
-                    "image": {
-                        "@type": "ImageObject",
-                        "name": ""
-                    },
-                    "documentales": [],
-                    "coments": [
-                        {
-                            "nickname": "Pere",
-                            "comment": "No conocia a este fisico, gracias",
-                            "date": "28/07/2021"
-                        }
-                    ]
-                },
-                {
                     "name": "Máximo Fuertes Acevedo",
                     "work": "Curso de Física elemental y nociones de Química ",
                     "birthDate": "09/12/1832",
