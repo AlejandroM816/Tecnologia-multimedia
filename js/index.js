@@ -318,7 +318,7 @@ function SetBody(objeto) {
         for (let j = 0; j < objeto.subcategory[i].authors.length; j++) {
             var e2 = e.cloneNode(true);
             if (isMobile()) {
-                e2.childNodes[1].childNodes[1].src = objeto.subcategory[i].authors[j].image.name + " telefono";
+                e2.childNodes[1].childNodes[1].src = objeto.subcategory[i].authors[j].image.name + "_telefono";
                 e2.childNodes[1].childNodes[1].width = "96";
                 e2.childNodes[1].childNodes[1].height = "69";
             } else {
