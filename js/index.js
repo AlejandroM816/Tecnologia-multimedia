@@ -319,8 +319,9 @@ function SetBody(objeto) {
             var e2 = e.cloneNode(true);
             var imagen=objeto.subcategory[i].authors[j].image.name;
             if (isMobile()) {
-                var formato=imagen.slice(imagen.lastIndexOf("."),imagen.length);
-                e2.childNodes[1].childNodes[1].src = imagen.replace(formato,"_telefono")+formato;
+                //var formato=imagen.slice(imagen.lastIndexOf("."),imagen.length);
+               // e2.childNodes[1].childNodes[1].src = imagen.replace(formato,"_telefono")+formato;
+               e2.childNodes[1].childNodes[1].src = imagen;
                 e2.childNodes[1].childNodes[1].width = "96";
                 e2.childNodes[1].childNodes[1].height = "69";
             } else {
