@@ -19,11 +19,11 @@
 
 .btn-listen {
     box-sizing: content-box;
-    width: 1em;
-    height: 1em;
+    width: 3em;
+    height: 3em;
     padding: 0.25em 0.25em;
     color: #000;
-    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z'/%3e%3c/svg%3e") center/2em auto no-repeat;
     border: 0;
     border-radius: 0.5rem;
     opacity: 0.5;
@@ -127,8 +127,7 @@ img {
 }
 
 .nav-link{
-    color:#000;
-
+    color: black;
 }
 
 .nav-link:hover {
@@ -282,10 +281,17 @@ body {
     line-height: 2rem;
 }
 
-@media (min-width: 992px) {
+@media (max-width: 412px) {
     .page-section .page-section-heading {
-        font-size: 3rem;
-        line-height: 2.5rem;
+        font-size: 1.5rem;
+        line-height: 0.75rem;
+    }
+}
+
+@media (max-width: 180px) {
+    .page-section .page-section-heading {
+        font-size: 0.75rem;
+        line-height: 0.25rem;
     }
 }
 

@@ -21,7 +21,16 @@ request.onload = function () {
     SetBody(objeto);
 }
 
-
+function isMobile() {
+    return (
+        (navigator.userAgent.match(/Android/i)) ||
+        (navigator.userAgent.match(/webOS/i)) ||
+        (navigator.userAgent.match(/iPhone/i)) ||
+        (navigator.userAgent.match(/iPod/i)) ||
+        (navigator.userAgent.match(/iPad/i)) ||
+        (navigator.userAgent.match(/BlackBerry/i))
+    );
+}
 
 function SetHeader(objeto) {
     var elemento = document.querySelector(".navbar-nav");
@@ -34,6 +43,7 @@ function SetHeader(objeto) {
         elem2.textContent = objeto.subcategory[i].name;
         elem.appendChild(elem2);
         elemento.appendChild(elem);
+
     }
 
     elemento.addEventListener("click", e => {
@@ -71,23 +81,31 @@ function FetchWikiExtract(nombre) {
             pageid.push(id);
         }
         var Texto = objeto3.query.pages[pageid[0]].extract;
-        document.querySelector(".lead").innerText = removeTags(Texto);
+        let TextoCambiar = removeTags(Texto);
+        console.log(TextoCambiar);
+        document.querySelector(".lead").innerText = TextoCambiar;
     }
 
-    function removeTags(str) {
-        if ((str === null) || (str === ''))
-            return false;
-        else
-            str = str.toString();
-        str = str.replace(/(\[(?:[^[\]]*?)\]\s*?(?=\[))|(\[(?:[^[\]]*?)\](?!\s*[\|&]\s*.))|(?:\[[^[\]]*?])/g, '');
-        return str.replace(/<\/?[a-z][a-z0-9]*[^<>]*>|<!--.*?-->/img, '');
-    }
+
+
 }
 
+function removeTags(str) {
+    if ((str === null) || (str === ''))
+        return false;
+    else
+        str = str.toString();
+    str = str.replace(/(\[(?:[^[\]]*?)\]\s*?(?=\[))|(\[(?:[^[\]]*?)\](?!\s*[\|&]\s*.))|(?:\[[^[\]]*?])/g, '');
+    return str.replace(/<\/?[a-z][a-z0-9]*[^<>]*>|<!--.*?-->/img, '');
+}
 
 function Leer() {
     var elemento = document.querySelector(".lead");
-    speechSynthesis.speak(new SpeechSynthesisUtterance(elemento.textContent));
+    if (speechSynthesis.speaking) {
+        speechSynthesis.cancel();
+    } else {
+        speechSynthesis.speak(new SpeechSynthesisUtterance(elemento.textContent));
+    }
 }
 
 function SetComments(comentarios, nombreAutor) {
@@ -238,42 +256,50 @@ function Comentar() {
     let output = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear();
     var titulo = document.querySelector(".titulo");
     var usu = sessionStorage.getItem(sessionStorage.key(0));
-    var Foto;
-    var salida = false;
-    for (let i = 0; i < objeto2.users.length; i++) {
-        if (objeto2.users[i].email == sessionStorage.key(0)) {
-            Foto = objeto2.users[i].image;
-            i = objeto2.users.length + 1;
-            salida = true;
+    if (usu != null) {
+        var Foto;
+        var salida = false;
+        for (let i = 0; i < objeto2.users.length; i++) {
+            if (objeto2.users[i].email == sessionStorage.key(0)) {
+                Foto = objeto2.users[i].image;
+                i = objeto2.users.length + 1;
+                salida = true;
+            }
         }
-    }
-    if (!salida) {
-        for (let j = 0; j < localStorage.length; j++) {
-            if (localStorage.key(j).includes("Usuario")) {
-                var splitUsu = localStorage.getItem(localStorage.key(j)).split("/$/");
-                if (splitUsu[0] == sessionStorage.key(0)) {
-                    Foto = splitUsu[3];
-                    j = localStorage.length + 1;
-                    salida = true;
+        if (!salida) {
+            for (let j = 0; j < localStorage.length; j++) {
+                if (localStorage.key(j).includes("Usuario")) {
+                    var splitUsu = localStorage.getItem(localStorage.key(j)).split("/$/");
+                    if (splitUsu[0] == sessionStorage.key(0)) {
+                        Foto = splitUsu[3];
+                        j = localStorage.length + 1;
+                        salida = true;
+                    }
                 }
             }
         }
-    }
 
-    var newComment2 = titulo.textContent + "@" + usu + "@" + output + "@" + Foto + "@" + newComment.value;
-    console.log(newComment2);
-    localStorage.setItem('Comentario' + (localStorage.length + 1), newComment2);
-    var comentario = document.querySelector(".bg-white");
-    var bloqueComentarios = comentario.parentNode;
-    var newComentario = comentario.cloneNode(true);
-    newComentario.children[0].children[0].src = Foto;
-    newComentario.children[0].children[1].children[0].textContent = usu;
-    newComentario.children[0].children[1].children[1].textContent = output;
-    newComentario.children[1].children[0].textContent = newComment.value;
-    if ($(newComentario).is(':hidden')) {
-        $(newComentario).show();
+        var newComment2 = titulo.textContent + "@" + usu + "@" + output + "@" + Foto + "@" + newComment.value;
+        console.log(newComment2);
+        localStorage.setItem('Comentario' + (localStorage.length + 1), newComment2);
+        var comentario = document.querySelector(".bg-white");
+        var bloqueComentarios = comentario.parentNode;
+        var newComentario = comentario.cloneNode(true);
+        newComentario.children[0].children[0].src = Foto;
+        newComentario.children[0].children[1].children[0].textContent = usu;
+        newComentario.children[0].children[1].children[1].textContent = output;
+        newComentario.children[1].children[0].textContent = newComment.value;
+        if ($(newComentario).is(':hidden')) {
+            $(newComentario).show();
+        }
+        bloqueComentarios.appendChild(newComentario);
+    } else {
+        var errorComentario = document.querySelector(".errorComentar");
+        $(errorComentario).show();
+        setTimeout(() => {
+            $(errorComentario).hide();
+        }, 2000);
     }
-    bloqueComentarios.appendChild(newComentario);
     newComment.value = "";
 }
 
@@ -291,7 +317,15 @@ function SetBody(objeto) {
         console.log(e);
         for (let j = 0; j < objeto.subcategory[i].authors.length; j++) {
             var e2 = e.cloneNode(true);
-            e2.childNodes[1].childNodes[1].src = objeto.subcategory[i].authors[j].image.name;
+            if (isMobile()) {
+                e2.childNodes[1].childNodes[1].src = objeto.subcategory[i].authors[j].image.name + " telefono";
+                e2.childNodes[1].childNodes[1].width = "96";
+                e2.childNodes[1].childNodes[1].height = "69";
+            } else {
+                e2.childNodes[1].childNodes[1].src = objeto.subcategory[i].authors[j].image.name;
+                e2.childNodes[1].childNodes[1].width = "356";
+                e2.childNodes[1].childNodes[1].height = "257";
+            }
             e2.childNodes[1].childNodes[1].alt = objeto.subcategory[i].authors[j].name;
             var subTituloImagen = objeto.subcategory[i].authors[j].name + "\n" + objeto.subcategory[i].authors[j].work + "\n" +
                 objeto.subcategory[i].authors[j].birthDate + "\n" + objeto.subcategory[i].authors[j].deathDate;
@@ -349,20 +383,53 @@ function Cancelar() {
     $(can).hide();
 }
 
-function Aceptar() {
-    var inpEmail = document.getElementById("exampleDropdownFormEmail1");
-    var inpPass = document.getElementById("exampleDropdownFormPassword1");
-    var inpNick = document.getElementById("exampleDropdownFormNickname1");
-    var Foto;
-    var aleat = Math.random();
-    if (aleat < 0.5) {
-        Foto = "assets/MaleAvatar.svg";
-    } else {
-        Foto = "assets/FemaleAvatar.svg";
+
+function ComprobarUsuarioJSON(email) {
+    for (let i = 0; i < objeto2.users.length; i++) {
+        if (objeto2.users[i].email == email) {
+            return true;
+        }
     }
-    var value = inpEmail.value + "/$/" + inpPass.value + "/$/" + inpNick.value + "/$/" + Foto;
-    localStorage.setItem("Usuario" + localStorage.length + 1, value);
-    Cancelar();
+    return false;
+}
+
+function ComprobarUsuarioLocalStorage(email) {
+    for (let i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i).includes("Usuario")) {
+            var splitLS = localStorage.getItem(localStorage.key(i)).split("/$/");
+            if (splitLS[0] == email) {
+                return true;
+            }
+        }
+    }
+    return false;
+
+}
+
+function Aceptar(e) {
+    var inpEmail = document.getElementById("exampleDropdownFormEmail1");
+    if (!ComprobarUsuarioJSON(inpEmail.value) && !ComprobarUsuarioLocalStorage(inpEmail.value)) {
+        var inpPass = document.getElementById("exampleDropdownFormPassword1");
+        var inpNick = document.getElementById("exampleDropdownFormNickname1");
+        var Foto;
+        var aleat = Math.random();
+        if (aleat < 0.5) {
+            Foto = "assets/MaleAvatar.svg";
+        } else {
+            Foto = "assets/FemaleAvatar.svg";
+        }
+        var value = inpEmail.value + "/$/" + inpPass.value + "/$/" + inpNick.value + "/$/" + Foto;
+
+        localStorage.setItem("Usuario" + localStorage.length + 1, value);
+        Cancelar();
+    } else {
+        e.stopPropagation();
+        var error = document.querySelector(".MensajeErrorEmail");
+        $(error).show();
+        setTimeout(() => inpEmail.classList.add("shakeBusqueda"), 100);
+        setTimeout(() => inpEmail.classList.remove("shakeBusqueda"), 200);
+        setTimeout(() => $(error).hide(), 2000);
+    }
 }
 
 function desplegarRegistrate(e) {

@@ -34,7 +34,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-light" style="background-color: #5DC1B9;">
+    <nav class="navbar navbar-expand-md" style="background-color: #5DC1B9;">
         <a class="navbar-brand" href="#" onclick="Inicio()">
             <img src="assets/logo.svg" width="60" height="35" alt="Logo de Spanish Knowledge">
         </a>
@@ -48,10 +48,11 @@
             </ul>
 
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown"  style=" padding-right:0.5rem;">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                        <img class="avatar" id="avatarNavBar" height="30" width="30" src="assets/avatar.svg" alt="Avatar del usuario" />
+                <li class="nav-item dropdown" style=" padding-right:0.5rem;">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <img class="avatar" id="avatarNavBar" height="30" width="30" src="assets/avatar.svg"
+                            alt="Avatar del usuario" />
                     </a>
                     <ul class="dropdown-menu" id="menuUsuario">
                         <li>
@@ -60,6 +61,9 @@
                                     <label for="exampleDropdownFormEmail1">Correo Electronico</label>
                                     <input type="email" class="form-control" id="exampleDropdownFormEmail1"
                                         placeholder="email">
+                                    <p class="MensajeErrorEmail text-center" style="color: red;display: none;">Email
+                                        repetido bro</p>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleDropdownFormPassword1">Contraseña</label>
@@ -73,17 +77,19 @@
                                 </div>
                                 <button type="submit" id="btnIS" class="btn btn-primary" onclick="iniciaSesion()"
                                     style="margin-top:5px">Iniciar Sesion</button>
-                                <button type="submit" id="btnConfirmar" class="btn btn-primary"  onclick="Aceptar()"
+                                <button type="submit" id="btnConfirmar" class="btn btn-primary" onclick="Aceptar(event)"
                                     style="margin-top:5px;display: none;">Confirmar</button>
-                                    <button type="submit" id="btnCancelar" class="btn btn-primary"  onclick="Cancelar()"
+                                <button type="submit" id="btnCancelar" class="btn btn-primary" onclick="Cancelar()"
                                     style="margin-top:5px;display: none;">Cancelar</button>
                             </div>
                         </li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li><a class="dropdown-item" id="btnCS" style="display: none;" href="#" onclick="cierraSesion()">Cerrar Sesion</a></li>
-                        <li><a class="dropdown-item" id="btnReg" href="#"  onclick="desplegarRegistrate(event)">Registrate</a></li>
+                        <li><a class="dropdown-item" id="btnCS" style="display: none;" href="#"
+                                onclick="cierraSesion()">Cerrar Sesion</a></li>
+                        <li><a class="dropdown-item" id="btnReg" href="#"
+                                onclick="desplegarRegistrate(event)">Registrate</a></li>
                     </ul>
                 </li>
                 <li class="nav-item" style=" padding-right:1.5rem;">
@@ -106,7 +112,7 @@
     <div id="Contenido" class="Co">
         <section class="page-section info" id="info">
             <div class="container">
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0"></h2>
+                <h2 class="page-section-heading mb-4 text-center text-uppercase text-secondary mb-0"></h2>
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
@@ -149,7 +155,7 @@
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="info-item mx-auto">
                         <div class="ratio ratio-16x9">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -181,9 +187,11 @@
 
                             <div class="mt-2 text-right">
                                 <button class="btn btn-primary btn-sm shadow-none" type="button"
-                                    onclick="Comentar()">Post comment</button>
+                                    onclick="Comentar()">Comentar</button>
                                 <button class="btn btn-outline-primary btn-sm ml-1 shadow-none"
-                                    type="button">Cancel</button>
+                                    type="button">Cancelar</button>
+                                <p class="errorComentar" style="color: red;display: none;">Tienes que inicar sesión para
+                                    comentar</p>
                             </div>
                         </div>
                     </div>
@@ -191,24 +199,27 @@
             </div>
         </div>
     </div>
-    </body>
-    <footer class=" text-center text-lg-start " style="padding-top: 1.5rem;">
-        <div class="text-center p-3" style="background-color: #5DC1B9;">
-            <div class="lista">
-                <ul>
-                    <li>
-                        <a href="https://mdbootstrap.com/"> <img class="FotoFooter" src="assets/boot.svg" alt="Logo BootStrap" height="30" width="30"/></a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/AlejandroM816/Tecnologia-multimedia">  <img class="FotoFooter" alt="Logo GITHUB" src="assets/github.svg" height="30" width="30"/></a>  
-                    </li>
-                    <li>
-                        <a href="https://www.uib.es/es/"> <img class="FotoFooter" src="assets/uib.png" alt="Logo UIB" height="30" width="94"/> </a>
-                    </li>
+</body>
+<footer class=" text-center text-lg-start " style="padding-top: 1.5rem;">
+    <div class="text-center p-3" style="background-color: #5DC1B9;">
+        <div class="lista">
+            <ul>
+                <li>
+                    <a href="https://mdbootstrap.com/"> <img class="FotoFooter" src="assets/boot.svg"
+                            alt="Logo BootStrap" height="30" width="30" /></a>
+                </li>
+                <li>
+                    <a href="https://github.com/AlejandroM816/Tecnologia-multimedia"> <img class="FotoFooter"
+                            alt="Logo GITHUB" src="assets/github.svg" height="30" width="30" /></a>
+                </li>
+                <li>
+                    <a href="https://www.uib.es/es/"> <img class="FotoFooter" src="assets/uib.png" alt="Logo UIB"
+                            height="30" width="94" /> </a>
+                </li>
 
-                </ul>
-            </div>
+            </ul>
         </div>
-    </footer>
+    </div>
+</footer>
 
 </html>
