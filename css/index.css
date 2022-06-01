@@ -129,10 +129,12 @@ img {
 }
 
 .nav-link:hover {
-    font-size: larger;
+    -webkit-transform: scale(1.15);
+    transform: scale(1.15);
     font-weight: bold;
     color: black;
 }
+
 
 .menuPrincipal {
     /*  position: fixed;*/

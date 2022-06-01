@@ -83,20 +83,20 @@ function FetchWikiExtract(nombre) {
         var Texto = objeto3.query.pages[pageid[0]].extract;
         let TextoCambiar = removeTags(Texto);
         console.log(TextoCambiar.indexOf("Véase también"));
-        var indice=TextoCambiar.indexOf("Véase también");
-        if(indice!=-1){
-            TextoCambiar=TextoCambiar.substring(0,indice)
+        var indice = TextoCambiar.indexOf("Véase también");
+        if (indice != -1) {
+            TextoCambiar = TextoCambiar.substring(0, indice)
         }
-        var indice2=TextoCambiar.indexOf("Enlaces externos");
-        if(indice2!=-1){
-            TextoCambiar=TextoCambiar.substring(0,indice2)
+        var indice2 = TextoCambiar.indexOf("Enlaces externos");
+        if (indice2 != -1) {
+            TextoCambiar = TextoCambiar.substring(0, indice2)
         }
-        var indice3=TextoCambiar.indexOf("Referencias");
-        if(indice3!=-1){
-            TextoCambiar=TextoCambiar.substring(0,indice3)
+        var indice3 = TextoCambiar.indexOf("Referencias");
+        if (indice3 != -1) {
+            TextoCambiar = TextoCambiar.substring(0, indice3)
         }
 
-        TextoCambiar=TextoCambiar.replaceAll("\n\n\n\n","\n\n");
+        TextoCambiar = TextoCambiar.replaceAll("\n\n\n\n", "\n\n");
         document.querySelector(".lead").innerText = TextoCambiar;
     }
 
@@ -186,79 +186,94 @@ function cierraSesion() {
 }
 
 function ScrollA(div) {
+    
     window.scrollTo(0, $(div).offset().top);
 }
 
-function iniciaSesion() {
+function iniciaSesion(e) {
     var inpEmail = document.getElementById("exampleDropdownFormEmail1");
     var inpPass = document.getElementById("exampleDropdownFormPassword1");
     var email = inpEmail.value;
     var pass = inpPass.value;
-    let noEncontrados = 0;
-    var Foto;
-    var changeImage;
-    for (let j = 0; j < objeto2.users.length; j++) {
-        if (objeto2.users[j].email == email && objeto2.users[j].password == pass) {
-            Foto = objeto2.users[j].image;
-            sessionStorage.setItem(objeto2.users[j].email, objeto2.users[j].nickname);
-            j = objeto2.users.length + 1;
-            changeImage = true;
-        } else {
-            noEncontrados++;
+    if (email != "" || pass != "") {
+        let noEncontrados = 0;
+        var Foto;
+        var changeImage = false;
+        for (let j = 0; j < objeto2.users.length; j++) {
+            if (objeto2.users[j].email == email && objeto2.users[j].password == pass) {
+                Foto = objeto2.users[j].image;
+                sessionStorage.setItem(objeto2.users[j].email, objeto2.users[j].nickname);
+                j = objeto2.users.length + 1;
+                changeImage = true;
+            } else {
+                noEncontrados++;
+            }
         }
-    }
-    if (noEncontrados == objeto2.users.length) {
-        for (let g = 0; g < localStorage.length; g++) {
-            let key = localStorage.key(g);
-            if (key.includes("Usuario")) {
-                var item = localStorage.getItem(key);
-                var items = item.split("/$/");
-                if (items[0] == email && items[1] == pass) {
-                    Foto = items[3];
-                    sessionStorage.setItem(email, items[2]);
-                    changeImage = true;
+        if (noEncontrados == objeto2.users.length) {
+            for (let g = 0; g < localStorage.length; g++) {
+                let key = localStorage.key(g);
+                if (key.includes("Usuario")) {
+                    var item = localStorage.getItem(key);
+                    var items = item.split("/$/");
+                    if (items[0] == email && items[1] == pass) {
+                        Foto = items[3];
+                        sessionStorage.setItem(email, items[2]);
+                        changeImage = true;
+                    }
                 }
             }
         }
-    }
-    if (changeImage) {
-        var menuUsuario = document.getElementById("menuUsuario");
-        var elementosMenu = menuUsuario.children;
-        $(elementosMenu[0]).hide();
-        $(elementosMenu[1]).hide();
-        $(elementosMenu[3]).hide();
-        var avatarNavBar = document.getElementById("avatarNavBar");
-        avatarNavBar.src = Foto;
-        var cs = document.getElementById("btnCS");
-        $(cs).show();
-        document.getElementById("ImagenUsuComment").src = Foto;
-    }
+        if (changeImage) {
+            var menuUsuario = document.getElementById("menuUsuario");
+            var elementosMenu = menuUsuario.children;
+            $(elementosMenu[0]).hide();
+            $(elementosMenu[1]).hide();
+            $(elementosMenu[3]).hide();
+            var avatarNavBar = document.getElementById("avatarNavBar");
+            avatarNavBar.src = Foto;
+            var cs = document.getElementById("btnCS");
+            $(cs).show();
+            document.getElementById("ImagenUsuComment").src = Foto;
+        }
+        if (!changeImage) {
+            e.stopPropagation();
+            var erroriniciosesion = document.querySelector(".MensajeErrorInicioSesion");
+            $(erroriniciosesion).show();
+            setTimeout(() => $(erroriniciosesion).hide(), 2000);
 
+        }
+    } else {
+        e.stopPropagation();
+        var erroriniciosesion = document.querySelector(".MensajeErrorInicioSesion");
+        $(erroriniciosesion).show();
+        setTimeout(() => $(erroriniciosesion).hide(), 2000);
+    }
 }
 
-function busca() {
-
-    var inp = document.getElementById("buscadorTexto");
-    if (inp.classList.contains("shakeBusqueda")) {
-        inp.classList.remove("shakeBusqueda");
-    }
-    var texto = inp.value;
-    var titulos = document.querySelectorAll(".page-section-heading");
-    let noEncontrados = 0;
-    for (let i = 0; i < titulos.length; i++) {
-        if (titulos[i].textContent.includes(texto.toUpperCase())) {
-            $(titulos[i].parentNode).show();
-        } else {
-            noEncontrados++;
-            $(titulos[i].parentNode).hide();
+function busca(e) {
+    if (e.keyCode === 13 || e.type === "click") {
+        var inp = document.getElementById("buscadorTexto");
+        if (inp.classList.contains("shakeBusqueda")) {
+            inp.classList.remove("shakeBusqueda");
         }
-    }
-
-    if (noEncontrados == titulos.length) {
-        setTimeout(() => inp.classList.add("shakeBusqueda"), 100);
-
+        var texto = inp.value;
+        var titulos = document.querySelectorAll(".page-section-heading");
+        let noEncontrados = 0;
         for (let i = 0; i < titulos.length; i++) {
-            $(titulos[i].parentNode).show();
+            if (titulos[i].textContent.includes(texto.toUpperCase())) {
+                $(titulos[i].parentNode.parentNode).show();
+            } else {
+                noEncontrados++;
+                $(titulos[i].parentNode.parentNode).hide();
+            }
+        }
+
+        if (noEncontrados == titulos.length) {
+            setTimeout(() => inp.classList.add("shakeBusqueda"), 100);
+
+            for (let i = 0; i < titulos.length; i++) {
+                $(titulos[i].parentNode.parentNode).show();
+            }
         }
     }
 }
@@ -331,11 +346,11 @@ function SetBody(objeto) {
         console.log(e);
         for (let j = 0; j < objeto.subcategory[i].authors.length; j++) {
             var e2 = e.cloneNode(true);
-            var imagen=objeto.subcategory[i].authors[j].image.name;
+            var imagen = objeto.subcategory[i].authors[j].image.name;
             if (isMobile()) {
                 //var formato=imagen.slice(imagen.lastIndexOf("."),imagen.length);
-               // e2.childNodes[1].childNodes[1].src = imagen.replace(formato,"_telefono")+formato;
-               e2.childNodes[1].childNodes[1].src = imagen;
+                // e2.childNodes[1].childNodes[1].src = imagen.replace(formato,"_telefono")+formato;
+                e2.childNodes[1].childNodes[1].src = imagen;
                 e2.childNodes[1].childNodes[1].width = "96";
                 e2.childNodes[1].childNodes[1].height = "69";
             } else {
@@ -361,6 +376,10 @@ function SetBody(objeto) {
 
 
 function Inicio() {
+    var sections=document.querySelectorAll(".page-section");
+    for(let i=0;i<sections.length;i++){
+        $(sections[i]).show();
+    }
     Volver();
     scrollTo(0, 0);
 
@@ -425,9 +444,9 @@ function ComprobarUsuarioLocalStorage(email) {
 
 function Aceptar(e) {
     var inpEmail = document.getElementById("exampleDropdownFormEmail1");
+    var inpPass = document.getElementById("exampleDropdownFormPassword1");
+    var inpNick = document.getElementById("exampleDropdownFormNickname1");
     if (!ComprobarUsuarioJSON(inpEmail.value) && !ComprobarUsuarioLocalStorage(inpEmail.value)) {
-        var inpPass = document.getElementById("exampleDropdownFormPassword1");
-        var inpNick = document.getElementById("exampleDropdownFormNickname1");
         var Foto;
         var aleat = Math.random();
         if (aleat < 0.5) {
@@ -441,10 +460,17 @@ function Aceptar(e) {
         Cancelar();
     } else {
         e.stopPropagation();
-        var error = document.querySelector(".MensajeErrorEmail");
+        var error;
+        if (inpEmail.value != "" && inpPass.value != "" && inpNick.value != "") {
+            error = document.querySelector(".MensajeErrorEmail");
+            setTimeout(() => inpEmail.classList.add("shakeBusqueda"), 100);
+            setTimeout(() => inpEmail.classList.remove("shakeBusqueda"), 200);
+        } else {
+            error = document.querySelector(".MensajeErrorRegistrarse");
+           
+        }
         $(error).show();
-        setTimeout(() => inpEmail.classList.add("shakeBusqueda"), 100);
-        setTimeout(() => inpEmail.classList.remove("shakeBusqueda"), 200);
+
         setTimeout(() => $(error).hide(), 2000);
     }
 }
