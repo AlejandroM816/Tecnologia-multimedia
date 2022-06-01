@@ -27,8 +27,6 @@
     border: 0;
     border-radius: 0.5rem;
     opacity: 0.5;
-
-
 }
 
 .text-center {
@@ -117,15 +115,14 @@
     padding-left: calc(var(--bs-gutter-x) * 0.5);
     margin-top: var(--bs-gutter-y);
 }
-
+/*
 img {
-    /* para que si redimensionamos este toda la imagen cuadrada*/
     max-width: 100%;
     max-height: 100%;
     margin-left: 0.5em;
     margin-right: 0.5em;
 }
-
+*/
 .nav-link{
     color:black;
 
@@ -137,7 +134,6 @@ img {
     color: black;
 }
 
-
 .menuPrincipal {
     /*  position: fixed;*/
     /*background-color: #5DC1B9;*/
@@ -146,11 +142,6 @@ img {
     width: 100%;
 }
 
-/*
-body {
-    background: #eee
-}
-*/
 .date {
     font-size: 11px
 }
@@ -494,11 +485,9 @@ body {
     height: 100%;
 }
 
-
 .shakeBusqueda {
     animation-name: Abusqueda;
     animation-duration: .2s;
-
 }
 
 @keyframes Abusqueda {

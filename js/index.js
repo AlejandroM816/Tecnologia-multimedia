@@ -82,7 +82,21 @@ function FetchWikiExtract(nombre) {
         }
         var Texto = objeto3.query.pages[pageid[0]].extract;
         let TextoCambiar = removeTags(Texto);
-        console.log(TextoCambiar);
+        console.log(TextoCambiar.indexOf("Véase también"));
+        var indice=TextoCambiar.indexOf("Véase también");
+        if(indice!=-1){
+            TextoCambiar=TextoCambiar.substring(0,indice)
+        }
+        var indice2=TextoCambiar.indexOf("Enlaces externos");
+        if(indice2!=-1){
+            TextoCambiar=TextoCambiar.substring(0,indice2)
+        }
+        var indice3=TextoCambiar.indexOf("Referencias");
+        if(indice3!=-1){
+            TextoCambiar=TextoCambiar.substring(0,indice3)
+        }
+
+        TextoCambiar=TextoCambiar.replaceAll("\n\n\n\n","\n\n");
         document.querySelector(".lead").innerText = TextoCambiar;
     }
 
