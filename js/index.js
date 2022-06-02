@@ -1,3 +1,4 @@
+//Lectura de los JSON y carga de los elementos HTML a partir de los datos leidos
 const requestURL = "https://raw.githubusercontent.com/AlejandroM816/Tecnologia-multimedia/main/json/CategoriasYautores.json";
 const requestURL2 = "https://raw.githubusercontent.com/AlejandroM816/Tecnologia-multimedia/main/json/usuariosRegistrados.json";
 var objeto;
@@ -21,50 +22,46 @@ request.onload = function () {
     SetBody(objeto);
 }
 
+//Función que detecta si la AppWeb se esta ejecutando sobre un telefono
 function isMobile() {
     return (
-        (navigator.userAgent.match(/Android/i)) ||
-        (navigator.userAgent.match(/webOS/i)) ||
-        (navigator.userAgent.match(/iPhone/i)) ||
-        (navigator.userAgent.match(/iPod/i)) ||
-        (navigator.userAgent.match(/iPad/i)) ||
+        (navigator.userAgent.match(/Android/i))     ||
+        (navigator.userAgent.match(/webOS/i))       ||
+        (navigator.userAgent.match(/iPhone/i))      ||
+        (navigator.userAgent.match(/iPod/i))        ||
+        (navigator.userAgent.match(/iPad/i))        ||
         (navigator.userAgent.match(/BlackBerry/i))
     );
 }
 
-function SetHeader(objeto) {
-    var elemento = document.querySelector(".navbar-nav");
-    for (let i = 0; i < objeto.subcategory.length; i++) {
-        var elem = document.createElement("li");
-        elem.className = "nav-item";
-        var elem2 = document.createElement("a");
-        elem2.className = "nav-link";
-        elem2.href = "#";
-        elem2.textContent = objeto.subcategory[i].name;
-        elem.appendChild(elem2);
-        elemento.appendChild(elem);
-
-    }
-
-    elemento.addEventListener("click", e => {
-
-        let titulos = document.querySelectorAll(".page-section-heading");
-        for (let i = 0; i < titulos.length; i++) {
-            console.log(titulos[i].textContent);
-            if (titulos[i].textContent == e.target.textContent) {
-                ScrollA(titulos[i]);
-                i = titulos.length + 1;
-            }
-        }
-
+//Función que inicializa el mapa con marcadores en los sitios importantes
+function startMap(autor) {
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYW1uODE2IiwiYSI6ImNsMzE3Z2s4ZjB1OHozcHBzMmlkNndmN28ifQ.hoy47cMpypxnzPnMsqgcng';
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/streets-v11', // style URL
+        center: [autor.studySites[0].Long, autor.studySites[0].Lat], // starting position [lng, lat]
+        zoom: 5 // starting zoom
     });
-
+    for (let i = 0; i < autor.studySites.length; i++) {
+        new mapboxgl.Marker().setLngLat([autor.studySites[i].Long, autor.studySites[i].Lat]).addTo(map);
+    }
 
 }
 
+//Función para eliminar las etiquetas HTML de un texto
+function removeTags(str) {
+    if ((str === null) || (str === ''))
+        return false;
+    else
+        str = str.toString();
+    str = str.replace(/(\[(?:[^[\]]*?)\]\s*?(?=\[))|(\[(?:[^[\]]*?)\](?!\s*[\|&]\s*.))|(?:\[[^[\]]*?])/g, '');
+    return str.replace(/<\/?[a-z][a-z0-9]*[^<>]*>|<!--.*?-->/img, '');
+}
+
+//Función que lee de la wikipedia el articulo del cintifico clicado, además elimina los elementos no necesarios para el texto
 function FetchWikiExtract(nombre) {
     const wikiEndPoint = "https://es.wikipedia.org/w/api.php"
-
     const wikiParams = '?action=query'
         + "&titles=" + nombre
         + "&format=json"
@@ -95,24 +92,12 @@ function FetchWikiExtract(nombre) {
         if (indice3 != -1) {
             TextoCambiar = TextoCambiar.substring(0, indice3)
         }
-
         TextoCambiar = TextoCambiar.replaceAll("\n\n\n\n", "\n\n");
         document.querySelector(".lead").innerText = TextoCambiar;
     }
-
-
-
 }
 
-function removeTags(str) {
-    if ((str === null) || (str === ''))
-        return false;
-    else
-        str = str.toString();
-    str = str.replace(/(\[(?:[^[\]]*?)\]\s*?(?=\[))|(\[(?:[^[\]]*?)\](?!\s*[\|&]\s*.))|(?:\[[^[\]]*?])/g, '');
-    return str.replace(/<\/?[a-z][a-z0-9]*[^<>]*>|<!--.*?-->/img, '');
-}
-
+//Función que hace Text-to-Speech
 function Leer() {
     var elemento = document.querySelector(".lead");
     if (speechSynthesis.speaking) {
@@ -122,74 +107,58 @@ function Leer() {
     }
 }
 
-function SetComments(comentarios, nombreAutor) {
-    var comentario = document.querySelectorAll(".bg-white");
-    for (let k = 1; k < comentario.length; k++) {
-        comentario[k].remove();
-    }
-    comentario = comentario[0];
-    $(comentario).show();
-    var padre = comentario.parentNode;
-    for (let i = 0; i < comentarios.length; i++) {
-        var c2 = comentario.cloneNode(true);
-        for (let j = 0; j < objeto2.users.length; j++) {
-            if (objeto2.users[j].nickname == comentarios[i].nickname) {
-                c2.childNodes[1].childNodes[0].src = objeto2.users[j].image;
-                j = objeto2.users.length;
-            }
-        }
-        c2.childNodes[1].childNodes[2].childNodes[0].textContent = comentarios[i].nickname;
-        c2.childNodes[1].childNodes[2].childNodes[1].textContent = comentarios[i].date;
-        c2.childNodes[3].childNodes[1].textContent = comentarios[i].comment;
-        if (c2.childNodes[3].childNodes[1].textContent == "") {
-            $(c2).hide();
-        }
-        padre.insertBefore(c2, padre.lastChild);
-
-    }
-
-    setComentLocalStorage(comentario, nombreAutor, padre);
-    padre.removeChild(comentario);
-
-
+//Función que nos permite cerrar la ventana de información
+function Volver() {
+    let elementoCont = document.querySelectorAll(".Co");
+    $(elementoCont).show();
+    var ocultar = document.querySelector('.informacion');
+    $(ocultar).hide();
 }
 
-function setComentLocalStorage(comentario, nombreAutor, padre) {
-    for (let g = 0; g < localStorage.length; g++) {
-        var c2 = comentario.cloneNode(true);
-        let key = localStorage.key(g);
-        var item = localStorage.getItem(key);
-        var splitComment = item.split("@");
-        if (splitComment[0] == nombreAutor) {
-            c2.childNodes[1].childNodes[2].childNodes[0].textContent = splitComment[1];
-            c2.childNodes[1].childNodes[2].childNodes[1].textContent = splitComment[2];
-            document.getElementById("AVATARC").src = splitComment[3];
-            c2.childNodes[3].childNodes[1].textContent = splitComment[4];
-            padre.insertBefore(c2, padre.lastChild);
-        }
-    }
-
-}
-
-function cierraSesion() {
-    sessionStorage.removeItem(sessionStorage.key(0));
-    var menuUsuario = document.getElementById("menuUsuario");
-    var elementosMenu = menuUsuario.children;
-    $(elementosMenu[0]).show();
-    $(elementosMenu[1]).show();
-    $(elementosMenu[3]).show();
-    var avatarNavBar = document.getElementById("avatarNavBar");
-    avatarNavBar.src = "assets/avatar.svg";
-    var cs = document.getElementById("btnCS");
-    $(cs).hide();
-    document.getElementById("ImagenUsuComment").src = "";
-}
-
+//Función que nos permite ir al elemento clicado en el header.
 function ScrollA(div) {
-    
     window.scrollTo(0, $(div).offset().top);
 }
 
+//Función que nos permite dandole al logo volver a situarnos en la página principal
+function Inicio() {
+    var sections=document.querySelectorAll(".page-section");
+    for(let i=0;i<sections.length;i++){
+        $(sections[i]).show();
+    }
+    Volver();
+    scrollTo(0, 0);
+
+}
+
+//Función que realiza la busqueda de una categoria usando el buscador
+function busca(e) {
+    if (e.keyCode === 13 || e.type === "click") {
+        var inp = document.getElementById("buscadorTexto");
+        if (inp.classList.contains("shakeBusqueda")) {
+            inp.classList.remove("shakeBusqueda");
+        }
+        var texto = inp.value;
+        var titulos = document.querySelectorAll(".page-section-heading");
+        let noEncontrados = 0;
+        for (let i = 0; i < titulos.length; i++) {
+            if (titulos[i].textContent.includes(texto.toUpperCase())) {
+                $(titulos[i].parentNode.parentNode).show();
+            } else {
+                noEncontrados++;
+                $(titulos[i].parentNode.parentNode).hide();
+            }
+        }
+        if (noEncontrados == titulos.length) {
+            setTimeout(() => inp.classList.add("shakeBusqueda"), 100);
+            for (let i = 0; i < titulos.length; i++) {
+                $(titulos[i].parentNode.parentNode).show();
+            }
+        }
+    }
+}
+
+// Función que permite iniciar sesión, en caso que el inicio de sesión sea incorrecto notifica al usuario
 function iniciaSesion(e) {
     var inpEmail = document.getElementById("exampleDropdownFormEmail1");
     var inpPass = document.getElementById("exampleDropdownFormPassword1");
@@ -240,7 +209,6 @@ function iniciaSesion(e) {
             var erroriniciosesion = document.querySelector(".MensajeErrorInicioSesion");
             $(erroriniciosesion).show();
             setTimeout(() => $(erroriniciosesion).hide(), 2000);
-
         }
     } else {
         e.stopPropagation();
@@ -250,34 +218,22 @@ function iniciaSesion(e) {
     }
 }
 
-function busca(e) {
-    if (e.keyCode === 13 || e.type === "click") {
-        var inp = document.getElementById("buscadorTexto");
-        if (inp.classList.contains("shakeBusqueda")) {
-            inp.classList.remove("shakeBusqueda");
-        }
-        var texto = inp.value;
-        var titulos = document.querySelectorAll(".page-section-heading");
-        let noEncontrados = 0;
-        for (let i = 0; i < titulos.length; i++) {
-            if (titulos[i].textContent.includes(texto.toUpperCase())) {
-                $(titulos[i].parentNode.parentNode).show();
-            } else {
-                noEncontrados++;
-                $(titulos[i].parentNode.parentNode).hide();
-            }
-        }
-
-        if (noEncontrados == titulos.length) {
-            setTimeout(() => inp.classList.add("shakeBusqueda"), 100);
-
-            for (let i = 0; i < titulos.length; i++) {
-                $(titulos[i].parentNode.parentNode).show();
-            }
-        }
-    }
+// Función que permite el cierre de sesión
+function cierraSesion() {
+    sessionStorage.removeItem(sessionStorage.key(0));
+    var menuUsuario = document.getElementById("menuUsuario");
+    var elementosMenu = menuUsuario.children;
+    $(elementosMenu[0]).show();
+    $(elementosMenu[1]).show();
+    $(elementosMenu[3]).show();
+    var avatarNavBar = document.getElementById("avatarNavBar");
+    avatarNavBar.src = "assets/avatar.svg";
+    var cs = document.getElementById("btnCS");
+    $(cs).hide();
+    document.getElementById("ImagenUsuComment").src = "";
 }
 
+// Función que permite a un usuario comentar
 function Comentar() {
     var newComment = document.getElementById("ComentarioUusario");
     console.log(newComment.value);
@@ -307,7 +263,6 @@ function Comentar() {
                 }
             }
         }
-
         var newComment2 = titulo.textContent + "@" + usu + "@" + output + "@" + Foto + "@" + newComment.value;
         console.log(newComment2);
         localStorage.setItem('Comentario' + (localStorage.length + 1), newComment2);
@@ -332,94 +287,54 @@ function Comentar() {
     newComment.value = "";
 }
 
-function SetBody(objeto) {
-    var elemento = document.querySelector(".Co");
-    console.log(elemento.childNodes);
-    var elem = elemento.childNodes[1].childNodes[1];
-    console.log(elem);
-    for (let i = 0; i < objeto.subcategory.length; i++) {
-        console.log(elem);
-        var element = elem.cloneNode(true);
-        element.id = objeto.subcategory[i].name;
-        element.childNodes[1].textContent = objeto.subcategory[i].name;
-        var e = element.childNodes[5].childNodes[1];
-        console.log(e);
-        for (let j = 0; j < objeto.subcategory[i].authors.length; j++) {
-            var e2 = e.cloneNode(true);
-            var imagen = objeto.subcategory[i].authors[j].image.name;
-            if (isMobile()) {
-                //var formato=imagen.slice(imagen.lastIndexOf("."),imagen.length);
-                // e2.childNodes[1].childNodes[1].src = imagen.replace(formato,"_telefono")+formato;
-                e2.childNodes[1].childNodes[1].src = imagen;
-                e2.childNodes[1].childNodes[1].width = "96";
-                e2.childNodes[1].childNodes[1].height = "69";
-            } else {
-                e2.childNodes[1].childNodes[1].src = imagen;
-                e2.childNodes[1].childNodes[1].width = "356";
-                e2.childNodes[1].childNodes[1].height = "257";
+// Función que añade los comentarios que esten en el JSON.
+function SetComments(comentarios, nombreAutor) {
+    var comentario = document.querySelectorAll(".bg-white");
+    for (let k = 1; k < comentario.length; k++) {
+        comentario[k].remove();
+    }
+    comentario = comentario[0];
+    $(comentario).show();
+    var padre = comentario.parentNode;
+    for (let i = 0; i < comentarios.length; i++) {
+        var c2 = comentario.cloneNode(true);
+        
+        for (let j = 0; j < objeto2.users.length; j++) {
+            if (objeto2.users[j].nickname == comentarios[i].nickname) {
+                c2.childNodes[1].childNodes[0].src = objeto2.users[j].image;
+                j = objeto2.users.length;
             }
-            e2.childNodes[1].childNodes[1].alt = objeto.subcategory[i].authors[j].name;
-            var subTituloImagen = objeto.subcategory[i].authors[j].name + "\n" + objeto.subcategory[i].authors[j].work + "\n" +
-                objeto.subcategory[i].authors[j].birthDate + "\n" + objeto.subcategory[i].authors[j].deathDate;
-            e2.childNodes[1].childNodes[3].innerText = subTituloImagen.toString();
-            element.childNodes[5].appendChild(e2);
         }
-        element.childNodes[5].removeChild(e);
-        var e3 = document.createElement("section");
-        e3.className = "page-section info";
-        e3.id = "info";
-        e3.appendChild(element);
-        elemento.appendChild(e3);
+        c2.children[0].children[1].children[0].textContent = comentarios[i].nickname;
+        c2.children[0].children[1].children[1].textContent = comentarios[i].date;
+        c2.children[1].children[0].textContent = comentarios[i].comment;
+        if (c2.childNodes[3].childNodes[1].textContent == "") {
+            $(c2).hide();
+        }
+        padre.insertBefore(c2, padre.lastChild);
     }
-    elemento.removeChild(elemento.childNodes[1]);
+    setComentLocalStorage(comentario, nombreAutor, padre);
+    padre.removeChild(comentario);
 }
 
-
-function Inicio() {
-    var sections=document.querySelectorAll(".page-section");
-    for(let i=0;i<sections.length;i++){
-        $(sections[i]).show();
-    }
-    Volver();
-    scrollTo(0, 0);
-
-}
-
-/*
-function MoverA(elemento) {
-    Inicio(0);
-    console.log(elemento);
-    var div = elemento.textContent;
-    var elementos = document.querySelectorAll(".page-section-heading");
-    for (let i = 0; i < elementos.length; i++) {
-        if (div == elementos[i].textContent) {
-            console.log(i);
-            var x = elementos[i].getBoundingClientRect().left + scrollX - elementos[i].getBoundingClientRect().width;
-            console.log(i);
-            var y = elementos[i].getBoundingClientRect().top + scrollY - elementos[i].getBoundingClientRect().height;
-            console.log(y);
-            scrollTo(x, y);
+// Función que añade los comentarios que esten en localStorage
+function setComentLocalStorage(comentario, nombreAutor, padre) {
+    for (let g = 0; g < localStorage.length; g++) {
+        var c2 = comentario.cloneNode(true);
+        let key = localStorage.key(g);
+        var item = localStorage.getItem(key);
+        var splitComment = item.split("@");
+        if (splitComment[0] == nombreAutor) {
+            c2.children[0].children[1].children[0].textContent = splitComment[1];
+            c2.children[0].children[1].children[1].textContent.textContent = splitComment[2];
+            document.getElementById("AVATARC").src = splitComment[3];
+            c2.children[1].children[0].textContent = splitComment[4];
+            padre.insertBefore(c2, padre.lastChild);
         }
     }
 }
-*/
 
-function Cancelar() {
-    var div = document.getElementById("inputRegistro");
-    $(div).hide();
-    var is = document.getElementById("btnIS");
-    $(is).show();
-    var cs = document.getElementById("btnCS");
-    $(cs).hide();
-    var reg = document.getElementById("btnReg");
-    $(reg).show();
-    var cf = document.getElementById("btnConfirmar");
-    $(cf).hide();
-    var can = document.getElementById("btnCancelar");
-    $(can).hide();
-}
-
-
+// Comprueba si un usuario esta en el JSON
 function ComprobarUsuarioJSON(email) {
     for (let i = 0; i < objeto2.users.length; i++) {
         if (objeto2.users[i].email == email) {
@@ -429,6 +344,7 @@ function ComprobarUsuarioJSON(email) {
     return false;
 }
 
+// Comprueba si un usuario esta en el Local Storage
 function ComprobarUsuarioLocalStorage(email) {
     for (let i = 0; i < localStorage.length; i++) {
         if (localStorage.key(i).includes("Usuario")) {
@@ -439,9 +355,26 @@ function ComprobarUsuarioLocalStorage(email) {
         }
     }
     return false;
-
 }
 
+// Despliega las campos para registrarse
+function desplegarRegistrate(e) {
+    var div = document.getElementById("inputRegistro");
+    $(div).show();
+    var is = document.getElementById("btnIS");
+    $(is).hide();
+    var cs = document.getElementById("btnCS");
+    $(cs).hide();
+    var reg = document.getElementById("btnReg");
+    $(reg).hide();
+    var cf = document.getElementById("btnConfirmar");
+    $(cf).show();
+    var can = document.getElementById("btnCancelar");
+    $(can).show();
+    e.stopPropagation();
+}
+
+// Función que registra a un usuario cuando se le daa al botón acceptar si estan todos los campos rellenados y no estan repetidos.
 function Aceptar(e) {
     var inpEmail = document.getElementById("exampleDropdownFormEmail1");
     var inpPass = document.getElementById("exampleDropdownFormPassword1");
@@ -470,51 +403,94 @@ function Aceptar(e) {
            
         }
         $(error).show();
-
         setTimeout(() => $(error).hide(), 2000);
     }
 }
 
-function desplegarRegistrate(e) {
+//Función que esconde los campos del registro y establece los de iniciar sesión
+function Cancelar() {
     var div = document.getElementById("inputRegistro");
-    $(div).show();
+    $(div).hide();
     var is = document.getElementById("btnIS");
-    $(is).hide();
+    $(is).show();
     var cs = document.getElementById("btnCS");
     $(cs).hide();
     var reg = document.getElementById("btnReg");
-    $(reg).hide();
+    $(reg).show();
     var cf = document.getElementById("btnConfirmar");
-    $(cf).show();
+    $(cf).hide();
     var can = document.getElementById("btnCancelar");
-    $(can).show();
-    e.stopPropagation();
+    $(can).hide();
 }
 
-function Volver() {
-    let elementoCont = document.querySelectorAll(".Co");
-    $(elementoCont).show();
-    var ocultar = document.querySelector('.informacion');
-    $(ocultar).hide();
-}
-
-function startMap(autor) {
-    mapboxgl.accessToken = 'pk.eyJ1IjoiYW1uODE2IiwiYSI6ImNsMzE3Z2s4ZjB1OHozcHBzMmlkNndmN28ifQ.hoy47cMpypxnzPnMsqgcng';
-    const map = new mapboxgl.Map({
-        container: 'map', // container ID
-        style: 'mapbox://styles/mapbox/streets-v11', // style URL
-        center: [autor.studySites[0].Long, autor.studySites[0].Lat], // starting position [lng, lat]
-        zoom: 5 // starting zoom
-    });
-    for (let i = 0; i < autor.studySites.length; i++) {
-        new mapboxgl.Marker().setLngLat([autor.studySites[i].Long, autor.studySites[i].Lat]).addTo(map);
+//Función que a partir de los JSON leidos establece el header de la página
+function SetHeader(objeto) {
+    var elemento = document.querySelector(".navbar-nav");
+    for (let i = 0; i < objeto.subcategory.length; i++) {
+        var elem = document.createElement("li");
+        elem.className = "nav-item";
+        var elem2 = document.createElement("a");
+        elem2.className = "nav-link";
+        elem2.href = "#";
+        elem2.textContent = objeto.subcategory[i].name;
+        elem.appendChild(elem2);
+        elemento.appendChild(elem);
     }
-
+    elemento.addEventListener("click", e => {
+        let titulos = document.querySelectorAll(".page-section-heading");
+        for (let i = 0; i < titulos.length; i++) {
+            console.log(titulos[i].textContent);
+            if (titulos[i].textContent == e.target.textContent) {
+                ScrollA(titulos[i]);
+                i = titulos.length + 1;
+            }
+        }
+    });
 }
 
+//Función que a partir de los JSON leídos establece el cuerpo de la WebApp
+function SetBody(objeto) {
+    var elemento = document.querySelector(".Co");
+    console.log(elemento.childNodes);
+    var elem = elemento.childNodes[1].childNodes[1];
+    console.log(elem);
+    for (let i = 0; i < objeto.subcategory.length; i++) {
+        console.log(elem);
+        var element = elem.cloneNode(true);
+        element.id = objeto.subcategory[i].name;
+        element.childNodes[1].textContent = objeto.subcategory[i].name;
+        var e = element.childNodes[5].childNodes[1];
+        console.log(e);
+        for (let j = 0; j < objeto.subcategory[i].authors.length; j++) {
+            var e2 = e.cloneNode(true);
+            var imagen = objeto.subcategory[i].authors[j].image.name;
+            if (isMobile()) {
+                e2.childNodes[1].childNodes[1].src = imagen;
+                e2.childNodes[1].childNodes[1].width = "96";
+                e2.childNodes[1].childNodes[1].height = "69";
+            } else {
+                e2.childNodes[1].childNodes[1].src = imagen;
+                e2.childNodes[1].childNodes[1].width = "356";
+                e2.childNodes[1].childNodes[1].height = "257";
+            }
+            e2.childNodes[1].childNodes[1].alt = objeto.subcategory[i].authors[j].name;
+            var subTituloImagen = objeto.subcategory[i].authors[j].name + "\n" + objeto.subcategory[i].authors[j].work + "\n" +
+                objeto.subcategory[i].authors[j].birthDate + "\n" + objeto.subcategory[i].authors[j].deathDate;
+            e2.childNodes[1].childNodes[3].innerText = subTituloImagen.toString();
+            element.childNodes[5].appendChild(e2);
+        }
+        element.childNodes[5].removeChild(e);
+        var e3 = document.createElement("section");
+        e3.className = "page-section info";
+        e3.id = "info";
+        e3.appendChild(element);
+        elemento.appendChild(e3);
+    }
+    elemento.removeChild(elemento.childNodes[1]);
+}
 
+// Función que cambia el cuerpo de la página por la de la información de un cintifico
 function ModificarContenido() {
-
     let elementoCont = document.querySelectorAll(".Co");
     elementoCont[0].addEventListener("click", e => {
         var elementoClickado = e.target.parentNode;
@@ -535,22 +511,13 @@ function ModificarContenido() {
                     titulo.textContent = nombreAutor;
                     var mostrar = document.querySelector('.informacion');
                     SetComments(subcategoriajson.authors[i].coments, nombreAutor);
-                    var comentario = document.querySelector(".comment-text");
-                    const wikiData = FetchWikiExtract(nombreAutor);
+                    FetchWikiExtract(nombreAutor);
                     var v = document.querySelector(".videos");
-
-                    /*
-                        <lite-youtube videoid="2tsQ75zSWLs"></lite-youtube>
-                    */
-
                     if (!jQuery.isEmptyObject(subcategoriajson.authors[i].documentales)) {
                         $(v).show();
-                        //const videoGenerico= '<div class="col-md-6 col-lg-4 mb-5"><div class="info-item mx-auto"><div class="ratio ratio-16x9"><lite-youtube videoid="2tsQ75zSWLs"></lite-youtube></div> </div></div>'
-
                         while (v.childNodes[1].children.length > 2) {
                             v.childNodes[1].children[v.childNodes[1].children.length - 1].remove();
                         }
-
                         for (let b = 0; b < subcategoriajson.authors[i].documentales.length; b++) {
                             var videoGenerico = '<lite-youtube videoid="idgenericoremplazar"></lite-youtube>';
                             videoGenerico = videoGenerico.replace("idgenericoremplazar",
@@ -568,7 +535,6 @@ function ModificarContenido() {
                     } else {
                         $(v).hide();
                     }
-                    //comsole.log(wikiData);
                     $(mostrar).show();
                     i = subcategoriajson.authors.length;
                 }
@@ -576,61 +542,6 @@ function ModificarContenido() {
             $(elementoCont[0]).hide();
             scrollTo(0, 0);
         }
-
-    })
+    });
 }
 ModificarContenido();
-
-
-
-
-
-/*
-function ModificarContenido() {
-    let elementoCont = document.querySelectorAll(".Co");
-    console.log(elementoCont);
-    elementoCont[0].addEventListener("click", e => {
-        var elementoClickado = e.target.parentNode;
-        console.log(elementoClickado.childNodes);
-        if (elementoClickado.className.includes('info-item') && !elementoClickado.id.includes('noClick') && !elementoClickado.id.includes('nada')) {
-            var padreelementoClickado = document.querySelectorAll(".page-section");
-            console.log(padreelementoClickado);
-
-            let count = 0;
-            for (item of padreelementoClickado) {
-                if (count < padreelementoClickado.length - 1) {
-                    console.log(count);
-                    $(item).hide();
-                }
-                count += 1;
-            }
-            console.log(padreelementoClickado);
-            $(padreelementoClickado[padreelementoClickado.length - 1]).show();
-            var textoalternativo = elementoClickado.childNodes[1].alt;
-            console.log(textoalternativo);
-            var headerSeccion = document.querySelectorAll(".page-section-heading");
-            var palabra = headerSeccion[headerSeccion.length - 1].textContent;
-            headerSeccion[headerSeccion.length - 1].textContent = textoalternativo;
-
-            scrollTo(0, 0);
-        } else {
-            if (elementoClickado.id.includes('noClick')) {
-                var mostrar = document.querySelector('.informacion');
-                var textoalternativo = elementoClickado.childNodes[1].alt;
-                var titulo = document.querySelector('.titulo');
-                titulo.textContent = textoalternativo;
-                $(mostrar).show();
-                var x = mostrar.getBoundingClientRect().left + scrollX;
-                console.log(x);
-                var y = mostrar.getBoundingClientRect().top + scrollY;
-                console.log(y);
-                scrollTo(x, y);
-            }
-
-        }
-
-    })
-
-}
-ModificarContenido();
-*/
