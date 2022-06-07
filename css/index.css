@@ -122,8 +122,6 @@
 }
 
 .nav-link:hover {
-    
-    transform: scale(1.15);
     font-weight: bold;
     color: black;
 }
