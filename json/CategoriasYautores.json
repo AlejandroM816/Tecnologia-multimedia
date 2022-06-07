@@ -3,10 +3,6 @@
     "subcategory": [
         {
             "name": "MATEMATICAS",
-            "image": {
-                "@type": "ImageObject",
-                "name": "assets/Matematicas.png"
-            },
             "authors": [
                 {
                     "name": "José Echegaray",
@@ -241,10 +237,6 @@
         },
         {
             "name": "FISICA",
-            "image": {
-                "@type": "ImageObject",
-                "name": "assets/Fisica.jpg"
-            },
             "authors": [
                 {
                     "name": "Pablo Jarillo-Herrero",
@@ -404,10 +396,6 @@
         },
         {
             "name": "BIOLOGIA",
-            "image": {
-                "@type": "ImageObject",
-                "name": "assets/Biologia.png"
-            },
             "authors": [
                 {
                     "name": "Fernando Maestre Gil",
